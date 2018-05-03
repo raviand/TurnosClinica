@@ -176,7 +176,7 @@ namespace MainMenu
         }
 
         private void tbxCP_KeyPress(object sender, KeyPressEventArgs e)
-        {
+      {
             if (testNumeros(e))
             {
                 MessageBox.Show("Ingrese solo valores numericos");
@@ -310,7 +310,7 @@ namespace MainMenu
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error al cargar paciente");
+                    MessageBox.Show("Error al cargar paciente\n" + ex.ToString());
                 }
             }
         }

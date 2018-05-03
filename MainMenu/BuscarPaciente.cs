@@ -25,8 +25,13 @@ namespace MainMenu
             {
                 PacienteNegocio pacienteNegocio = new PacienteNegocio();
                 dgvListaPacientes.DataSource =  pacienteNegocio.listar();
-               
-            }catch(Exception err)
+                dgvListaPacientes.Columns["fechaIngreso"].Visible = false;
+                dgvListaPacientes.Columns["IdPaciente"].Visible = false;
+                //dgvListaPacientes.Columns["CoberturaMedica"].Visible = false;
+                dgvListaPacientes.Columns["FechaNac"].Visible = false;
+
+            }
+            catch(Exception err)
             {
                 MessageBox.Show("Ocurrio un error durante la ejecucion" + err.ToString());
             }

@@ -62,7 +62,7 @@ namespace Negocio
             IList<Paciente> pacientes = new List<Paciente>();
             try
             {
-                lector = conn.lector("SELECT PACIENTES.NOMBRE, PACIENTES.APELLIDO, PACIENTES.DNI, PACIENTES.CALLE, PACIENTES.PISO, PACIENTES.DEPARTAMENTO, PACIENTES.CP, LOCALIDAD.NOMBRE, PROVINCIA.NOMBRE, COBERTURA_PACIENTES.NUMERO_CREDENCIAL, PLANES.NOMBRE FROM PACIENTES LEFT JOIN LOCALIDAD ON LOCALIDAD.ID = PACIENTES.ID_LOCALIDAD LEFT JOIN PROVINCIA ON LOCALIDAD.ID_PROVINCIA = PROVINCIA.ID LEFT JOIN COBERTURA_PACIENTES ON COBERTURA_PACIENTES.ID = PACIENTES.ID LEFT JOIN PLANES ON PLANES.ID = COBERTURA_PACIENTES.ID_PLAN");
+                lector = conn.lector("SELECT PACIENTES.NOMBRE, PACIENTES.APELLIDO, PACIENTES.DNI, PACIENTES.CALLE, PACIENTES.PISO, PACIENTES.DEPARTAMENTO, PACIENTES.CP, LOCALIDAD.NOMBRE, PROVINCIA.NOMBRE, COBERTURA_PACIENTES.NUMERO_CREDENCIAL, PLANES.NOMBRE, PACIENTES.MAIL FROM PACIENTES LEFT JOIN LOCALIDAD ON LOCALIDAD.ID = PACIENTES.ID_LOCALIDAD LEFT JOIN PROVINCIA ON LOCALIDAD.ID_PROVINCIA = PROVINCIA.ID LEFT JOIN COBERTURA_PACIENTES ON COBERTURA_PACIENTES.ID = PACIENTES.ID LEFT JOIN PLANES ON PLANES.ID = COBERTURA_PACIENTES.ID_PLAN");
                 
                 while (lector.Read())
                 {
@@ -87,7 +87,8 @@ namespace Negocio
                     //if (!lector.IsDBNull(lector.GetOrdinal("NUMERO")))
                     //    paciente.CobreturaMedica.NumeroCredencial = lector.GetInt32(9);
                     //if (!lector.IsDBNull(lector.GetOrdinal("PLANES.NOMBRE")))
-                        //paciente.CobreturaMedica.Plan = lector.GetString(10);
+                    //paciente.CobreturaMedica.Plan = lector.GetString(10);
+                    paciente.Mail = lector.GetString(11);
                     pacientes.Add(paciente);
                 }
                 
@@ -147,8 +148,14 @@ namespace Negocio
             }
         }
 
-        public int cargarPaciente(Paciente paciente)
+        public int cargarPaciente(Paciente ePaciente)
         {
+            Paciente paciente = new Paciente();
+            paciente.Dir = new Direccion();
+            paciente.CobreturaMedica = new ServicioMedico();
+            paciente.Telefonos = new List<Telefono>();
+            paciente = ePaciente;
+
             int res;
             String query;
             bool pisoExist = false;
@@ -157,7 +164,7 @@ namespace Negocio
             try
             {
                 query = "set dateformat dmy INSERT INTO PACIENTES(ID_LOCALIDAD, NOMBRE, APELLIDO, DNI, MAIL, FECHA_NACIMIENTO, FECHA_INGRESO, CALLE";
-                if (paciente.Dir.Departamento.CompareTo("") != 0)
+                if (paciente.Dir.Departamento != null)
                 {
                     deptoExist = true;
                     query += ", DEPARTAMENTO";
