@@ -9,7 +9,7 @@ namespace Datos
     public class Paciente : Persona
     {
         public DateTime FechaIngreso { get; set; }
-        public int IdPaciente { get; set; }
+        public String IdPaciente { get; set; }
         public List<Atencion> HistoriaMedica { get; set; }
         public ServicioMedico CobreturaMedica { get; set; }
 

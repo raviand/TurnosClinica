@@ -34,9 +34,12 @@ namespace Negocio
             try
             {
                 conn = new Conexion();
-                lector = conn.lector("SELECT ID, NOMBRE FROM PROVINCIA");
+                
+                lector = conn.lector("SELECT ID, provincia FROM PROVINCIAS");
                 while (lector.Read())
+                {
                     provincia.Add(lector.GetInt32(0), lector.GetString(1));
+                }
                 return provincia;
             }
             catch (Exception ex)
@@ -68,7 +71,8 @@ namespace Negocio
             try
             {
                 conn = new Conexion();
-                lector = conn.lector("SELECT ID, NOMBRE FROM planes WHERE ID_COBERTURA=" + idCobertura);
+                //lector = 
+                lector =  conn.lector("SELECT ID, NOMBRE FROM planes WHERE ID_COBERTURA=" + idCobertura);
                 while (lector.Read())
                     planMedico.Add(lector.GetInt32(0), lector.GetString(1));
                 return planMedico;
@@ -85,7 +89,7 @@ namespace Negocio
             try
             {
                 conn = new Conexion();
-                lector = conn.lector("select ID, NOMBRE from LOCALIDAD WHERE ID_PROVINCIA=" + idProvincia);
+                lector = conn.lector("select ID, localidad from localidades where id_privincia =" + idProvincia);
                 while (lector.Read())
                     localidad.Add(lector.GetInt32(0), lector.GetString(1));
                 return localidad;

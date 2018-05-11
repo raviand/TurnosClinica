@@ -30,20 +30,20 @@ namespace Negocio
 
                     paciente.Nombre = lector.GetString(0);
                     paciente.Apellido = lector.GetString(1);
-                    paciente.Dni = lector.GetInt32(2);
+                    paciente.Dni =  Convert.ToString(lector.GetInt32(2));
                     paciente.Dir.Calle = lector.GetString(3);
                     if (!lector.IsDBNull(lector.GetOrdinal("PISO")))
-                        paciente.Dir.Piso = lector.GetInt32(4);
+                        paciente.Dir.Piso = Convert.ToString(lector.GetInt32(4));
                     if (!lector.IsDBNull(lector.GetOrdinal("DEPARTAMENTO")))
                         paciente.Dir.Departamento = lector.GetString(5);
                     if (!lector.IsDBNull(lector.GetOrdinal("CP")))
-                        paciente.Dir.CodigoPostal = lector.GetInt32(6);
+                        paciente.Dir.CodigoPostal = Convert.ToString(lector.GetInt32(6));
                     if (!lector.IsDBNull(lector.GetOrdinal("NOMBRE")))
                         paciente.Dir.Localidad = lector.GetString(7);
                     if (!lector.IsDBNull(lector.GetOrdinal("NOMBRE")))
                         paciente.Dir.Provincia = lector.GetString(8);
                     if (!lector.IsDBNull(lector.GetOrdinal("NUMERO")))
-                        paciente.CobreturaMedica.NumeroCredencial = lector.GetInt32(9);
+                        paciente.CobreturaMedica.NumeroCredencial = Convert.ToString(lector.GetInt32(9));
                     if (!lector.IsDBNull(lector.GetOrdinal("PLANES.NOMBRE")))
                         //paciente.CobreturaMedica.Plan = lector.GetString(10);
 
@@ -72,14 +72,14 @@ namespace Negocio
                     
                     paciente.Nombre = lector.GetString(0);
                     paciente.Apellido = lector.GetString(1);
-                    paciente.Dni = lector.GetInt32(2);
+                    paciente.Dni = Convert.ToString(lector.GetInt32(2));
                     paciente.Dir.Calle = lector.GetString(3);
                     if (!lector.IsDBNull(lector.GetOrdinal("PISO")))
-                        paciente.Dir.Piso = lector.GetInt32(4);
+                        paciente.Dir.Piso = Convert.ToString(lector.GetInt32(4));
                     if (!lector.IsDBNull(lector.GetOrdinal("DEPARTAMENTO")))
                         paciente.Dir.Departamento = lector.GetString(5);
                     if (!lector.IsDBNull(lector.GetOrdinal("CP")))
-                        paciente.Dir.CodigoPostal = lector.GetInt32(6);
+                        paciente.Dir.CodigoPostal = Convert.ToString(lector.GetInt32(6));
                     if (!lector.IsDBNull(lector.GetOrdinal("NOMBRE")))
                         paciente.Dir.Localidad = lector.GetString(7);
                     if (!lector.IsDBNull(lector.GetOrdinal("NOMBRE")))
@@ -155,7 +155,8 @@ namespace Negocio
             paciente.CobreturaMedica = new ServicioMedico();
             paciente.Telefonos = new List<Telefono>();
             paciente = ePaciente;
-
+            int lastId = 0;
+            SqlDataReader lector;
             int res;
             String query;
             bool pisoExist = false;
@@ -163,23 +164,26 @@ namespace Negocio
             bool cpExist = false;
             try
             {
-                query = "set dateformat dmy INSERT INTO PACIENTES(ID_LOCALIDAD, NOMBRE, APELLIDO, DNI, MAIL, FECHA_NACIMIENTO, FECHA_INGRESO, CALLE";
+                query = "BEGIN TRANSACTION ";
+
+                query += "DECLARE @DataID int; ";
+                query += "set dateformat dmy INSERT INTO PACIENTES(ID_LOCALIDAD, NOMBRE, APELLIDO, DNI, MAIL, FECHA_NACIMIENTO, FECHA_INGRESO, CALLE";
                 if (paciente.Dir.Departamento != null)
                 {
                     deptoExist = true;
                     query += ", DEPARTAMENTO";
                 }
-                if (paciente.Dir.Piso != 0)
+                if (Int32.Parse(paciente.Dir.Piso) != 0)
                 {
                     pisoExist = true;
                     query += ", PISO";
                 }
-                if (paciente.Dir.CodigoPostal != 0)
+                if (Int32.Parse(paciente.Dir.CodigoPostal) != 0)
                 {
                     cpExist = true;
                     query += ", CP";
                 }
-                query += ") VALUES ( 1 ,'" + paciente.Nombre +
+                query += ") VALUES ( " + paciente.Dir.Localidad +" ,'" + paciente.Nombre +
                     "', '" + paciente.Apellido + 
                     "', " + paciente.Dni +
                     ", '" + paciente.Mail + 
@@ -193,16 +197,94 @@ namespace Negocio
                 if (cpExist)    query += ", " + paciente.Dir.CodigoPostal + " ";
                 
 
-                query += ")";
-                Console.WriteLine(" Query a ejecutarse: " + query);
+                query += "); ";
+                query += " SET @DataID = scope_identity(); ";
+
+                query += cargaTelefonos(paciente.Telefonos);
+                query += cargaCoberturaMedica(paciente.CobreturaMedica);
+
+                query += "COMMIT";
                 res = conn.accion(query);
+
+                
+                return res;
+                
             }catch(Exception ex)
             {
                 throw ex;
             }
-
-            return res;
+            finally
+            {
+                conn.close();
+            }
+            
+          
         }
+
+        public String cargaTelefonos(List<Telefono> telefonos)
+        {
+            try
+            {
+                String query = "INSERT INTO TELEFONO (NUMERO, TIPO) VALUES ";
+                foreach (Telefono telefono in telefonos)
+                {
+                    query += "(" + telefono.Numero + ", " + telefono.Tipo.Substring(1, 1) + ") ,";
+                }
+                query = query.Remove(query.Length - 2, 2);
+                query += "; ";
+            
+                query += "INSERT INTO PACIENTE_TELEFONOS (ID_PACIENTE, NUMERO) VALUES ";
+                foreach (Telefono telefono in telefonos)
+                {
+                    query += "( @DataID, " + telefono.Numero + ") ,";
+                }
+                query = query.Remove(query.Length - 2, 2);
+                query += "; ";
+
+                return query;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.close();
+            }
+
+        }
+
+        public String cargaCoberturaMedica(ServicioMedico servicioMedico)
+        {
+            bool existNumeroCredencial = false;
+            try
+            {
+                String query = " INSERT INTO COBERTURA_PACIENTES (ID_PACIENTE, ID_PLAN";//) VALUES ";
+                if(servicioMedico.NumeroCredencial.CompareTo("") != 0)
+                {
+                    existNumeroCredencial = true;
+                    query += ", NUMERO_CREDENCIAL ";
+                }
+                query += ") VALUES ( @DataID ," + servicioMedico.Plan ;
+                if (existNumeroCredencial)
+                {
+                    query += ", " + servicioMedico.NumeroCredencial;
+                }
+                query += "); ";
+
+                return query;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.close();
+            }
+
+        }
+
 
     }
 }

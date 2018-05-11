@@ -10,7 +10,7 @@ namespace Datos
     {
         public String Nombre { get; set; }
         public String Plan { get; set; }
-        public int NumeroCredencial { get; set; }
+        public String NumeroCredencial { get; set; }
 
         public override string ToString()
         {

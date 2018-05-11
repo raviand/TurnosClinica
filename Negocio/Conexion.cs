@@ -140,6 +140,7 @@ namespace Negocio
                     
                     //Cmd = getComando();
                     Cmd.CommandText = query;
+                  
                     Conn.Open();
                 }
                 
@@ -178,6 +179,7 @@ namespace Negocio
                 {
 
                     Cmd = getComando();
+
                     Conn.Open();
                 }
                 Cmd.CommandText = query;

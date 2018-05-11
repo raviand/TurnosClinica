@@ -9,10 +9,10 @@ namespace Datos
     public class Direccion
     {
         public String Calle { get; set; }
-        public int Piso { get; set; }
+        public String Piso { get; set; }
         public String Departamento { get; set; }
         public String Localidad { get; set; }
-        public int CodigoPostal { get; set; }
+        public String CodigoPostal { get; set; }
         public String Provincia { get; set; }
 
         public override string ToString()

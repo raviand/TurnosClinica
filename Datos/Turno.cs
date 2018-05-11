@@ -9,7 +9,7 @@ namespace Datos
     class Turno
     {
         public DateTime FechaTurno { get; set; }
-        public int IdTurno { get; set; }
+        public String IdTurno { get; set; }
         public String Estado { get; set; }
         public Paciente Paciente { get; set; }
         public Profesional Profesional { get; set; }

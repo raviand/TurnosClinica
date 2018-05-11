@@ -11,7 +11,7 @@ namespace Datos
         public String Nombre { get; set; }
         public String Apellido { get; set; }
         public DateTime FechaNac { get; set; }
-        public int Dni { get; set; }
+        public String Dni { get; set; }
         public List<Telefono> Telefonos { get; set; }
         public Direccion Dir { get; set; }
         public String  Mail { get; set; }

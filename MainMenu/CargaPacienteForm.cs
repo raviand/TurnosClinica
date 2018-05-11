@@ -28,6 +28,11 @@ namespace MainMenu
 
         public CargaPacienteForm()
         {
+            load();
+        }
+
+        private void load()
+        {
             ver = new Verificacion();
             contTel = 0;
             paciente = new Paciente();
@@ -42,17 +47,20 @@ namespace MainMenu
                 tipoTel = gn.getTiposTelefonos();
                 foreach (var pair in tipoTel)
                 {
-                    cbxTipoTel.Items.Add(pair.Value);
+                    cbxTipoTel.Items.Add(pair);
+
                 }
+                
                 provincia = gn.getProvincia();
-                foreach (var pair in provincia)
+                foreach(var pair in provincia)
                 {
-                    cbxProvincia.Items.Add(pair.Value);
+                    cbxProvincia.Items.Add(pair);
                 }
+               
                 coberturaMedica = gn.getCoberturaMedica();
                 foreach (var pair in coberturaMedica)
                 {
-                    cbxCoberturaMedica.Items.Add(pair.Value);
+                    cbxCoberturaMedica.Items.Add(pair);
                 }
             }
             catch (Exception ex)
@@ -72,20 +80,17 @@ namespace MainMenu
             
             try
             {
-                foreach (var pair in coberturaMedica)
+                if(cbxCoberturaMedica.SelectedIndex != -1)
                 {
-                    if (pair.Value.CompareTo(cbxCoberturaMedica.SelectedItem) == 0)
+                    id = ((KeyValuePair<int, String>)cbxCoberturaMedica.SelectedItem).Key;
+
+                    if (id != 0)
+                        planMedico = gn.getPlanMedico(id);
+
+                    foreach (var pair in planMedico)
                     {
-                        id = pair.Key;
+                        cbxPlan.Items.Add(pair);
                     }
-
-                }
-                if (id != 0)
-                    planMedico = gn.getPlanMedico(id);
-
-                foreach (var pair in planMedico)
-                {
-                    cbxPlan.Items.Add(pair.Value);
                 }
             }
             catch (Exception ex)
@@ -99,27 +104,24 @@ namespace MainMenu
         {
             cbxLocalidad.ResetText();
             cbxLocalidad.Items.Clear();
-            int id = 0;
+           
             
             try
             {
-                foreach (var pair in provincia)
+
+                if(cbxProvincia.SelectedIndex != -1)
                 {
-                    if (pair.Value.CompareTo(cbxProvincia.SelectedItem) == 0)
+                    int llave = ((KeyValuePair<int, String>)cbxProvincia.SelectedItem).Key;
+                    if (llave != 0)
+                        localidad = gn.getLocalidad(llave);
+                    else
+                        localidad.Add(0, "No Aclara");
+                    foreach (var pair in localidad)
                     {
-                        id = pair.Key;
+                        cbxLocalidad.Items.Add(pair);
                     }
-
                 }
-                if (id != 0)
-                    localidad = gn.getLocalidad(id);
-                else
-                    localidad.Add(0, "No Aclara");
-
-                foreach (var pair in localidad)
-                {
-                    cbxLocalidad.Items.Add(pair.Value);
-                }
+                
             }catch(Exception ex)
             {
                 MessageBox.Show("Error al obtener localidad");
@@ -263,12 +265,12 @@ namespace MainMenu
                 puede = false;
                 MessageBox.Show("Ingrese fecha de nacimiento");
             }
-            if(cbxCoberturaMedica.SelectedIndex == 0)
+            if(cbxPlan.SelectedIndex == -1)
             {
                 puede = false;
                 MessageBox.Show("Ingrese Cobertura medica");
             }
-            if (cbxProvincia.SelectedIndex == 0)
+            if (cbxLocalidad.SelectedIndex == -1)
             {
                 puede = false;
                 MessageBox.Show("Ingrese Provincia");
@@ -284,6 +286,7 @@ namespace MainMenu
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
+            bool guardado = false;
             if (puedeGuardar())
             {
                 MessageBox.Show("Se puede guardar");
@@ -292,27 +295,59 @@ namespace MainMenu
                 {
                     paciente.Nombre = tbxNombre.Text;
                     paciente.Apellido = tbxApellido.Text;
-                    paciente.Dni = Int32.Parse(tbxDni.Text);
+                    paciente.Dni = tbxDni.Text;
                     paciente.Mail = tbxMail.Text;
                     paciente.FechaNac = dtpFechaNacimiento.Value;
                     paciente.FechaIngreso = DateTime.Today;
-                    paciente.CobreturaMedica.NumeroCredencial = Int32.Parse(tbxCarnetMedico.Text);
-                    paciente.CobreturaMedica.Nombre = (String) cbxCoberturaMedica.SelectedItem;
-                    if(cbxPlan.SelectedIndex > 0) paciente.CobreturaMedica.Plan = (String)cbxPlan.SelectedItem;
+                    //if(tbxCarnetMedico.Text.CompareTo("") != 0)
+                        paciente.CobreturaMedica.NumeroCredencial = tbxCarnetMedico.Text;
+                    paciente.CobreturaMedica.Nombre = Convert.ToString(((KeyValuePair<int, String>) cbxCoberturaMedica.SelectedItem).Value);
+                    paciente.CobreturaMedica.Plan = Convert.ToString(((KeyValuePair<int, String>)cbxPlan.SelectedItem).Key);
                     paciente.Dir.Calle = tbxCalle.Text;
-                    if (cbxLocalidad.SelectedIndex > 0) paciente.Dir.Localidad = (String)cbxLocalidad.SelectedItem;
-                    if (tbxPiso.Text.CompareTo("") != 0) paciente.Dir.Piso = Int32.Parse(tbxPiso.Text);
+                    paciente.Dir.Localidad = Convert.ToString( ( (KeyValuePair<int, String>) cbxLocalidad.SelectedItem ).Key );
+                    if (tbxPiso.Text.CompareTo("") != 0) paciente.Dir.Piso = tbxPiso.Text;
                     if (tbxDepto.Text.CompareTo("") != 0) paciente.Dir.Departamento = tbxDepto.Text;
-                    if (tbxCP.Text.CompareTo("") != 0) paciente.Dir.CodigoPostal = Int32.Parse(tbxCP.Text);
+                    if (tbxCP.Text.CompareTo("") != 0) paciente.Dir.CodigoPostal = tbxCP.Text;
                     MessageBox.Show(paciente.ToString());
                     res = pn.cargarPaciente(paciente);
                     MessageBox.Show("registros modificados: " + res);
+                    
+
+
+                        reset();
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show("Error al cargar paciente\n" + ex.ToString());
+
                 }
             }
+        }
+
+        public void reset()
+        {
+            tbxApellido.Clear();
+            tbxCalle.Clear();
+            tbxCarnetMedico.Clear();
+            tbxCP.Clear();
+            tbxDepto.Clear();
+            tbxDni.Clear();
+            tbxMail.Clear();
+            tbxNombre.Clear();
+            tbxPiso.Clear();
+            tbxTelefono.Clear();
+            dtpFechaNacimiento.Value = DateTime.Today;
+            cbxPlan.SelectedIndex = -1;
+            cbxCoberturaMedica.SelectedIndex = -1;
+            cbxLocalidad.SelectedIndex = -1;
+            cbxProvincia.SelectedIndex = -1;
+            cbxTipoTel.SelectedIndex = -1;
+        }
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            reset();
+            
         }
     }
 

@@ -149,6 +149,7 @@
             // 
             // cbxCoberturaMedica
             // 
+            this.cbxCoberturaMedica.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxCoberturaMedica.FormattingEnabled = true;
             this.cbxCoberturaMedica.Location = new System.Drawing.Point(16, 210);
             this.cbxCoberturaMedica.Name = "cbxCoberturaMedica";
@@ -184,6 +185,7 @@
             // 
             // cbxTipoTel
             // 
+            this.cbxTipoTel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxTipoTel.FormattingEnabled = true;
             this.cbxTipoTel.Location = new System.Drawing.Point(432, 127);
             this.cbxTipoTel.Name = "cbxTipoTel";
@@ -223,7 +225,7 @@
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(144, 23);
             this.btnAdd.TabIndex = 18;
-            this.btnAdd.Text = "Agregar Telefono";
+            this.btnAdd.Text = "&Agregar Telefono";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
@@ -238,6 +240,7 @@
             // 
             // cbxPlan
             // 
+            this.cbxPlan.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxPlan.FormattingEnabled = true;
             this.cbxPlan.Location = new System.Drawing.Point(144, 210);
             this.cbxPlan.Name = "cbxPlan";
@@ -321,6 +324,7 @@
             // 
             // cbxProvincia
             // 
+            this.cbxProvincia.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxProvincia.FormattingEnabled = true;
             this.cbxProvincia.Location = new System.Drawing.Point(16, 328);
             this.cbxProvincia.Name = "cbxProvincia";
@@ -330,6 +334,7 @@
             // 
             // cbxLocalidad
             // 
+            this.cbxLocalidad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxLocalidad.FormattingEnabled = true;
             this.cbxLocalidad.Location = new System.Drawing.Point(279, 328);
             this.cbxLocalidad.Name = "cbxLocalidad";
@@ -351,7 +356,7 @@
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(75, 23);
             this.btnGuardar.TabIndex = 33;
-            this.btnGuardar.Text = "Guardar";
+            this.btnGuardar.Text = "&Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
@@ -361,7 +366,7 @@
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(75, 23);
             this.btnSalir.TabIndex = 34;
-            this.btnSalir.Text = "Salir";
+            this.btnSalir.Text = "&Salir";
             this.btnSalir.UseVisualStyleBackColor = true;
             // 
             // btnLimpiar
@@ -370,8 +375,9 @@
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(75, 23);
             this.btnLimpiar.TabIndex = 35;
-            this.btnLimpiar.Text = "Limpiar";
+            this.btnLimpiar.Text = "&Limpiar";
             this.btnLimpiar.UseVisualStyleBackColor = true;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
             // CargaPacienteForm
             // 
