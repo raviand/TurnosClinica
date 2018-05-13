@@ -13,10 +13,24 @@ namespace Negocio
         private SqlDataReader lector;
         private List<String> telefonos;
         private Verificacion ver;
+        private Paciente paciente;
 
         public PacienteNegocio()
         {
             conn = new Conexion();
+            paciente = new Paciente();
+            paciente.Dir = new Direccion();
+            paciente.Telefonos = new List<Telefono>();
+            paciente.CobreturaMedica = new ServicioMedico();
+        }
+
+        public void setPaciente(Paciente paciente)
+        {
+            this.paciente = paciente;
+        }
+        public Paciente GetPaciente()
+        {
+            return paciente;
         }
 
         public Paciente traerPaciente(int id)
@@ -62,7 +76,12 @@ namespace Negocio
             IList<Paciente> pacientes = new List<Paciente>();
             try
             {
-                lector = conn.lector("SELECT PACIENTES.NOMBRE, PACIENTES.APELLIDO, PACIENTES.DNI, PACIENTES.CALLE, PACIENTES.PISO, PACIENTES.DEPARTAMENTO, PACIENTES.CP, LOCALIDAD.NOMBRE, PROVINCIA.NOMBRE, COBERTURA_PACIENTES.NUMERO_CREDENCIAL, PLANES.NOMBRE, PACIENTES.MAIL FROM PACIENTES LEFT JOIN LOCALIDAD ON LOCALIDAD.ID = PACIENTES.ID_LOCALIDAD LEFT JOIN PROVINCIA ON LOCALIDAD.ID_PROVINCIA = PROVINCIA.ID LEFT JOIN COBERTURA_PACIENTES ON COBERTURA_PACIENTES.ID = PACIENTES.ID LEFT JOIN PLANES ON PLANES.ID = COBERTURA_PACIENTES.ID_PLAN");
+                lector = conn.lector("SELECT PACIENTES.NOMBRE, PACIENTES.APELLIDO, PACIENTES.DNI, PACIENTES.CALLE, PACIENTES.PISO, PACIENTES.DEPARTAMENTO, PACIENTES.CP, LOCALIDADes.localidad, PROVINCIAs.provincia, COBERTURA_PACIENTES.NUMERO_CREDENCIAL, PLANES.NOMBRE, PACIENTES.MAIL " +
+                    "FROM PACIENTES " +
+                    "LEFT JOIN LOCALIDADes ON LOCALIDADes.ID = PACIENTES.ID_LOCALIDAD " +
+                    "LEFT JOIN PROVINCIAs ON localidades.ID_PRiVINCIA = PRoVINCIAs.ID " +
+                    "LEFT JOIN COBERTURA_PACIENTES ON COBERTURA_PACIENTES.ID = PACIENTES.ID " +
+                    "LEFT JOIN PLANES ON PLANES.ID = COBERTURA_PACIENTES.ID_PLAN");
                 
                 while (lector.Read())
                 {
@@ -243,6 +262,10 @@ namespace Negocio
 
                 return query;
             }
+            catch(SqlException ex)
+            {
+                throw ex;
+            }
             catch (Exception ex)
             {
                 throw ex;
@@ -283,6 +306,11 @@ namespace Negocio
                 conn.close();
             }
 
+        }
+
+        public List<Telefono> GetTelefono()
+        {
+            return paciente.Telefonos;
         }
 
 

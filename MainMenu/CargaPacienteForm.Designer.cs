@@ -64,6 +64,7 @@
             this.btnGuardar = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
+            this.btnVerTelefonos = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblNombre
@@ -111,9 +112,9 @@
             this.lblTelefono.AutoSize = true;
             this.lblTelefono.Location = new System.Drawing.Point(279, 111);
             this.lblTelefono.Name = "lblTelefono";
-            this.lblTelefono.Size = new System.Drawing.Size(49, 13);
+            this.lblTelefono.Size = new System.Drawing.Size(62, 13);
             this.lblTelefono.TabIndex = 4;
-            this.lblTelefono.Text = "Telefono";
+            this.lblTelefono.Text = "Telefono (*)";
             // 
             // tbxMail
             // 
@@ -127,9 +128,9 @@
             this.lblMail.AutoSize = true;
             this.lblMail.Location = new System.Drawing.Point(13, 61);
             this.lblMail.Name = "lblMail";
-            this.lblMail.Size = new System.Drawing.Size(38, 13);
+            this.lblMail.Size = new System.Drawing.Size(51, 13);
             this.lblMail.TabIndex = 6;
-            this.lblMail.Text = "Correo";
+            this.lblMail.Text = "Correo (*)";
             // 
             // lblFechaNacimiento
             // 
@@ -179,9 +180,9 @@
             this.lblCarnet.AutoSize = true;
             this.lblCarnet.Location = new System.Drawing.Point(279, 191);
             this.lblCarnet.Name = "lblCarnet";
-            this.lblCarnet.Size = new System.Drawing.Size(78, 13);
+            this.lblCarnet.Size = new System.Drawing.Size(81, 13);
             this.lblCarnet.TabIndex = 13;
-            this.lblCarnet.Text = "Numero Carnet";
+            this.lblCarnet.Text = "Numero Carnet ";
             // 
             // cbxTipoTel
             // 
@@ -195,7 +196,7 @@
             // lblTipoTel
             // 
             this.lblTipoTel.AutoSize = true;
-            this.lblTipoTel.Location = new System.Drawing.Point(405, 110);
+            this.lblTipoTel.Location = new System.Drawing.Point(429, 111);
             this.lblTipoTel.Name = "lblTipoTel";
             this.lblTipoTel.Size = new System.Drawing.Size(87, 13);
             this.lblTipoTel.TabIndex = 15;
@@ -206,9 +207,9 @@
             this.lblDni.AutoSize = true;
             this.lblDni.Location = new System.Drawing.Point(279, 62);
             this.lblDni.Name = "lblDni";
-            this.lblDni.Size = new System.Drawing.Size(29, 13);
+            this.lblDni.Size = new System.Drawing.Size(42, 13);
             this.lblDni.TabIndex = 16;
-            this.lblDni.Text = "DNI:";
+            this.lblDni.Text = "DNI (*):";
             // 
             // tbxDni
             // 
@@ -379,11 +380,22 @@
             this.btnLimpiar.UseVisualStyleBackColor = true;
             this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
+            // btnVerTelefonos
+            // 
+            this.btnVerTelefonos.Location = new System.Drawing.Point(432, 154);
+            this.btnVerTelefonos.Name = "btnVerTelefonos";
+            this.btnVerTelefonos.Size = new System.Drawing.Size(75, 23);
+            this.btnVerTelefonos.TabIndex = 36;
+            this.btnVerTelefonos.Text = "&Ver";
+            this.btnVerTelefonos.UseVisualStyleBackColor = true;
+            this.btnVerTelefonos.Click += new System.EventHandler(this.btnVerTelefonos_Click);
+            // 
             // CargaPacienteForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(581, 409);
+            this.Controls.Add(this.btnVerTelefonos);
             this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnGuardar);
@@ -465,5 +477,6 @@
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.Button btnLimpiar;
+        private System.Windows.Forms.Button btnVerTelefonos;
     }
 }

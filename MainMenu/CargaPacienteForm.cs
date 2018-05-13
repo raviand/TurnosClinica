@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 using Negocio;
 using Datos;
 //Para limitar el rango de fechas para turno la carga de turnos
@@ -309,6 +310,7 @@ namespace MainMenu
                     if (tbxDepto.Text.CompareTo("") != 0) paciente.Dir.Departamento = tbxDepto.Text;
                     if (tbxCP.Text.CompareTo("") != 0) paciente.Dir.CodigoPostal = tbxCP.Text;
                     MessageBox.Show(paciente.ToString());
+                    pn.setPaciente(paciente);
                     res = pn.cargarPaciente(paciente);
                     MessageBox.Show("registros modificados: " + res);
                     
@@ -316,9 +318,19 @@ namespace MainMenu
 
                         reset();
                 }
+                catch (SqlException ex)
+                {
+                    if(ex.Number == 2627)
+                    {
+                        MessageBox.Show("Alguno de los campos unicos ya fueron registrados");
+                    }
+                }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error al cargar paciente\n" + ex.ToString());
+                    
+                         MessageBox.Show("Error al cargar paciente\n" + ex.ToString());
+                    
+                   
 
                 }
             }
@@ -348,6 +360,11 @@ namespace MainMenu
         {
             reset();
             
+        }
+
+        private void btnVerTelefonos_Click(object sender, EventArgs e)
+        {
+            new controlTelefonos(paciente.Telefonos).ShowDialog();
         }
     }
 

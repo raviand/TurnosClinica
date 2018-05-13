@@ -26,18 +26,18 @@ namespace MainMenu
 
         private void btnCargarMedico_Click(object sender, EventArgs e)
         {
-            new CargaMedicoForm().Show();
+            new CargaMedicoForm().ShowDialog();
             
         }
 
         private void btnCargaPaciente_Click(object sender, EventArgs e)
         {
-            new CargaPacienteForm().Show();
+            new CargaPacienteForm().ShowDialog();
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            new BuscarPaciente().Show();
+            new BuscarPaciente().ShowDialog();
         }
 
         private void btnEliminarPaciente_Click(object sender, EventArgs e)

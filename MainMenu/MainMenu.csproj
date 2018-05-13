@@ -63,6 +63,12 @@
     <Compile Include="CargaPacienteForm.Designer.cs">
       <DependentUpon>CargaPacienteForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="controlTelefonos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="controlTelefonos.Designer.cs">
+      <DependentUpon>controlTelefonos.cs</DependentUpon>
+    </Compile>
     <Compile Include="EliminarPacienteForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -92,6 +98,9 @@
     <EmbeddedResource Include="CargaPacienteForm.resx">
       <DependentUpon>CargaPacienteForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="controlTelefonos.resx">
+      <DependentUpon>controlTelefonos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EliminarPacienteForm.resx">
       <DependentUpon>EliminarPacienteForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -110,6 +119,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="Properties\DataSources\Datos.Telefono.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

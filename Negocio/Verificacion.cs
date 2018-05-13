@@ -97,7 +97,6 @@ namespace Negocio
                         return existe;
                     }
                 }
-
                 for (int i = 0; i < p.Telefonos.Count; i++)
                 {
                     if (numero.CompareTo(p.Telefonos[i].Numero) == 0)
