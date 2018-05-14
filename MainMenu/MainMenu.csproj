@@ -63,6 +63,26 @@
     <Compile Include="CargaPacienteForm.Designer.cs">
       <DependentUpon>CargaPacienteForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="CLINICADataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CLINICADataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="CLINICADataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CLINICADataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="CLINICADataSet2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CLINICADataSet2.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="CLINICADataSet3.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CLINICADataSet3.xsd</DependentUpon>
+    </Compile>
     <Compile Include="controlTelefonos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,6 +100,12 @@
     </Compile>
     <Compile Include="Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MenuPrepagas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MenuPrepagas.Designer.cs">
+      <DependentUpon>MenuPrepagas.cs</DependentUpon>
     </Compile>
     <Compile Include="Principal.cs">
       <SubType>Form</SubType>
@@ -107,6 +133,9 @@
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MenuPrepagas.resx">
+      <DependentUpon>MenuPrepagas.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Principal.resx">
       <DependentUpon>Principal.cs</DependentUpon>
     </EmbeddedResource>
@@ -119,6 +148,50 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="CLINICADataSet.xsc">
+      <DependentUpon>CLINICADataSet.xsd</DependentUpon>
+    </None>
+    <None Include="CLINICADataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>CLINICADataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="CLINICADataSet.xss">
+      <DependentUpon>CLINICADataSet.xsd</DependentUpon>
+    </None>
+    <None Include="CLINICADataSet1.xsc">
+      <DependentUpon>CLINICADataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="CLINICADataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>CLINICADataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="CLINICADataSet1.xss">
+      <DependentUpon>CLINICADataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="CLINICADataSet2.xsc">
+      <DependentUpon>CLINICADataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="CLINICADataSet2.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>CLINICADataSet2.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="CLINICADataSet2.xss">
+      <DependentUpon>CLINICADataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="CLINICADataSet3.xsc">
+      <DependentUpon>CLINICADataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="CLINICADataSet3.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>CLINICADataSet3.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="CLINICADataSet3.xss">
+      <DependentUpon>CLINICADataSet3.xsd</DependentUpon>
+    </None>
     <None Include="Properties\DataSources\Datos.Telefono.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

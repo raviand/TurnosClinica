@@ -38,12 +38,6 @@ namespace MainMenu
                     telefonos.RemoveAt(e.RowIndex);
                     this.Close();
 
-                    //dgvTelefonos.Rows.RemoveAt(dgvTelefonos.CurrentRow.Index);
-                    //this.telefonos.Remove(telefonos[e.RowIndex]);
-                    //dgvTelefonos. = null;
-                    //telefonos = (List<Telefono>)dgvTelefonos.DataSource;
-                    //dgvTelefonos.DataSource = this.telefonos;
-                    //dgvTelefonos.Refresh();
 
                 }
             }catch(Exception ex)

@@ -78,28 +78,17 @@ namespace Negocio
             return match.Groups[1].Value + domainName;
         }
 
-        public bool existeTelefono(String numero, Paciente p)
+        public bool existeTelefono(String numero, List<Telefono> p)
         {
-            pn = new PacienteNegocio();
+            
             bool existe = false;
 
             try
             {
-                if (telefonos == null)
+                
+                for (int i = 0; i < p.Count; i++)
                 {
-                    telefonos = pn.traerTelefonos();
-                }
-                foreach (String num in telefonos)
-                {
-                    if (numero.CompareTo(num) == 0)
-                    {
-                        existe = true;
-                        return existe;
-                    }
-                }
-                for (int i = 0; i < p.Telefonos.Count; i++)
-                {
-                    if (numero.CompareTo(p.Telefonos[i].Numero) == 0)
+                    if (numero.CompareTo(p[i].Numero) == 0)
                     {
                         existe = true;
                         return existe;

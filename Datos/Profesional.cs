@@ -10,7 +10,10 @@ namespace Datos
     {
         public int IdProfesional { get; set; }
         public Horarios Horarios { get; set; }
+        public DateTime FechaIngreso { get; set; }
+
         public List<String> Especialidades { get; set; }
         public List<ServicioMedico> ServiciosHabilitados { get; set; }
+        public bool AtiendeADomicilio { get; set; }
     }
 }

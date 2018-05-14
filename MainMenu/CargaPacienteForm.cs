@@ -51,18 +51,20 @@ namespace MainMenu
                     cbxTipoTel.Items.Add(pair);
 
                 }
-                
+                //tuCombobox.DisplayMember =TuDataTable.Columns(IndiceColumnaVisualizar).ColumnName
+                cbxTipoTel.DisplayMember = "value";
                 provincia = gn.getProvincia();
                 foreach(var pair in provincia)
                 {
                     cbxProvincia.Items.Add(pair);
                 }
-               
+                cbxProvincia.DisplayMember = "value";
                 coberturaMedica = gn.getCoberturaMedica();
                 foreach (var pair in coberturaMedica)
                 {
                     cbxCoberturaMedica.Items.Add(pair);
                 }
+                cbxCoberturaMedica.DisplayMember = "value";
             }
             catch (Exception ex)
             {
@@ -92,6 +94,7 @@ namespace MainMenu
                     {
                         cbxPlan.Items.Add(pair);
                     }
+                    cbxPlan.DisplayMember = "value";
                 }
             }
             catch (Exception ex)
@@ -121,6 +124,7 @@ namespace MainMenu
                     {
                         cbxLocalidad.Items.Add(pair);
                     }
+                    cbxLocalidad.DisplayMember = "value";
                 }
                 
             }catch(Exception ex)
@@ -167,9 +171,7 @@ namespace MainMenu
             return e.Handled;
 
         }
-
-
-
+        
         private void tbxTelefono_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (testNumeros(e))
@@ -197,13 +199,13 @@ namespace MainMenu
         private void btnAdd_Click(object sender, EventArgs e)
         {
             Telefono telefono = new Telefono();
-            if (!tbxTelefono.Text.Equals(""))
+            if (!tbxTelefono.Text.Equals("") && cbxTipoTel.SelectedIndex != -1)
             {
                 if (cbxTipoTel.Items.Count > 0)
                 {
                     telefono.Numero = tbxTelefono.Text;
                     telefono.Tipo = cbxTipoTel.GetItemText(cbxTipoTel.SelectedItem);
-                    if (ver.existeTelefono(telefono.Numero, paciente))
+                    if (ver.existeTelefono(telefono.Numero, paciente.Telefonos))
                     {
                         MessageBox.Show("El telefono: " + telefono.Numero + " Ya se encuentra registrado");
                     }
@@ -313,8 +315,6 @@ namespace MainMenu
                     pn.setPaciente(paciente);
                     res = pn.cargarPaciente(paciente);
                     MessageBox.Show("registros modificados: " + res);
-                    
-
 
                         reset();
                 }
@@ -354,6 +354,7 @@ namespace MainMenu
             cbxLocalidad.SelectedIndex = -1;
             cbxProvincia.SelectedIndex = -1;
             cbxTipoTel.SelectedIndex = -1;
+            paciente.Telefonos = new List<Telefono>();
         }
 
         private void btnLimpiar_Click(object sender, EventArgs e)
