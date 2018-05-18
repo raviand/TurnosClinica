@@ -73,45 +73,72 @@ namespace Negocio
         public List<Paciente> listar()
         {
             
+
+            Paciente paciente = new Paciente();
+            paciente.IdPaciente = "-1";
             IList<Paciente> pacientes = new List<Paciente>();
+           
             try
             {
-                lector = conn.lector("SELECT PACIENTES.NOMBRE, PACIENTES.APELLIDO, PACIENTES.DNI, PACIENTES.CALLE, PACIENTES.PISO, PACIENTES.DEPARTAMENTO, PACIENTES.CP, LOCALIDADes.localidad, PROVINCIAs.provincia, COBERTURA_PACIENTES.NUMERO_CREDENCIAL, PLANES.NOMBRE, PACIENTES.MAIL " +
-                    "FROM PACIENTES " +
-                    "LEFT JOIN LOCALIDADes ON LOCALIDADes.ID = PACIENTES.ID_LOCALIDAD " +
-                    "LEFT JOIN PROVINCIAs ON localidades.ID_PRiVINCIA = PRoVINCIAs.ID " +
-                    "LEFT JOIN COBERTURA_PACIENTES ON COBERTURA_PACIENTES.ID = PACIENTES.ID " +
-                    "LEFT JOIN PLANES ON PLANES.ID = COBERTURA_PACIENTES.ID_PLAN");
-                
+                lector = conn.lector("SELECT PACIENTES.ID,"+
+                                    "PACIENTES.NOMBRE,"+
+                                    "PACIENTES.APELLIDO,"+
+                                    "PACIENTES.DNI,"+
+                                    "PACIENTES.CALLE,"+
+                                    "PACIENTES.PISO,"+
+                                    "PACIENTES.DEPARTAMENTO,"+
+                                    "PACIENTES.CP,"+
+                                    "PACIENTES.MAIL,"+
+                                    "PACIENTES.FECHA_NACIMIENTO,"+
+                                    "PACIENTES.FECHA_INGRESO,"+
+                                    "localidades.id,"+
+                                    "provincias.id, "+
+                                    "COBERTURA_PACIENTES.NUMERO_CREDENCIAL,"+
+                                    "COBERTURA_PACIENTES.ID_PLAN,"+
+                                    "PLANES.ID_COBERTURA "+
+                                    "FROM PACIENTES " +
+                                    "LEFT JOIN localidades ON localidades.id = PACIENTES.ID_LOCALIDAD "+
+                                    "LEFT JOIN provincias ON localidades.id_privincia = provincias.id  "+
+                                    "LEFT JOIN COBERTURA_PACIENTES ON COBERTURA_PACIENTES.ID_PACIENTE = PACIENTES.ID "+
+                                    "LEFT JOIN PLANES ON PLANES.ID = COBERTURA_PACIENTES.ID_PLAN" ); 
+
                 while (lector.Read())
                 {
-                    Paciente paciente = new Paciente();
+                    paciente = new Paciente();
                     paciente.Dir = new Direccion();
                     paciente.CobreturaMedica = new ServicioMedico();
-                    
-                    paciente.Nombre = lector.GetString(0);
-                    paciente.Apellido = lector.GetString(1);
-                    paciente.Dni = Convert.ToString(lector.GetInt32(2));
-                    paciente.Dir.Calle = lector.GetString(3);
+                    paciente.Telefonos = new List<Telefono>();
+                    paciente.IdPaciente = Convert.ToString(lector.GetInt32(0));
+                    paciente.Nombre = lector.GetString(1);
+                    paciente.Apellido = lector.GetString(2);
+                    paciente.Dni = Convert.ToString(lector.GetInt32(3));
+                    paciente.Dir.Calle = lector.GetString(4);
                     if (!lector.IsDBNull(lector.GetOrdinal("PISO")))
-                        paciente.Dir.Piso = Convert.ToString(lector.GetInt32(4));
+                        paciente.Dir.Piso = Convert.ToString(lector.GetInt32(5));
                     if (!lector.IsDBNull(lector.GetOrdinal("DEPARTAMENTO")))
-                        paciente.Dir.Departamento = lector.GetString(5);
+                        paciente.Dir.Departamento = lector.GetString(6);
                     if (!lector.IsDBNull(lector.GetOrdinal("CP")))
-                        paciente.Dir.CodigoPostal = Convert.ToString(lector.GetInt32(6));
-                    if (!lector.IsDBNull(lector.GetOrdinal("NOMBRE")))
-                        paciente.Dir.Localidad = lector.GetString(7);
-                    if (!lector.IsDBNull(lector.GetOrdinal("NOMBRE")))
-                        paciente.Dir.Provincia = lector.GetString(8);
-                    //if (!lector.IsDBNull(lector.GetOrdinal("NUMERO")))
-                    //    paciente.CobreturaMedica.NumeroCredencial = lector.GetInt32(9);
-                    //if (!lector.IsDBNull(lector.GetOrdinal("PLANES.NOMBRE")))
-                    //paciente.CobreturaMedica.Plan = lector.GetString(10);
-                    paciente.Mail = lector.GetString(11);
+                        paciente.Dir.CodigoPostal = Convert.ToString(lector.GetInt32(7));
+                    paciente.Mail = lector.GetString(8);
+                    if (!lector.IsDBNull(lector.GetOrdinal("FECHA_NACIMIENTO")))
+                        paciente.FechaNac = lector.GetDateTime(9);
+                    if (!lector.IsDBNull(lector.GetOrdinal("FECHA_INGRESO")))
+                        paciente.FechaIngreso = lector.GetDateTime(10);
+                    paciente.Dir.Localidad = Convert.ToString( lector.GetInt32(11) );
+                    paciente.Dir.Provincia = Convert.ToString( lector.GetInt32(12) );
+                    if (!lector.IsDBNull(lector.GetOrdinal("NUMERO_CREDENCIAL")))
+                        paciente.CobreturaMedica.NumeroCredencial = Convert.ToString( lector.GetInt32(13) );
+                    if (!lector.IsDBNull(lector.GetOrdinal("ID_PLAN")))
+                        paciente.CobreturaMedica.Plan = Convert.ToString(lector.GetInt32(14));
+                    if (!lector.IsDBNull(lector.GetOrdinal("ID_COBERTURA")))
+                        paciente.CobreturaMedica.Nombre = Convert.ToString( lector.GetInt32(15) );
+
                     pacientes.Add(paciente);
+
                 }
-                
                 conn.close();
+
+                
                 return (List<Paciente>)pacientes;
             }catch(Exception e)
             {
@@ -119,7 +146,61 @@ namespace Negocio
             }
         }
 
+        public List<Telefono> listarTelefonos()
+        {
+            List<Telefono> telefonos = new List<Telefono>();
 
+            try
+            {
+                lector = conn.lector("SELECT TELEFONO.NUMERO, TIPO_TEL.NOMBRE FROM TELEFONO  INNER JOIN PACIENTE_TELEFONOS ON PACIENTE_TELEFONOS.NUMERO = TELEFONO.NUMERO INNER JOIN TIPO_TEL ON TIPO_TEL.ID = TELEFONO.TIPO WHERE PACIENTE_TELEFONOS.ID_PACIENTE = " + paciente.IdPaciente);
+
+                while (lector.Read())
+                {
+                    Telefono tel = new Telefono();
+                    tel.Numero = Convert.ToString(lector.GetInt32(0));
+                    tel.Tipo = lector.GetString(1);
+                    telefonos.Add(tel);
+                }
+
+                conn.close();
+
+                return telefonos;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+
+
+        }
+
+        public List<Telefono> listarTelefonos(int id)
+        {
+            List<Telefono> telefonos = new List<Telefono>();
+            try
+            {
+                String query = "SELECT TELEFONO.NUMERO, TIPO_TEL.nombre " +
+                    "FROM TELEFONO  " +
+                    "INNER JOIN PACIENTE_TELEFONOS ON PACIENTE_TELEFONOS.NUMERO = TELEFONO.NUMERO " +
+                    "INNER JOIN TIPO_TEL ON TIPO_TEL.ID = TELEFONO.TIPO " +
+                    "WHERE PACIENTE_TELEFONOS.ID_PACIENTE = " + id;
+
+                lector = conn.lector(query);
+                while (lector.Read())
+                {
+                    Telefono tel = new Telefono();
+                    tel.Numero = Convert.ToString(lector.GetInt32(0));
+                    tel.Tipo = lector.GetString(1);
+                    telefonos.Add(tel);
+                }
+                conn.close();
+                return telefonos;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
 
         /**
          * 
@@ -247,7 +328,7 @@ namespace Negocio
                 String query = "INSERT INTO TELEFONO (NUMERO, TIPO) VALUES ";
                 foreach (Telefono telefono in telefonos)
                 {
-                    query += "(" + telefono.Numero + ", " + telefono.Tipo.Substring(1, 1) + ") ,";
+                    query += "(" + telefono.Numero + ", " + telefono.Tipo + ") ,";
                 }
                 query = query.Remove(query.Length - 2, 2);
                 query += "; ";

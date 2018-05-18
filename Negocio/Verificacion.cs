@@ -22,7 +22,6 @@ namespace Negocio
              paciente = new Paciente();
              telefono = new Telefono();
              telefonos = new List<String>();
-            
         }
 
         bool invalid = false;

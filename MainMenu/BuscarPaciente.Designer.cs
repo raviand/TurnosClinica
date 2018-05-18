@@ -32,6 +32,8 @@
             this.tbxId = new System.Windows.Forms.TextBox();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.dgvListaPacientes = new System.Windows.Forms.DataGridView();
+            this.btnModificar = new System.Windows.Forms.Button();
+            this.btnSalir = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListaPacientes)).BeginInit();
             this.SuspendLayout();
             // 
@@ -57,7 +59,7 @@
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(75, 23);
             this.btnBuscar.TabIndex = 2;
-            this.btnBuscar.Text = "Buscar";
+            this.btnBuscar.Text = "&Buscar";
             this.btnBuscar.UseVisualStyleBackColor = true;
             // 
             // dgvListaPacientes
@@ -66,14 +68,35 @@
             this.dgvListaPacientes.Location = new System.Drawing.Point(13, 84);
             this.dgvListaPacientes.Name = "dgvListaPacientes";
             this.dgvListaPacientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvListaPacientes.Size = new System.Drawing.Size(569, 354);
+            this.dgvListaPacientes.Size = new System.Drawing.Size(569, 325);
             this.dgvListaPacientes.TabIndex = 3;
+            // 
+            // btnModificar
+            // 
+            this.btnModificar.Location = new System.Drawing.Point(506, 415);
+            this.btnModificar.Name = "btnModificar";
+            this.btnModificar.Size = new System.Drawing.Size(75, 23);
+            this.btnModificar.TabIndex = 4;
+            this.btnModificar.Text = "&Modificar";
+            this.btnModificar.UseVisualStyleBackColor = true;
+            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
+            // 
+            // btnSalir
+            // 
+            this.btnSalir.Location = new System.Drawing.Point(13, 415);
+            this.btnSalir.Name = "btnSalir";
+            this.btnSalir.Size = new System.Drawing.Size(75, 23);
+            this.btnSalir.TabIndex = 5;
+            this.btnSalir.Text = "&Salir";
+            this.btnSalir.UseVisualStyleBackColor = true;
             // 
             // BuscarPaciente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(594, 450);
+            this.Controls.Add(this.btnSalir);
+            this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.dgvListaPacientes);
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.tbxId);
@@ -93,5 +116,7 @@
         private System.Windows.Forms.TextBox tbxId;
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.DataGridView dgvListaPacientes;
+        private System.Windows.Forms.Button btnModificar;
+        private System.Windows.Forms.Button btnSalir;
     }
 }

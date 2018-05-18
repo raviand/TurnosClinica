@@ -15,6 +15,7 @@ namespace MainMenu
     public partial class controlTelefonos : Form
     {
         List<Telefono> telefonos;
+        PacienteNegocio pn;
         public controlTelefonos()
         {
             InitializeComponent();
@@ -26,6 +27,15 @@ namespace MainMenu
             InitializeComponent();
             dgvTelefonos.ReadOnly = true;
             dgvTelefonos.DataSource = telefonos;
+        }
+
+        public controlTelefonos(int  id)
+        {
+            //this.telefonos = telefonos;
+            pn = new PacienteNegocio();
+            InitializeComponent();
+            dgvTelefonos.ReadOnly = true;
+            dgvTelefonos.DataSource = pn.listarTelefonos(id);
         }
 
         private void dgvTelefonos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)

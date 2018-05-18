@@ -25,17 +25,23 @@ namespace MainMenu
             {
                 PacienteNegocio pacienteNegocio = new PacienteNegocio();
                 dgvListaPacientes.DataSource =  pacienteNegocio.listar();
-                dgvListaPacientes.Columns["fechaIngreso"].Visible = false;
-                dgvListaPacientes.Columns["IdPaciente"].Visible = false;
+                //dgvListaPacientes.Columns["fechaIngreso"].Visible = false;
+                //dgvListaPacientes.Columns["IdPaciente"].Visible = false;
                 //dgvListaPacientes.Columns["CoberturaMedica"].Visible = false;
-                dgvListaPacientes.Columns["FechaNac"].Visible = false;
+                //dgvListaPacientes.Columns["FechaNac"].Visible = false;
 
             }
             catch(Exception err)
             {
                 MessageBox.Show("Ocurrio un error durante la ejecucion" + err.ToString());
             }
-            
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            Paciente paciente = new Paciente();
+            paciente = (Paciente)dgvListaPacientes.CurrentRow.DataBoundItem;
+            new CargaPacienteForm(paciente).ShowDialog();
         }
     }
 }
