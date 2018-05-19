@@ -28,14 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.cbxLunes = new System.Windows.Forms.CheckBox();
-            this.cbxDomingo = new System.Windows.Forms.CheckBox();
-            this.cbxSabado = new System.Windows.Forms.CheckBox();
-            this.cbxViernes = new System.Windows.Forms.CheckBox();
-            this.cbxJueves = new System.Windows.Forms.CheckBox();
-            this.cbxMiercoles = new System.Windows.Forms.CheckBox();
-            this.cbxMartes = new System.Windows.Forms.CheckBox();
-            this.lblDiasDisponible = new System.Windows.Forms.Label();
             this.gbxAtiendeDomicilio = new System.Windows.Forms.GroupBox();
             this.rbtNo = new System.Windows.Forms.RadioButton();
             this.rbtSi = new System.Windows.Forms.RadioButton();
@@ -72,87 +64,9 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.btnReset = new System.Windows.Forms.Button();
+            this.btnCargarDias = new System.Windows.Forms.Button();
             this.gbxAtiendeDomicilio.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // cbxLunes
-            // 
-            this.cbxLunes.AutoSize = true;
-            this.cbxLunes.Location = new System.Drawing.Point(15, 316);
-            this.cbxLunes.Name = "cbxLunes";
-            this.cbxLunes.Size = new System.Drawing.Size(55, 17);
-            this.cbxLunes.TabIndex = 10;
-            this.cbxLunes.Text = "Lunes";
-            this.cbxLunes.UseVisualStyleBackColor = true;
-            // 
-            // cbxDomingo
-            // 
-            this.cbxDomingo.AutoSize = true;
-            this.cbxDomingo.Location = new System.Drawing.Point(419, 316);
-            this.cbxDomingo.Name = "cbxDomingo";
-            this.cbxDomingo.Size = new System.Drawing.Size(68, 17);
-            this.cbxDomingo.TabIndex = 11;
-            this.cbxDomingo.Text = "Domingo";
-            this.cbxDomingo.UseVisualStyleBackColor = true;
-            // 
-            // cbxSabado
-            // 
-            this.cbxSabado.AutoSize = true;
-            this.cbxSabado.Location = new System.Drawing.Point(350, 316);
-            this.cbxSabado.Name = "cbxSabado";
-            this.cbxSabado.Size = new System.Drawing.Size(63, 17);
-            this.cbxSabado.TabIndex = 12;
-            this.cbxSabado.Text = "Sabado";
-            this.cbxSabado.UseVisualStyleBackColor = true;
-            // 
-            // cbxViernes
-            // 
-            this.cbxViernes.AutoSize = true;
-            this.cbxViernes.Location = new System.Drawing.Point(283, 316);
-            this.cbxViernes.Name = "cbxViernes";
-            this.cbxViernes.Size = new System.Drawing.Size(61, 17);
-            this.cbxViernes.TabIndex = 13;
-            this.cbxViernes.Text = "Viernes";
-            this.cbxViernes.UseVisualStyleBackColor = true;
-            // 
-            // cbxJueves
-            // 
-            this.cbxJueves.AutoSize = true;
-            this.cbxJueves.Location = new System.Drawing.Point(217, 316);
-            this.cbxJueves.Name = "cbxJueves";
-            this.cbxJueves.Size = new System.Drawing.Size(60, 17);
-            this.cbxJueves.TabIndex = 14;
-            this.cbxJueves.Text = "Jueves";
-            this.cbxJueves.UseVisualStyleBackColor = true;
-            // 
-            // cbxMiercoles
-            // 
-            this.cbxMiercoles.AutoSize = true;
-            this.cbxMiercoles.Location = new System.Drawing.Point(140, 316);
-            this.cbxMiercoles.Name = "cbxMiercoles";
-            this.cbxMiercoles.Size = new System.Drawing.Size(71, 17);
-            this.cbxMiercoles.TabIndex = 15;
-            this.cbxMiercoles.Text = "Miercoles";
-            this.cbxMiercoles.UseVisualStyleBackColor = true;
-            // 
-            // cbxMartes
-            // 
-            this.cbxMartes.AutoSize = true;
-            this.cbxMartes.Location = new System.Drawing.Point(76, 316);
-            this.cbxMartes.Name = "cbxMartes";
-            this.cbxMartes.Size = new System.Drawing.Size(58, 17);
-            this.cbxMartes.TabIndex = 16;
-            this.cbxMartes.Text = "Martes";
-            this.cbxMartes.UseVisualStyleBackColor = true;
-            // 
-            // lblDiasDisponible
-            // 
-            this.lblDiasDisponible.AutoSize = true;
-            this.lblDiasDisponible.Location = new System.Drawing.Point(13, 294);
-            this.lblDiasDisponible.Name = "lblDiasDisponible";
-            this.lblDiasDisponible.Size = new System.Drawing.Size(85, 13);
-            this.lblDiasDisponible.TabIndex = 17;
-            this.lblDiasDisponible.Text = "Dias Disponibles";
             // 
             // gbxAtiendeDomicilio
             // 
@@ -476,11 +390,22 @@
             this.btnReset.UseVisualStyleBackColor = true;
             this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
+            // btnCargarDias
+            // 
+            this.btnCargarDias.Location = new System.Drawing.Point(282, 325);
+            this.btnCargarDias.Name = "btnCargarDias";
+            this.btnCargarDias.Size = new System.Drawing.Size(225, 23);
+            this.btnCargarDias.TabIndex = 68;
+            this.btnCargarDias.Text = "Cargar &Dias";
+            this.btnCargarDias.UseVisualStyleBackColor = true;
+            this.btnCargarDias.Click += new System.EventHandler(this.btnCargarDias_Click);
+            // 
             // CargaMedicoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(529, 465);
+            this.Controls.Add(this.btnCargarDias);
             this.Controls.Add(this.btnReset);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
@@ -515,14 +440,6 @@
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.gbxAtiendeDomicilio);
-            this.Controls.Add(this.lblDiasDisponible);
-            this.Controls.Add(this.cbxMartes);
-            this.Controls.Add(this.cbxMiercoles);
-            this.Controls.Add(this.cbxJueves);
-            this.Controls.Add(this.cbxViernes);
-            this.Controls.Add(this.cbxSabado);
-            this.Controls.Add(this.cbxDomingo);
-            this.Controls.Add(this.cbxLunes);
             this.Name = "CargaMedicoForm";
             this.Text = "Carga de Especialista";
             this.gbxAtiendeDomicilio.ResumeLayout(false);
@@ -533,14 +450,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.CheckBox cbxLunes;
-        private System.Windows.Forms.CheckBox cbxDomingo;
-        private System.Windows.Forms.CheckBox cbxSabado;
-        private System.Windows.Forms.CheckBox cbxViernes;
-        private System.Windows.Forms.CheckBox cbxJueves;
-        private System.Windows.Forms.CheckBox cbxMiercoles;
-        private System.Windows.Forms.CheckBox cbxMartes;
-        private System.Windows.Forms.Label lblDiasDisponible;
         private System.Windows.Forms.GroupBox gbxAtiendeDomicilio;
         private System.Windows.Forms.RadioButton rbtNo;
         private System.Windows.Forms.RadioButton rbtSi;
@@ -577,5 +486,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button btnReset;
+        private System.Windows.Forms.Button btnCargarDias;
     }
 }

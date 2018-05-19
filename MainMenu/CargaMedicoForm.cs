@@ -25,6 +25,8 @@ namespace MainMenu
         ProfesionalNegocio pn;
         GeneralNegocio gn;
         Profesional profesional;
+        MenuDiasMedicoForm FormMdm;
+        MenuPrepagas FormMp;
 
         int contTel;
 
@@ -32,7 +34,8 @@ namespace MainMenu
         public CargaMedicoForm()
         {
             load();
-
+            FormMdm = new MenuDiasMedicoForm();
+            FormMp = new MenuPrepagas();
         }
 
         private void load()
@@ -43,7 +46,7 @@ namespace MainMenu
             profesional.Telefonos = new List<Telefono>();
             profesional.Dir = new Direccion();
             profesional.Especialidades = new List<String>();
-            profesional.Horarios = new Horarios();
+            profesional.Atencion = new Dictionary<int, string>();
             profesional.ServiciosHabilitados = new List<ServicioMedico>();
             InitializeComponent();
             gn = new GeneralNegocio();
@@ -214,11 +217,12 @@ namespace MainMenu
                 puede = false;
                 MessageBox.Show("Debe seleccionar si atiende a domicilio");
             }
-            if(!cbxDomingo.Checked && !cbxJueves.Checked && !cbxLunes.Checked && !cbxMartes.Checked && !cbxMiercoles.Checked && !cbxSabado.Checked && !cbxViernes.Checked)
+            if(FormMdm.Atencion.Count == 0)
             {
                 puede = false;
-                MessageBox.Show("Debe seleccionar al menos un dia de atencion");
+                MessageBox.Show("Debe Registrar dias de Atencion");
             }
+            
             
             //controlar que cargue los horarios y las prepagas.
 
@@ -302,7 +306,8 @@ namespace MainMenu
                     profesional.Mail = tbxMail.Text;
                     profesional.FechaNac = dtpFechaNacimiento.Value;
                     profesional.FechaIngreso = DateTime.Today;
-                    //Falta cargar coberturas , horarios , dias , si hace domicilios
+                    profesional.Atencion = FormMdm.Atencion;
+                    //Falta cargar coberturas , si hace domicilios
 
 
                     profesional.Dir.Calle = tbxCalle.Text;
@@ -333,7 +338,13 @@ namespace MainMenu
 
         private void button2_Click(object sender, EventArgs e)
         {
-            new MenuPrepagas(profesional.ServiciosHabilitados).ShowDialog();
+            FormMp.iserviciosMedicos = profesional.ServiciosHabilitados;
+            FormMp.ShowDialog();
+        }
+
+        private void btnCargarDias_Click(object sender, EventArgs e)
+        {
+            new MenuDiasMedicoForm().ShowDialog();
         }
     }
 }

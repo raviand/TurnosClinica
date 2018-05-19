@@ -16,6 +16,7 @@ namespace MainMenu
 {
     public partial class CargaPacienteForm : Form
     {
+     
         Dictionary<int, String> tipoTel;
         Dictionary<int, String> provincia;
         Dictionary<int, String> coberturaMedica;
@@ -434,6 +435,13 @@ namespace MainMenu
             }
             
         }
-    }
 
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            if( MessageBox.Show("Esta seguro que desea salir? todos los cambios se eliminaran", "Advertencia", MessageBoxButtons.YesNo ) == DialogResult.Yes)
+            {
+                Close();
+            }
+        }
+    }
 }

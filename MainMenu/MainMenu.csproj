@@ -101,6 +101,18 @@
     <Compile Include="Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
+    <Compile Include="MenuDiasMedicoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MenuDiasMedicoForm.Designer.cs">
+      <DependentUpon>MenuDiasMedicoForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MenuEspecialidadesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MenuEspecialidadesForm.Designer.cs">
+      <DependentUpon>MenuEspecialidadesForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MenuPrepagas.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -132,6 +144,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MenuDiasMedicoForm.resx">
+      <DependentUpon>MenuDiasMedicoForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MenuPrepagas.resx">
       <DependentUpon>MenuPrepagas.cs</DependentUpon>

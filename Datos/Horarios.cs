@@ -8,10 +8,7 @@ namespace Datos
 {
     public class Horarios
     {
-        public int HoraEntrada { get; set; }
-        public int HoraSalida { get; set; }
-        public int HoraInicioCorte { get; set; }
-        public int HoraFinalCorte { get; set; }
+        public Dictionary<int , String> HoraEntrada { get; set; }
         public List<String> DiasDisponibles { get; set; }
     }
 }

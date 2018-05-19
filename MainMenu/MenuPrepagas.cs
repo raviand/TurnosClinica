@@ -16,31 +16,44 @@ namespace MainMenu
     {
         GeneralNegocio gn;
         Dictionary<int, String> cobertura;
-        List<ServicioMedico> iserviciosMedicos;
-        public MenuPrepagas(List<ServicioMedico> serviciosMedicos )
+        //List<ServicioMedico> iserviciosMedicos;
+
+        public List<ServicioMedico> iserviciosMedicos { get; set; }
+
+        public MenuPrepagas()
         {
             InitializeComponent();
-            load(serviciosMedicos);
+            load();
         }
 
-
-        public void load(List<ServicioMedico> serviciosMedicos)
+        public void load()
         {
-            if (serviciosMedicos.Count > 0)
+            Dictionary<int, String> listaServicios = new Dictionary<int, String>();
+            gn = new GeneralNegocio();
+            listaServicios = gn.getCoberturaMedica();
+
+            if (iserviciosMedicos != null)
             {
-                foreach (var pair in serviciosMedicos)
+                foreach (var pair in listaServicios)
                 {
-                    lbxEleccionesCobertura.Items.Add(pair);
+                    foreach (ServicioMedico pair2 in iserviciosMedicos)
+                        if (pair2.Nombre.CompareTo(Convert.ToString(pair.Key)) == 0)
+                        {
+                            lbxEleccionesCobertura.Items.Add(pair);
+                        }
                 }
             }
-            iserviciosMedicos = serviciosMedicos;
-            gn = new GeneralNegocio();
+           
+            
+            //iserviciosMedicos = serviciosMedicos;
+            
             cobertura = new Dictionary<int, string>();
             
-            cobertura = gn.getCoberturaMedica();
+            cobertura = listaServicios;
             foreach (var pair in cobertura)
                 lbxOpcionesCobertura.Items.Add(pair);
         }
+
         private void btnToRight_Click(object sender, EventArgs e)
         {
             foreach (var pair in lbxOpcionesCobertura.SelectedItems)
@@ -84,21 +97,29 @@ namespace MainMenu
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            int val = iserviciosMedicos.Count;
+            //int val = iserviciosMedicos.Count;
             //Revisar porque el toString devuelve "no especifica"
-            while(lbxEleccionesCobertura.Items.Count > 0)
+            try
             {
-                foreach(ServicioMedico pair in lbxEleccionesCobertura.Items)
-                {
-                    ServicioMedico nuevo = new ServicioMedico();
-                    nuevo.Nombre = pair.Nombre;
-                    lbxEleccionesCobertura.SelectedIndex = 0;
-                    iserviciosMedicos.Add(nuevo);
-                    lbxEleccionesCobertura.Items.RemoveAt(0);
-                }
                 
+                    foreach (var pair in lbxEleccionesCobertura.Items)
+                    {
+                        ServicioMedico nuevo = new ServicioMedico();
+                        nuevo.Nombre = Convert.ToString(((KeyValuePair<int, String>)pair).Key);
+                        //lbxEleccionesCobertura.SelectedIndex = 0;
+                        iserviciosMedicos.Add(nuevo);
+                        //lbxEleccionesCobertura.Items.RemoveAt(0);
+                    }
+
+                Close();
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error en la carga de prepagas: \n" + ex.ToString());
+            }
+            
             Close();
         }
+
     }
 }

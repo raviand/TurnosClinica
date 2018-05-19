@@ -9,7 +9,7 @@ namespace Datos
     public class Profesional: Persona
     {
         public int IdProfesional { get; set; }
-        public Horarios Horarios { get; set; }
+        public Dictionary<int , String> Atencion { get; set; }
         public DateTime FechaIngreso { get; set; }
 
         public List<String> Especialidades { get; set; }
