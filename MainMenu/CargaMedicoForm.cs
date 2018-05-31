@@ -27,15 +27,19 @@ namespace MainMenu
         Profesional profesional;
         MenuDiasMedicoForm FormMdm;
         MenuPrepagas FormMp;
+        FormEspecialidades FormE;
 
         int contTel;
+        bool cambio;
 
 
         public CargaMedicoForm()
         {
+            cambio = false;
             load();
             FormMdm = new MenuDiasMedicoForm();
             FormMp = new MenuPrepagas();
+            FormE = new FormEspecialidades();
         }
 
         private void load()
@@ -45,12 +49,13 @@ namespace MainMenu
             profesional = new Profesional();
             profesional.Telefonos = new List<Telefono>();
             profesional.Dir = new Direccion();
-            profesional.Especialidades = new List<String>();
+            profesional.Especialidades = new Dictionary<int, string>();
             profesional.Atencion = new Dictionary<int, string>();
             profesional.ServiciosHabilitados = new List<ServicioMedico>();
             InitializeComponent();
             gn = new GeneralNegocio();
             pn = new ProfesionalNegocio();
+
             try
             {
                 tipoTel = gn.getTiposTelefonos();
@@ -64,20 +69,46 @@ namespace MainMenu
                 {
                     cbxProvincia.Items.Add(pair);
                 }
+                gn.cerrarConexion();
 
-                
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error en carga de Items");
             }
-
+            cbxTipoTel.DisplayMember = "Value";
+            cbxTipoTel.ValueMember = "Key";
             dtpFechaNacimiento.MaxDate = DateTime.Today;
             dtpFechaNacimiento.MinDate = DateTime.Today.AddYears(-100);
         }
 
+        public void modificar(Profesional profe)
+        {
+            cambio = true;
+            tbxNombre.Text = profe.Nombre;
+            tbxApellido.Text = profesional.Apellido;
+            tbxDni.Text = profe.Dni;
+            tbxMail.Text = profe.Mail;
+            dtpFechaNacimiento.Value = profe.FechaNac;
+            FormMdm.Atencion = profe.Atencion;
+            if (profesional.AtiendeADomicilio)
+                rbtSi.Checked = true;
+            else
+                rbtNo.Checked = true;
+            FormMp.iserviciosMedicos = profe.ServiciosHabilitados;
+            tbxCalle.Text = profe.Dir.Calle;
+
+            //cbxLocalidad.SelectedItem;
+            //profesional.Dir.Localidad = Convert.ToString(((KeyValuePair<int, String>)cbxLocalidad.SelectedItem).Key);
+            if (profe.Dir.Piso != null) tbxPiso.Text = profe.Dir.Piso;
+            if (profe.Dir.Departamento != null) tbxDepto.Text = profe.Dir.Departamento;
+            if (profe.Dir.CodigoPostal != null)  tbxCP.Text = profe.Dir.CodigoPostal;
+
+        }
+
         private void btnSalir_Click(object sender, EventArgs e)
         {
+            
             this.Close();
         }
 
@@ -217,7 +248,7 @@ namespace MainMenu
                 puede = false;
                 MessageBox.Show("Debe seleccionar si atiende a domicilio");
             }
-            if(FormMdm.Atencion.Count == 0)
+            if(profesional.Atencion.Count == 0)
             {
                 puede = false;
                 MessageBox.Show("Debe Registrar dias de Atencion");
@@ -237,7 +268,7 @@ namespace MainMenu
                 if (cbxTipoTel.Items.Count > 0)
                 {
                     telefono.Numero = tbxTelefono.Text;
-                    telefono.Tipo = cbxTipoTel.GetItemText(cbxTipoTel.SelectedItem);
+                    telefono.Tipo =  Convert.ToString( ( ( KeyValuePair<int, String> ) cbxTipoTel.SelectedItem ).Key );
                     if (ver.existeTelefono(telefono.Numero, profesional.Telefonos))
                     {
                         MessageBox.Show("El telefono: " + telefono.Numero + " Ya se encuentra registrado");
@@ -307,17 +338,22 @@ namespace MainMenu
                     profesional.FechaNac = dtpFechaNacimiento.Value;
                     profesional.FechaIngreso = DateTime.Today;
                     profesional.Atencion = FormMdm.Atencion;
-                    //Falta cargar coberturas , si hace domicilios
-
-
+                    if (rbtSi.Checked)
+                        profesional.AtiendeADomicilio = true;
+                    else
+                        profesional.AtiendeADomicilio = false;
+                    profesional.ServiciosHabilitados = FormMp.iserviciosMedicos;
                     profesional.Dir.Calle = tbxCalle.Text;
                     profesional.Dir.Localidad = Convert.ToString(((KeyValuePair<int, String>)cbxLocalidad.SelectedItem).Key);
                     if (tbxPiso.Text.CompareTo("") != 0) profesional.Dir.Piso = tbxPiso.Text;
                     if (tbxDepto.Text.CompareTo("") != 0) profesional.Dir.Departamento = tbxDepto.Text;
                     if (tbxCP.Text.CompareTo("") != 0) profesional.Dir.CodigoPostal = tbxCP.Text;
                     MessageBox.Show(profesional.ToString());
-                    pn.setPaciente(profesional);
-                    res = pn.cargarPaciente(profesional);
+                    pn.Profesional = profesional;
+                    if(!cambio)
+                        res = pn.cargarProfesional();
+                    else
+                        res = pn.modificarProfesionales();
                     MessageBox.Show("registros modificados: " + res);
 
                     reset();
@@ -336,15 +372,25 @@ namespace MainMenu
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void btnCargarDias_Click(object sender, EventArgs e)
+        {
+            FormMdm.Atencion = profesional.Atencion;
+            FormMdm.ShowDialog();
+            profesional.Atencion = FormMdm.Atencion;
+        }
+
+        private void btnCargarPrepagas_Click(object sender, EventArgs e)
         {
             FormMp.iserviciosMedicos = profesional.ServiciosHabilitados;
             FormMp.ShowDialog();
+            profesional.ServiciosHabilitados = FormMp.iserviciosMedicos;
         }
 
-        private void btnCargarDias_Click(object sender, EventArgs e)
+        private void btnCargarEspecialidades_Click(object sender, EventArgs e)
         {
-            new MenuDiasMedicoForm().ShowDialog();
+            FormE.MedicoEspecialidades = profesional.Especialidades;
+            FormE.ShowDialog();
+            profesional.Especialidades = FormE.MedicoEspecialidades;
         }
     }
 }

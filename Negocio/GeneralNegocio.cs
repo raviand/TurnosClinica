@@ -100,5 +100,23 @@ namespace Negocio
             }
         }
 
+        public bool cerrarConexion()
+        {
+            bool cerro = false;
+            try
+            {
+                conn.close();
+                cerro = true;
+                return cerro;
+            }
+            catch(Exception ex)
+            {
+                cerro = false;
+                throw ex;
+            }
+            
+            
+        }
+
     }
 }

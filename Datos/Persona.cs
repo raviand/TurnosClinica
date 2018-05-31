@@ -20,11 +20,11 @@ namespace Datos
         {
             String datos;
             datos = "Nombre: " + Nombre + "\n";
-            datos = "Apellido: " + Apellido + "\n";
-            datos = "FechaNacimiento: " + FechaNac.ToShortDateString() + "\n";
-            datos = "Dni: " + Dni + "\n";
-            datos = "Direccion: " + Dir.ToString() + "\n";
-            datos = "Mail: " + Mail + "\n";
+            datos += "Apellido: " + Apellido + "\n";
+            datos += "FechaNacimiento: " + FechaNac.ToShortDateString() + "\n";
+            datos += "Dni: " + Dni + "\n";
+            datos += "Direccion: " + Dir.ToString() + "\n";
+            datos += "Mail: " + Mail + "\n";
             return datos;
         }
     }

@@ -6,14 +6,17 @@ using System.Threading.Tasks;
 
 namespace Datos
 {
-    class Turno
+    public class Turno
     {
         public DateTime FechaTurno { get; set; }
+        public DateTime FechaSolicitud { get; set; }
         public String IdTurno { get; set; }
-        public String Estado { get; set; }
-        public Paciente Paciente { get; set; }
-        public Profesional Profesional { get; set; }
-        public String Especialidad { get; set; }
+        public KeyValuePair<int , String> Estado { get; set; }
+        public KeyValuePair<int ,String> Paciente { get; set; }
+        public String NombrePaciente { get; set; }
+        public KeyValuePair<int,String> Profesional { get; set; }
+        public String NombreProfesional { get; set; }
+        public KeyValuePair<int, String> Especialidad { get; set; }
         public Cancela Cancela { get; set; }
     }
 }

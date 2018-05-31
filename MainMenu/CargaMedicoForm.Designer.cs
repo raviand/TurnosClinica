@@ -61,8 +61,8 @@
             this.tbxPiso = new System.Windows.Forms.TextBox();
             this.lblCalle = new System.Windows.Forms.Label();
             this.tbxCalle = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnCargarEspecialidades = new System.Windows.Forms.Button();
+            this.btnCargarPrepagas = new System.Windows.Forms.Button();
             this.btnReset = new System.Windows.Forms.Button();
             this.btnCargarDias = new System.Windows.Forms.Button();
             this.gbxAtiendeDomicilio.SuspendLayout();
@@ -361,24 +361,25 @@
             this.tbxCalle.Size = new System.Drawing.Size(233, 20);
             this.tbxCalle.TabIndex = 53;
             // 
-            // button1
+            // btnCargarEspecialidades
             // 
-            this.button1.Location = new System.Drawing.Point(279, 354);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(228, 23);
-            this.button1.TabIndex = 65;
-            this.button1.Text = "Cargar &Especialidades";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnCargarEspecialidades.Location = new System.Drawing.Point(279, 354);
+            this.btnCargarEspecialidades.Name = "btnCargarEspecialidades";
+            this.btnCargarEspecialidades.Size = new System.Drawing.Size(228, 23);
+            this.btnCargarEspecialidades.TabIndex = 65;
+            this.btnCargarEspecialidades.Text = "Cargar &Especialidades";
+            this.btnCargarEspecialidades.UseVisualStyleBackColor = true;
+            this.btnCargarEspecialidades.Click += new System.EventHandler(this.btnCargarEspecialidades_Click);
             // 
-            // button2
+            // btnCargarPrepagas
             // 
-            this.button2.Location = new System.Drawing.Point(279, 385);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(228, 23);
-            this.button2.TabIndex = 66;
-            this.button2.Text = "Cargar &Prepagas Habilitadas";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.btnCargarPrepagas.Location = new System.Drawing.Point(279, 385);
+            this.btnCargarPrepagas.Name = "btnCargarPrepagas";
+            this.btnCargarPrepagas.Size = new System.Drawing.Size(228, 23);
+            this.btnCargarPrepagas.TabIndex = 66;
+            this.btnCargarPrepagas.Text = "Cargar &Prepagas Habilitadas";
+            this.btnCargarPrepagas.UseVisualStyleBackColor = true;
+            this.btnCargarPrepagas.Click += new System.EventHandler(this.btnCargarPrepagas_Click);
             // 
             // btnReset
             // 
@@ -407,8 +408,8 @@
             this.ClientSize = new System.Drawing.Size(529, 465);
             this.Controls.Add(this.btnCargarDias);
             this.Controls.Add(this.btnReset);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnCargarPrepagas);
+            this.Controls.Add(this.btnCargarEspecialidades);
             this.Controls.Add(this.lblLocalidad);
             this.Controls.Add(this.cbxLocalidad);
             this.Controls.Add(this.cbxProvincia);
@@ -483,8 +484,8 @@
         private System.Windows.Forms.TextBox tbxPiso;
         private System.Windows.Forms.Label lblCalle;
         private System.Windows.Forms.TextBox tbxCalle;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnCargarEspecialidades;
+        private System.Windows.Forms.Button btnCargarPrepagas;
         private System.Windows.Forms.Button btnReset;
         private System.Windows.Forms.Button btnCargarDias;
     }

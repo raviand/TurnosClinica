@@ -15,6 +15,7 @@ namespace Negocio
         private Verificacion ver;
         private Paciente paciente;
 
+
         public PacienteNegocio()
         {
             conn = new Conexion();
@@ -392,6 +393,24 @@ namespace Negocio
         public List<Telefono> GetTelefono()
         {
             return paciente.Telefonos;
+        }
+
+        public int modificarPaciente(String column, String value, int id, bool esTexto = true)
+        {
+            
+            try
+            {
+
+                String query = "UPDATE PACIENTES USE " + column + " = ";
+
+
+
+            }catch(Exception ex)
+            {
+                throw ex;
+            }
+
+            return 0;
         }
 
 

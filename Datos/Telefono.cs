@@ -10,6 +10,9 @@ namespace Datos
     {
         public String Numero { get; set; }
         public String Tipo { get; set; }
-
+        public override string ToString()
+        {
+            return Numero;
+        }
     }
 }

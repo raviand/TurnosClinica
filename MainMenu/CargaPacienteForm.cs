@@ -41,6 +41,7 @@ namespace MainMenu
             esCargar = false;
             InitializeComponent();
             load();
+
             this.paciente = paciente;
 
             tbxNombre.Text = paciente.Nombre;

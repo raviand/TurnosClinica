@@ -12,8 +12,10 @@ namespace MainMenu
 {
     public partial class Principal : Form
     {
+        BuscarProfesional bp;
         public Principal()
         {
+            bp = new BuscarProfesional();
             InitializeComponent();
         }
 
@@ -43,6 +45,16 @@ namespace MainMenu
         private void btnEliminarPaciente_Click(object sender, EventArgs e)
         {
             new EliminarPacienteForm().Show();
+        }
+
+        private void btnBuscarProfesional_Click(object sender, EventArgs e)
+        {
+            bp.ShowDialog();
+        }
+
+        private void btnVerAgenda_Click(object sender, EventArgs e)
+        {
+            new TurnosForm().ShowDialog();
         }
     }
 }

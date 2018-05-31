@@ -11,8 +11,8 @@ namespace Datos
         public int IdProfesional { get; set; }
         public Dictionary<int , String> Atencion { get; set; }
         public DateTime FechaIngreso { get; set; }
-
-        public List<String> Especialidades { get; set; }
+        public String TelefonoPrincipal { get; set; }
+        public Dictionary<int , String> Especialidades { get; set; }
         public List<ServicioMedico> ServiciosHabilitados { get; set; }
         public bool AtiendeADomicilio { get; set; }
     }

@@ -23,13 +23,13 @@ namespace MainMenu
         bool seleccionViernes;
         bool seleccionSabados;
         bool seleccionDomingo;
-
         
         public Dictionary<int, String> Atencion { get; set; }
 
         public MenuDiasMedicoForm()
         {
             pn = new ProfesionalNegocio();
+            Atencion = new Dictionary<int, string>();
             seleccionLunes = false;
             seleccionMartes = false;
             seleccionMiercoles = false;
@@ -47,6 +47,44 @@ namespace MainMenu
             cbxAtencionDomingo.Visible = false;
             cbxAtencionSabado.Visible = false;
             
+        }
+        private void load()
+        {
+         
+            foreach (KeyValuePair<int, String> pair in Atencion)
+            {
+                switch (pair.Key)
+                {
+                    case 1:
+                        cbxLunes.Checked = true;
+                        cbxAtencionLunes.SelectedItem = Convert.ToInt32(pair.Value);
+                        break;
+                    case 2:
+                        cbxMartes.Checked = true;
+                        cbxAtencionMartes.SelectedItem = Convert.ToInt32(pair.Value);
+                        break;
+                    case 3:
+                        cbxMiercoles.Checked = true;
+                        cbxAtencionMiercoles.SelectedItem = Convert.ToInt32(pair.Value);
+                        break;
+                    case 4:
+                        cbxJueves.Checked = true;
+                        cbxAtencionJueves.SelectedItem = Convert.ToInt32(pair.Value);
+                        break;
+                    case 5:
+                        cbxViernes.Checked = true;
+                        cbxAtencionViernes.SelectedItem = Convert.ToInt32(pair.Value);
+                        break;
+                    case 6:
+                        cbxSabado.Checked = true;
+                        cbxAtencionSabado.SelectedItem = Convert.ToInt32(pair.Value);
+                        break;
+                    case 7:
+                        cbxDomingo.Checked = true;
+                        cbxAtencionDomingo.SelectedItem = Convert.ToInt32(pair.Value);
+                        break;
+                }
+            }
         }
 
         private void MenuDiasMedicoForm_Load(object sender, EventArgs e)
@@ -74,7 +112,7 @@ namespace MainMenu
                 cbxAtencionJueves.DisplayMember = "Value";
                 cbxAtencionDomingo.DisplayMember = "Value";
                 cbxAtencionTodos.DisplayMember = "Value";
-
+                load();
                 
             }
             catch(Exception ex)
@@ -154,7 +192,6 @@ namespace MainMenu
             cbxSabado.Checked = false;
             cbxDomingo.Checked = false;
         }
-
         private bool puedeGuardar()
         {
             bool puedeGuardar = true;
@@ -177,30 +214,54 @@ namespace MainMenu
 
             return puedeGuardar;
         }
-
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             if (puedeGuardar())
             {
-                Atencion = new Dictionary<int, string>();
-                if (cbxLunes.Checked) Atencion.Add(1,  (((KeyValuePair<int, String>)cbxAtencionLunes.SelectedItem).Key).ToString() );
-                if (cbxMartes.Checked) Atencion.Add(2,  (((KeyValuePair<int, String>)cbxAtencionMartes.SelectedItem).Key).ToString() );
-                if (cbxMiercoles.Checked) Atencion.Add(3, (((KeyValuePair<int, String>)cbxAtencionMiercoles.SelectedItem).Key).ToString());
-                if (cbxJueves.Checked) Atencion.Add(4, (((KeyValuePair<int, String>)cbxAtencionJueves.SelectedItem).Key).ToString());
-                if (cbxViernes.Checked) Atencion.Add(5, (((KeyValuePair<int, String>)cbxAtencionViernes.SelectedItem).Key).ToString());
-                if (cbxSabado.Checked) Atencion.Add(6, (((KeyValuePair<int, String>)cbxAtencionSabado.SelectedItem).Key).ToString());
-                if (cbxDomingo.Checked) Atencion.Add(7, (((KeyValuePair<int, String>)cbxAtencionDomingo.SelectedItem).Key).ToString());
-                /*
-                String msg = "Seleccion:";
-                foreach(var pair in Atencion)
+                if(Atencion.Count != 0)
                 {
-                    msg += "\nKey = " + pair.Key + "  - Value = " + pair.Value;
+                    foreach (KeyValuePair<int, String> pair in Atencion)
+                    {
+                        if (cbxLunes.Checked) if (!Atencion.ContainsKey(pair.Key)) Atencion.Add(1, traerKey(cbxAtencionLunes));
+                        if (cbxMartes.Checked) if (!Atencion.ContainsKey(pair.Key)) Atencion.Add(2, traerKey(cbxAtencionMartes));
+                        if (cbxMiercoles.Checked) if (!Atencion.ContainsKey(pair.Key)) Atencion.Add(3, traerKey(cbxAtencionMiercoles));
+                        if (cbxJueves.Checked) if (!Atencion.ContainsKey(pair.Key)) Atencion.Add(4, traerKey(cbxAtencionJueves));
+                        if (cbxViernes.Checked) if (!Atencion.ContainsKey(pair.Key)) Atencion.Add(5, traerKey(cbxAtencionViernes));
+                        if (cbxSabado.Checked) if (!Atencion.ContainsKey(pair.Key)) Atencion.Add(6, traerKey(cbxAtencionSabado));
+                        if (cbxDomingo.Checked) if (!Atencion.ContainsKey(pair.Key)) Atencion.Add(7, traerKey(cbxAtencionDomingo));
+                    }
                 }
-                MessageBox.Show(msg);*/
+                else
+                {
+                    
+                    if (cbxLunes.Checked)       Atencion.Add(1, traerKey(cbxAtencionLunes));
+                    if (cbxMartes.Checked)      Atencion.Add(2, traerKey(cbxAtencionMartes));
+                    if (cbxMiercoles.Checked)   Atencion.Add(3, traerKey(cbxAtencionMiercoles));
+                    if (cbxJueves.Checked)      Atencion.Add(4, traerKey(cbxAtencionJueves));
+                    if (cbxViernes.Checked)     Atencion.Add(5, traerKey(cbxAtencionViernes));
+                    if (cbxSabado.Checked)      Atencion.Add(6, traerKey(cbxAtencionSabado));
+                    if (cbxDomingo.Checked)     Atencion.Add(7, traerKey(cbxAtencionDomingo));
+                    
+                }
+               
+
+
+                Close();
             }
             else
             {
                 MessageBox.Show("No Puede Guardar");
+            }
+        }
+        private String traerKey(ComboBox comboBox)
+        {
+            return (((KeyValuePair<int, String>)comboBox.SelectedItem).Key).ToString();
+        }
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            if( MessageBox.Show("Esta seguro que desea salir?, no se guardaran los cambios", "Advertencia", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                Close();
             }
         }
     }

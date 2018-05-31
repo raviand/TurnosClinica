@@ -150,6 +150,7 @@ namespace Negocio
                 throw e;
             }
         }
+
         public SqlConnection open()
         {
             try
@@ -190,6 +191,11 @@ namespace Negocio
             {
                 throw e;
             }
+        }
+
+        public void agregarParametro(String variable, object valor)
+        {
+            Cmd.Parameters.AddWithValue(variable, valor);
         }
     }
 }

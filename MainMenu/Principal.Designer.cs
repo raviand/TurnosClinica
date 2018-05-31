@@ -31,7 +31,7 @@
         {
             this.btnCargarMedico = new System.Windows.Forms.Button();
             this.btnCargaPaciente = new System.Windows.Forms.Button();
-            this.btnSeleccionPaciente = new System.Windows.Forms.Button();
+            this.btnBuscarProfesional = new System.Windows.Forms.Button();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.btnVerAgenda = new System.Windows.Forms.Button();
             this.btnEliminarPaciente = new System.Windows.Forms.Button();
@@ -57,14 +57,15 @@
             this.btnCargaPaciente.UseVisualStyleBackColor = true;
             this.btnCargaPaciente.Click += new System.EventHandler(this.btnCargaPaciente_Click);
             // 
-            // btnSeleccionPaciente
+            // btnBuscarProfesional
             // 
-            this.btnSeleccionPaciente.Location = new System.Drawing.Point(129, 209);
-            this.btnSeleccionPaciente.Name = "btnSeleccionPaciente";
-            this.btnSeleccionPaciente.Size = new System.Drawing.Size(352, 23);
-            this.btnSeleccionPaciente.TabIndex = 2;
-            this.btnSeleccionPaciente.Text = "Seleccionar Paciente";
-            this.btnSeleccionPaciente.UseVisualStyleBackColor = true;
+            this.btnBuscarProfesional.Location = new System.Drawing.Point(129, 209);
+            this.btnBuscarProfesional.Name = "btnBuscarProfesional";
+            this.btnBuscarProfesional.Size = new System.Drawing.Size(352, 23);
+            this.btnBuscarProfesional.TabIndex = 2;
+            this.btnBuscarProfesional.Text = "Seleccionar Profesional";
+            this.btnBuscarProfesional.UseVisualStyleBackColor = true;
+            this.btnBuscarProfesional.Click += new System.EventHandler(this.btnBuscarProfesional_Click);
             // 
             // btnBuscar
             // 
@@ -84,6 +85,7 @@
             this.btnVerAgenda.TabIndex = 4;
             this.btnVerAgenda.Text = "Agenda";
             this.btnVerAgenda.UseVisualStyleBackColor = true;
+            this.btnVerAgenda.Click += new System.EventHandler(this.btnVerAgenda_Click);
             // 
             // btnEliminarPaciente
             // 
@@ -103,7 +105,7 @@
             this.Controls.Add(this.btnEliminarPaciente);
             this.Controls.Add(this.btnVerAgenda);
             this.Controls.Add(this.btnBuscar);
-            this.Controls.Add(this.btnSeleccionPaciente);
+            this.Controls.Add(this.btnBuscarProfesional);
             this.Controls.Add(this.btnCargaPaciente);
             this.Controls.Add(this.btnCargarMedico);
             this.Name = "Principal";
@@ -117,7 +119,7 @@
 
         private System.Windows.Forms.Button btnCargarMedico;
         private System.Windows.Forms.Button btnCargaPaciente;
-        private System.Windows.Forms.Button btnSeleccionPaciente;
+        private System.Windows.Forms.Button btnBuscarProfesional;
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.Button btnVerAgenda;
         private System.Windows.Forms.Button btnEliminarPaciente;

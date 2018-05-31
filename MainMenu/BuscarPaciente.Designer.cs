@@ -40,7 +40,7 @@
             // lblId
             // 
             this.lblId.AutoSize = true;
-            this.lblId.Location = new System.Drawing.Point(311, 38);
+            this.lblId.Location = new System.Drawing.Point(338, 38);
             this.lblId.Name = "lblId";
             this.lblId.Size = new System.Drawing.Size(19, 13);
             this.lblId.TabIndex = 0;
@@ -48,14 +48,14 @@
             // 
             // tbxId
             // 
-            this.tbxId.Location = new System.Drawing.Point(337, 35);
+            this.tbxId.Location = new System.Drawing.Point(364, 35);
             this.tbxId.Name = "tbxId";
             this.tbxId.Size = new System.Drawing.Size(126, 20);
             this.tbxId.TabIndex = 1;
             // 
             // btnBuscar
             // 
-            this.btnBuscar.Location = new System.Drawing.Point(479, 33);
+            this.btnBuscar.Location = new System.Drawing.Point(506, 33);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(75, 23);
             this.btnBuscar.TabIndex = 2;
