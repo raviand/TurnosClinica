@@ -180,16 +180,20 @@ namespace Negocio
                 {
 
                     Cmd = getComando();
-
+                    
                     Conn.Open();
                 }
                 Cmd.CommandText = query;
-                
+              
                 return Cmd.ExecuteNonQuery();
             }
             catch (Exception e)
             {
                 throw e;
+            }
+            finally
+            {
+              Conn.Close();
             }
         }
 

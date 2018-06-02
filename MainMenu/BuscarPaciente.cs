@@ -14,8 +14,18 @@ namespace MainMenu
 {
     public partial class BuscarPaciente : Form
     {
+
+        public bool  buscar { get; set; }
+        public Paciente Paciente { get; set; }
         public BuscarPaciente()
         {
+            Paciente = new Paciente();
+            InitializeComponent();
+        }
+        public BuscarPaciente(bool bo)
+        {
+            Paciente = new Paciente();
+            buscar = bo;
             InitializeComponent();
         }
 
@@ -25,11 +35,16 @@ namespace MainMenu
             {
                 PacienteNegocio pacienteNegocio = new PacienteNegocio();
                 dgvListaPacientes.DataSource =  pacienteNegocio.listar();
-                //dgvListaPacientes.Columns["fechaIngreso"].Visible = false;
-                //dgvListaPacientes.Columns["IdPaciente"].Visible = false;
-                //dgvListaPacientes.Columns["CoberturaMedica"].Visible = false;
-                //dgvListaPacientes.Columns["FechaNac"].Visible = false;
-
+                if (buscar)
+                {
+                    btnModificar.Visible = false;
+                    btnSeleccionar.Visible = true;
+                }
+                else
+                {
+                    btnModificar.Visible = true;
+                    btnSeleccionar.Visible = false;
+                }
             }
             catch(Exception err)
             {
@@ -39,9 +54,15 @@ namespace MainMenu
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            Paciente paciente = new Paciente();
-            paciente = (Paciente)dgvListaPacientes.CurrentRow.DataBoundItem;
-            new CargaPacienteForm(paciente).ShowDialog();
+           
+            Paciente = (Paciente)dgvListaPacientes.CurrentRow.DataBoundItem;
+            new CargaPacienteForm(Paciente).ShowDialog();
+        }
+
+        private void btnSeleccionar_Click(object sender, EventArgs e)
+        {
+            Paciente = (Paciente)dgvListaPacientes.CurrentRow.DataBoundItem;
+            Close();
         }
     }
 }

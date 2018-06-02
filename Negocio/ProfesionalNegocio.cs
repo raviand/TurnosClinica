@@ -226,7 +226,6 @@ namespace Negocio
                     conn.agregarParametro("@CP", Profesional.Dir.CodigoPostal);
                 conn.agregarParametro("@ATIENDE_DOMICILIO", Profesional.AtiendeADomicilio ? "1" : "0");
 
-
                 query = "EXEC SP_MODIFICAR_PROFESIONAL @ID @NOMBRE @APELLIDO @DNI @CALLE @ID_LOCALIDAD @MAIL @FECHA_NACIMIENTO ";
                 if (Profesional.Dir.Piso != null) query += "@PISO ";
                 if (Profesional.Dir.Departamento != null) query += "@DEPARTAMENTO ";
@@ -234,10 +233,7 @@ namespace Negocio
                 query += " @ATIENDE_DOMICILIO ";
 
                 ret = conn.accion(query);
-
                 conn.close();
-
-
 
                 return ret;
             }

@@ -125,6 +125,12 @@
     <Compile Include="MenuPrepagas.Designer.cs">
       <DependentUpon>MenuPrepagas.cs</DependentUpon>
     </Compile>
+    <Compile Include="nuevoTurno.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="nuevoTurno.Designer.cs">
+      <DependentUpon>nuevoTurno.cs</DependentUpon>
+    </Compile>
     <Compile Include="Principal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -168,6 +174,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MenuPrepagas.resx">
       <DependentUpon>MenuPrepagas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="nuevoTurno.resx">
+      <DependentUpon>nuevoTurno.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Principal.resx">
       <DependentUpon>Principal.cs</DependentUpon>

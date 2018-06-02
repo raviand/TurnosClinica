@@ -29,10 +29,21 @@ namespace Negocio
          * */
         public Turno turno { get; set; }
         private Conexion conn;
+        public int idProfesional { get; set; }
+
+
         public TurnoNegocio()
         {
             conn = new Conexion();
             turno = new Turno();
+            turno.Cancela = new Cancela();
+            turno.Especialidad = new KeyValuePair<int, string>();
+            turno.Estado = new KeyValuePair<int, string>();
+            turno.FechaSolicitud = new DateTime();
+            turno.FechaTurno = new DateTime();
+            turno.Paciente = new KeyValuePair<int, string>();
+            turno.Profesional = new KeyValuePair<int, string>();
+            
 
         }
         public List<Turno> listarTurnos()
@@ -64,9 +75,7 @@ namespace Negocio
                     tur.FechaTurno += timeSpan;
                     tur.NombreProfesional = lector.GetString(10);
                     turnos.Add(tur);
-
                 }
-
                 return turnos;
             }catch(Exception ex)
             {
@@ -78,6 +87,98 @@ namespace Negocio
             }
         }
 
+        public Dictionary<int, String> getProfesionales()
+        {
+            Dictionary<int, String> profecionales;
+            profecionales = new Dictionary<int, string>();
+            SqlDataReader lector;
+            String query = "SELECT P.ID, P.NOMBRE, P.APELLIDO FROM PROFESIONALES AS P INNER JOIN PROFESIONALES_ESPECIALIDADES AS PE ON PE.ID_PROFESIONAL = P.ID WHERE PE.ID_ESPECIALIDAD = " + idProfesional;
+            try
+            {
+                lector = conn.lector(query);
+                while (lector.Read())
+                {
+                    profecionales.Add(lector.GetInt32(0), lector.GetString(2) + ", " + lector.GetString(1));
+                }
+                return profecionales;
+
+            }catch(Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.close();
+            }
+        }
+
+        public List<KeyValuePair<String, String>> getAtencionProfesional( int id )
+        {
+            String query = "SELECT DIA, TURNO FROM VW_DIAS_ATENCION WHERE ID = " + id;
+            KeyValuePair<String, String> atencionProfesional;
+            SqlDataReader lector;
+            List<KeyValuePair<String, String>> lista = new List<KeyValuePair<string, string>>();
+
+            try
+            {
+                lector = conn.lector(query);
+
+                while (lector.Read())
+                {
+                    atencionProfesional = new KeyValuePair<string, string>(lector.GetString(0), lector.GetString(1));
+                    lista.Add(atencionProfesional);
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                conn.close();
+            }
+
+        }
+
+        public int guardarNuevoTurno(bool esSobreturno)
+        {
+            /**
+        * Carga de Store procedure para la carga de turno
+            CREATE PROCEDURE CARGA_TURNO(
+                   @ID_PACIENTE INT,
+                   @ID_PROFESIONAL INT,
+                   @ID_ESPECIALIDAD INT,
+                   @FECHA_TURNO DATE,
+                   @HORA_TURNO TIME(0),
+                   @ID_ESTADO INT = 1
+           )
+           **/
+            try
+            {
+              
+                conn.agregarParametro("@IDPACIENTE", turno.Paciente.Key);
+                conn.agregarParametro("@IDPROFESIONAL", turno.Profesional.Key);
+                conn.agregarParametro("@IDESPECIALIDAD", turno.Especialidad.Key);
+                conn.agregarParametro("@FECHATURNO", turno.FechaTurno.Date);
+                conn.agregarParametro("@HORATURNO", turno.FechaTurno.TimeOfDay);
+                if(esSobreturno) conn.agregarParametro("@SOBRETURNO", 4);
+                String query = "set dateformat dmy EXEC CARGA_TURNO @IDPACIENTE, @IDPROFESIONAL ,@IDESPECIALIDAD, @FECHATURNO, @HORATURNO ";
+                if (esSobreturno) query += ", @SOBRETURNO";
+                int res = conn.accion(query);
+                return res;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                conn.close();
+            }
+        }
 
     }
 }
