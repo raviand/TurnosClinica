@@ -81,7 +81,7 @@ namespace Negocio
                     if(Conn == null)
                     {
                         Conn = new SqlConnection();
-                        //Conn.ConnectionString = "data source = .; initial catalog=CLINICA;Persist Security Info=False;Integrated Security=true;";
+                       
                         Conn.ConnectionString = CadenaConexion;
                     }
                     Cmd = new SqlCommand();
@@ -129,7 +129,7 @@ namespace Negocio
         {
             try
             {
-                if(Cmd == null)
+                if(Cmd == null || Cmd.Connection.State == System.Data.ConnectionState.Closed)
                 {
                     Cmd = getComando();
                     Cmd.CommandText = query;
@@ -138,9 +138,9 @@ namespace Negocio
                 else
                 {
                     
-                    //Cmd = getComando();
-                    Cmd.CommandText = query;
-                  
+                 // if(Cmd.Connection.State == System.Data.ConnectionState.Closed)
+                  Cmd.CommandText = query;
+                  if(Conn.State == System.Data.ConnectionState.Closed)
                     Conn.Open();
                 }
                 
@@ -148,6 +148,11 @@ namespace Negocio
             }catch(Exception e)
             {
                 throw e;
+            }
+            finally
+            {
+                Cmd = null;
+                Conn = null;
             }
         }
 

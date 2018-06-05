@@ -386,7 +386,7 @@ namespace Negocio
                     cpExist = true;
                     query += ", CP";
                 }
-                query += ") VALUES ( " + paciente.Dir.Localidad +" ,'" + paciente.Nombre +
+                query += ", ELIMINADO) VALUES ( " + paciente.Dir.Localidad +" ,'" + paciente.Nombre +
                     "', '" + paciente.Apellido + 
                     "', " + paciente.Dni +
                     ", '" + paciente.Mail + 
@@ -400,7 +400,7 @@ namespace Negocio
                 if (cpExist)    query += ", " + paciente.Dir.CodigoPostal + " ";
                 
 
-                query += "); ";
+                query += ", 0); ";
                 query += " SET @DataID = scope_identity(); ";
 
                 query += cargaTelefonos(paciente.Telefonos);

@@ -89,6 +89,7 @@
             this.Controls.Add(this.dgvTelefonos);
             this.Name = "controlTelefonos";
             this.Text = "controlTelefonos";
+            this.Load += new System.EventHandler(this.controlTelefonos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvTelefonos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.telefonoBindingSource)).EndInit();
             this.ResumeLayout(false);

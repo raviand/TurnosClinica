@@ -54,7 +54,7 @@ namespace MainMenu
                 dgvProfesionales.Columns["Mail"].DisplayIndex = 4;
                 dgvProfesionales.Columns["Especialidades"].DisplayIndex = 5;
                 dgvProfesionales.Columns["TelefonoPrincipal"].DisplayIndex = 6;
-
+                
 
                 prov = gn.getProvincia();
                 foreach(var pair in prov)

@@ -57,6 +57,29 @@ namespace MainMenu
             }
         }
 
-
+        private void btnGurdar_Click(object sender, EventArgs e)
+        {
+            if (((String)cbxEstado.SelectedItem).CompareTo("ATENDIDO") == 0)
+            {
+                String Diagnostico = rtbComentario.Text;
+                int turnoId = Int32.Parse(turno.IdTurno);
+                int profesionalid = Int32.Parse(turno.idProfesional);
+                tn.cambioEstado(Int32.Parse( turno.idPaciente) , Diagnostico, turnoId, profesionalid);
+                MessageBox.Show("El paciente atendido fue registrado");
+                Close();
+            }
+            else
+            {
+                int estado = 0;
+                if (((String)cbxEstado.SelectedItem).CompareTo("ACTIVO") == 0) estado = 1;
+                if (((String)cbxEstado.SelectedItem).CompareTo("CANCELADO") == 0) estado = 2;
+                if(estado == 1 || estado == 2)
+                {
+                    tn.cambioEstado(estado, Int32.Parse(turno.IdTurno));
+                    MessageBox.Show("Se modifico el estado");
+                    Close();
+                }
+            }
+        }
     }
 }

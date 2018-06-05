@@ -57,6 +57,7 @@
             // 
             // cbxEstado
             // 
+            this.cbxEstado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxEstado.FormattingEnabled = true;
             this.cbxEstado.Location = new System.Drawing.Point(12, 66);
             this.cbxEstado.Name = "cbxEstado";
@@ -67,6 +68,7 @@
             // rtbComentario
             // 
             this.rtbComentario.Location = new System.Drawing.Point(12, 128);
+            this.rtbComentario.Multiline = false;
             this.rtbComentario.Name = "rtbComentario";
             this.rtbComentario.Size = new System.Drawing.Size(444, 177);
             this.rtbComentario.TabIndex = 4;
@@ -89,6 +91,7 @@
             this.btnGurdar.TabIndex = 6;
             this.btnGurdar.Text = "&Guardar";
             this.btnGurdar.UseVisualStyleBackColor = true;
+            this.btnGurdar.Click += new System.EventHandler(this.btnGurdar_Click);
             // 
             // btnSalir
             // 

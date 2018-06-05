@@ -17,18 +17,17 @@ namespace MainMenu
         
         public List<Telefono> telefonos { get; set; }
         PacienteNegocio pn;
+        GeneralNegocio gn;
         public bool  borro { get; set; }
-        /*public controlTelefonos()
-        {
-            InitializeComponent();
-            
-        }*/
+        public bool Editar { get; set; }
+        public int id { get; set; }
         public controlTelefonos()
         {
             
             InitializeComponent();
             dgvTelefonos.ReadOnly = true;
-            dgvTelefonos.DataSource = telefonos;
+            pn = new PacienteNegocio();
+            gn = new GeneralNegocio();
         }
 
         public controlTelefonos(int  id)
@@ -45,11 +44,23 @@ namespace MainMenu
 
             try
             {
-                if (MessageBox.Show("Desea borrar el registro: " + telefonos[e.RowIndex].Numero, "Eliminar Telefono", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                Telefono telefono = (Telefono)dgvTelefonos.CurrentRow.DataBoundItem;
+                if (MessageBox.Show("Desea borrar el registro: " + telefono.Numero, "Eliminar Telefono", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    telefonos.RemoveAt(e.RowIndex);
-                    borro = true;
-                    this.Close();
+                    if (Editar)
+                    {
+                        if (gn.eliminarTelefonoPaciente(telefono) > 0)
+                        {
+                            telefonos.Remove(telefono);
+                        }
+                    }
+                    else
+                    {
+                        telefonos.Remove(telefono);
+                    }
+                        
+                        borro = true;
+                        this.Close();
                 }
                 else
                 {
@@ -68,6 +79,18 @@ namespace MainMenu
         {
             borro = false;
             Close();
+        }
+
+        private void controlTelefonos_Load(object sender, EventArgs e)
+        {
+            if (Editar)
+            {
+                dgvTelefonos.DataSource = pn.listarTelefonos(id);
+            }
+            else
+            {
+                dgvTelefonos.DataSource = telefonos;
+            }
         }
     }
 }

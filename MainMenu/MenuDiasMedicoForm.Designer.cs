@@ -76,6 +76,7 @@
             // 
             // cbxAtencionLunes
             // 
+            this.cbxAtencionLunes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxAtencionLunes.FormattingEnabled = true;
             this.cbxAtencionLunes.Location = new System.Drawing.Point(111, 19);
             this.cbxAtencionLunes.Name = "cbxAtencionLunes";
@@ -105,6 +106,7 @@
             // 
             // cbxAtencionMartes
             // 
+            this.cbxAtencionMartes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxAtencionMartes.FormattingEnabled = true;
             this.cbxAtencionMartes.Location = new System.Drawing.Point(111, 19);
             this.cbxAtencionMartes.Name = "cbxAtencionMartes";
@@ -134,6 +136,7 @@
             // 
             // cbxAtencionMiercoles
             // 
+            this.cbxAtencionMiercoles.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxAtencionMiercoles.FormattingEnabled = true;
             this.cbxAtencionMiercoles.Location = new System.Drawing.Point(111, 19);
             this.cbxAtencionMiercoles.Name = "cbxAtencionMiercoles";
@@ -163,6 +166,7 @@
             // 
             // cbxAtencionJueves
             // 
+            this.cbxAtencionJueves.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxAtencionJueves.FormattingEnabled = true;
             this.cbxAtencionJueves.Location = new System.Drawing.Point(111, 19);
             this.cbxAtencionJueves.Name = "cbxAtencionJueves";
@@ -192,6 +196,7 @@
             // 
             // cbxAtencionViernes
             // 
+            this.cbxAtencionViernes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxAtencionViernes.FormattingEnabled = true;
             this.cbxAtencionViernes.Location = new System.Drawing.Point(111, 19);
             this.cbxAtencionViernes.Name = "cbxAtencionViernes";
@@ -221,6 +226,7 @@
             // 
             // cbxAtencionSabado
             // 
+            this.cbxAtencionSabado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxAtencionSabado.FormattingEnabled = true;
             this.cbxAtencionSabado.Location = new System.Drawing.Point(111, 19);
             this.cbxAtencionSabado.Name = "cbxAtencionSabado";
@@ -250,6 +256,7 @@
             // 
             // cbxAtencionDomingo
             // 
+            this.cbxAtencionDomingo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxAtencionDomingo.FormattingEnabled = true;
             this.cbxAtencionDomingo.Location = new System.Drawing.Point(111, 19);
             this.cbxAtencionDomingo.Name = "cbxAtencionDomingo";
@@ -318,6 +325,7 @@
             // 
             // cbxAtencionTodos
             // 
+            this.cbxAtencionTodos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxAtencionTodos.FormattingEnabled = true;
             this.cbxAtencionTodos.Location = new System.Drawing.Point(123, 243);
             this.cbxAtencionTodos.Name = "cbxAtencionTodos";

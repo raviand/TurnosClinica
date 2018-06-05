@@ -15,7 +15,7 @@ namespace MainMenu
 {
     public partial class CargaMedicoForm : Form
     {
-
+        Conexion conn;
         Dictionary<int, String> tipoTel;
         Dictionary<int, String> provincia;
         Dictionary<int, String> coberturaMedica;
@@ -37,6 +37,7 @@ namespace MainMenu
 
         public CargaMedicoForm()
         {
+            conn = new Conexion();
             cambio = false;
             load();
             FormMdm = new MenuDiasMedicoForm();

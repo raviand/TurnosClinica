@@ -29,100 +29,35 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnCargarMedico = new System.Windows.Forms.Button();
-            this.btnCargaPaciente = new System.Windows.Forms.Button();
-            this.btnBuscarProfesional = new System.Windows.Forms.Button();
-            this.btnBuscar = new System.Windows.Forms.Button();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Principal));
             this.btnVerAgenda = new System.Windows.Forms.Button();
-            this.btnEliminarPaciente = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // btnCargarMedico
-            // 
-            this.btnCargarMedico.Location = new System.Drawing.Point(129, 107);
-            this.btnCargarMedico.Name = "btnCargarMedico";
-            this.btnCargarMedico.Size = new System.Drawing.Size(352, 23);
-            this.btnCargarMedico.TabIndex = 0;
-            this.btnCargarMedico.Text = "Cargar Especialista";
-            this.btnCargarMedico.UseVisualStyleBackColor = true;
-            this.btnCargarMedico.Click += new System.EventHandler(this.btnCargarMedico_Click);
-            // 
-            // btnCargaPaciente
-            // 
-            this.btnCargaPaciente.Location = new System.Drawing.Point(129, 158);
-            this.btnCargaPaciente.Name = "btnCargaPaciente";
-            this.btnCargaPaciente.Size = new System.Drawing.Size(352, 23);
-            this.btnCargaPaciente.TabIndex = 1;
-            this.btnCargaPaciente.Text = "Cargar Paciente";
-            this.btnCargaPaciente.UseVisualStyleBackColor = true;
-            this.btnCargaPaciente.Click += new System.EventHandler(this.btnCargaPaciente_Click);
-            // 
-            // btnBuscarProfesional
-            // 
-            this.btnBuscarProfesional.Location = new System.Drawing.Point(129, 209);
-            this.btnBuscarProfesional.Name = "btnBuscarProfesional";
-            this.btnBuscarProfesional.Size = new System.Drawing.Size(352, 23);
-            this.btnBuscarProfesional.TabIndex = 2;
-            this.btnBuscarProfesional.Text = "Seleccionar Profesional";
-            this.btnBuscarProfesional.UseVisualStyleBackColor = true;
-            this.btnBuscarProfesional.Click += new System.EventHandler(this.btnBuscarProfesional_Click);
-            // 
-            // btnBuscar
-            // 
-            this.btnBuscar.Location = new System.Drawing.Point(129, 262);
-            this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(352, 23);
-            this.btnBuscar.TabIndex = 3;
-            this.btnBuscar.Text = "Buscar Paciente";
-            this.btnBuscar.UseVisualStyleBackColor = true;
-            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // btnVerAgenda
             // 
-            this.btnVerAgenda.Location = new System.Drawing.Point(199, 314);
+            this.btnVerAgenda.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnVerAgenda.BackgroundImage")));
+            this.btnVerAgenda.Location = new System.Drawing.Point(199, 384);
             this.btnVerAgenda.Name = "btnVerAgenda";
             this.btnVerAgenda.Size = new System.Drawing.Size(210, 54);
             this.btnVerAgenda.TabIndex = 4;
-            this.btnVerAgenda.Text = "Agenda";
             this.btnVerAgenda.UseVisualStyleBackColor = true;
             this.btnVerAgenda.Click += new System.EventHandler(this.btnVerAgenda_Click);
-            // 
-            // btnEliminarPaciente
-            // 
-            this.btnEliminarPaciente.Location = new System.Drawing.Point(129, 400);
-            this.btnEliminarPaciente.Name = "btnEliminarPaciente";
-            this.btnEliminarPaciente.Size = new System.Drawing.Size(352, 23);
-            this.btnEliminarPaciente.TabIndex = 5;
-            this.btnEliminarPaciente.Text = "Eliminar Paciente";
-            this.btnEliminarPaciente.UseVisualStyleBackColor = true;
-            this.btnEliminarPaciente.Click += new System.EventHandler(this.btnEliminarPaciente_Click);
             // 
             // Principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(619, 450);
-            this.Controls.Add(this.btnEliminarPaciente);
             this.Controls.Add(this.btnVerAgenda);
-            this.Controls.Add(this.btnBuscar);
-            this.Controls.Add(this.btnBuscarProfesional);
-            this.Controls.Add(this.btnCargaPaciente);
-            this.Controls.Add(this.btnCargarMedico);
             this.Name = "Principal";
             this.Text = "Agenda Turnos";
-            this.Load += new System.EventHandler(this.Principal_Load);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btnCargarMedico;
-        private System.Windows.Forms.Button btnCargaPaciente;
-        private System.Windows.Forms.Button btnBuscarProfesional;
-        private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.Button btnVerAgenda;
-        private System.Windows.Forms.Button btnEliminarPaciente;
     }
 }
 

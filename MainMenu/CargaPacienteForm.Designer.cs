@@ -435,6 +435,7 @@
             this.Controls.Add(this.lblNombre);
             this.Name = "CargaPacienteForm";
             this.Text = "Carga de Paciente";
+            this.Load += new System.EventHandler(this.CargaPacienteForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

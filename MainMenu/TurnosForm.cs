@@ -43,7 +43,7 @@ namespace MainMenu
             dgvTurnos.Columns["FechaSolicitud"].Visible = false;
             dgvTurnos.Columns["idTurno"].Visible = false;
             dgvTurnos.Columns["idEstado"].Visible = false;
-            dgvTurnos.Columns["idPaciente"].Visible = false;
+            dgvTurnos.Columns["idPaciente"].Visible = true;
             dgvTurnos.Columns["idProfesional"].Visible = false;
             dgvTurnos.Columns["idEspecialidad"].Visible = false;
             dgvTurnos.Columns["Estado"].DisplayIndex = 8;
@@ -190,6 +190,13 @@ namespace MainMenu
         private void salirToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void btnCambioEstado_Click(object sender, EventArgs e)
+        {
+            Turno t = (Turno)dgvTurnos.CurrentRow.DataBoundItem;
+            ce.turno = t;
+            ce.ShowDialog();
         }
     }
 }

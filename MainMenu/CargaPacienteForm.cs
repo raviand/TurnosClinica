@@ -145,63 +145,7 @@ namespace MainMenu
             dtpFechaNacimiento.MaxDate = DateTime.Today;
             dtpFechaNacimiento.MinDate = DateTime.Today.AddYears(-100);
 
-            if (esModificar)
-            {
-                ct.telefonos = paciente.Telefonos;
-                tbxNombre.Text = paciente.Nombre;
-                tbxNombre.ReadOnly = true;
-                tbxApellido.Text = paciente.Apellido;
-                tbxApellido.ReadOnly = true;
-                tbxMail.Text = paciente.Mail;
-                tbxDni.Text = paciente.Dni;
-                tbxDni.ReadOnly = true;
-                dtpFechaNacimiento.Enabled = false;
-                dtpFechaNacimiento.Value = paciente.FechaNac;
-                cbxCoberturaMedica.DisplayMember = "value";
-                cbxCoberturaMedica.ValueMember = "key";
-                MessageBox.Show("cobertura medica: " + paciente.CobreturaMedica.Nombre + "\nPlan =  " + paciente.CobreturaMedica.Plan);
-                int id = Convert.ToInt32(paciente.CobreturaMedica.Nombre);
-                foreach (var pair in cbxCoberturaMedica.Items)
-                {
-                    if (((KeyValuePair<int, String>)pair).Key == id)
-                    {
-                        cbxCoberturaMedica.SelectedItem = pair;
-                    }
-                }
-                cbxPlan.DisplayMember = "value";
-                cbxPlan.ValueMember = "key";
-
-                id = Convert.ToInt32(paciente.CobreturaMedica.Plan);
-                foreach (var pair in cbxPlan.Items)
-                {
-                    if (((KeyValuePair<int, String>)pair).Key == id)
-                    {
-                        cbxPlan.SelectedItem = pair;
-                    }
-                }
-
-                tbxCarnetMedico.Text = paciente.CobreturaMedica.NumeroCredencial;
-                tbxCalle.Text = paciente.Dir.Calle;
-                tbxPiso.Text = paciente.Dir.Piso;
-                tbxDepto.Text = paciente.Dir.Departamento;
-                tbxCP.Text = paciente.Dir.CodigoPostal;
-                id = Convert.ToInt32(paciente.Dir.Provincia);
-                foreach (var pair in cbxProvincia.Items)
-                {
-                    if (((KeyValuePair<int, String>)pair).Key == id)
-                    {
-                        cbxProvincia.SelectedItem = pair;
-                    }
-                }
-                id = Convert.ToInt32(paciente.Dir.Localidad);
-                foreach (var pair in cbxLocalidad.Items)
-                {
-                    if (((KeyValuePair<int, String>)pair).Key == id)
-                    {
-                        cbxLocalidad.SelectedItem = pair;
-                    }
-                }
-            }
+            
         }
 
         private void cbxCoberturaMedica_SelectedIndexChanged(object sender, EventArgs e)
@@ -342,8 +286,11 @@ namespace MainMenu
                     else
                     {
                         paciente.Telefonos.Add(telefono);
-                        MessageBox.Show("Se cargo: " + paciente.Telefonos[contTel].Numero + " - " + paciente.Telefonos[contTel].Tipo);
-                        contTel++;
+                        if(ct.telefonos != null)
+                            contTel = ct.telefonos.Count;
+
+                        //MessageBox.Show("Se cargo: " + paciente.Telefonos[contTel].Numero + " - " + paciente.Telefonos[contTel].Tipo);
+
                     }
                     
                     tbxTelefono.Text = "";
@@ -513,7 +460,7 @@ namespace MainMenu
             {
                 //Arreglar el cambio de telefonos de una modificacion
                 //ct.ShowDialog();
-                new controlTelefonos( Convert.ToInt32( paciente.IdPaciente ) ).ShowDialog();
+                ct.ShowDialog();
             }
             
         }
@@ -523,6 +470,85 @@ namespace MainMenu
             if( MessageBox.Show("Esta seguro que desea salir? todos los cambios se eliminaran", "Advertencia", MessageBoxButtons.YesNo ) == DialogResult.Yes)
             {
                 Close();
+            }
+        }
+
+        private void CargaPacienteForm_Load(object sender, EventArgs e)
+        {
+            if (esModificar)
+            {
+                btnLimpiar.Visible = false;
+                tbxNombre.ReadOnly = true;
+                tbxApellido.ReadOnly = true;
+                tbxDni.ReadOnly = true;
+                dtpFechaNacimiento.Enabled = false;
+                //pacient.Telefonos = pn.listarTelefonos(Int32.Parse( pacient.IdPaciente));
+                ct.id = Int32.Parse(pacient.IdPaciente);
+                ct.Editar = true;
+                pacient.Telefonos = ct.telefonos;
+                tbxNombre.Text = pacient.Nombre;
+                tbxApellido.Text = pacient.Apellido;
+                tbxMail.Text = pacient.Mail;
+                tbxDni.Text = pacient.Dni;
+                dtpFechaNacimiento.Value = pacient.FechaNac.Date;
+                cbxCoberturaMedica.DisplayMember = "value";
+                cbxCoberturaMedica.ValueMember = "key";
+                MessageBox.Show("cobertura medica: " + pacient.CobreturaMedica.Nombre + "\nPlan =  " + pacient.CobreturaMedica.Plan);
+                int id = Convert.ToInt32(pacient.CobreturaMedica.Nombre);
+                foreach (var pair in cbxCoberturaMedica.Items)
+                {
+                    if (((KeyValuePair<int, String>)pair).Key == id)
+                    {
+                        cbxCoberturaMedica.SelectedItem = pair;
+                        break;
+                    }
+                }
+                cbxPlan.DisplayMember = "value";
+                cbxPlan.ValueMember = "key";
+
+                id = Convert.ToInt32(pacient.CobreturaMedica.Plan);
+                foreach (var pair in cbxPlan.Items)
+                {
+                    if (((KeyValuePair<int, String>)pair).Key == id)
+                    {
+                        cbxPlan.SelectedItem = pair;
+                        break;
+                    }
+                }
+
+                tbxCarnetMedico.Text = pacient.CobreturaMedica.NumeroCredencial;
+                tbxCalle.Text = pacient.Dir.Calle;
+                tbxPiso.Text = pacient.Dir.Piso;
+                tbxDepto.Text = pacient.Dir.Departamento;
+                tbxCP.Text = pacient.Dir.CodigoPostal;
+                id = Convert.ToInt32(pacient.Dir.Provincia);
+                foreach (var pair in cbxProvincia.Items)
+                {
+                    if (((KeyValuePair<int, String>)pair).Key == id)
+                    {
+                        cbxProvincia.SelectedItem = pair;
+                        break;
+                    }
+                }
+                id = Convert.ToInt32(pacient.Dir.Localidad);
+                foreach (var pair in cbxLocalidad.Items)
+                {
+                    if (((KeyValuePair<int, String>)pair).Key == id)
+                    {
+                        cbxLocalidad.SelectedItem = pair;
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                btnLimpiar.Visible = true;
+                tbxNombre.ReadOnly = false;
+                tbxApellido.ReadOnly = false;
+                tbxDni.ReadOnly = false;
+                dtpFechaNacimiento.Enabled = true;
+                ct.Editar = false;
+                reset();
             }
         }
     }

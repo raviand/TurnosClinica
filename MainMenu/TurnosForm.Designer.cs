@@ -54,6 +54,7 @@
             this.buscarProfesionalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.acercaDeTurnosNackToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnCambioEstado = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTurnos)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -83,7 +84,7 @@
             this.btnNuevoTurno.Name = "btnNuevoTurno";
             this.btnNuevoTurno.Size = new System.Drawing.Size(113, 23);
             this.btnNuevoTurno.TabIndex = 2;
-            this.btnNuevoTurno.Text = "Nuevo &Turno";
+            this.btnNuevoTurno.Text = "&Nuevo Turno";
             this.btnNuevoTurno.UseVisualStyleBackColor = true;
             this.btnNuevoTurno.Click += new System.EventHandler(this.btnNuevoTurno_Click);
             // 
@@ -99,6 +100,7 @@
             // 
             // cbxEstados
             // 
+            this.cbxEstados.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxEstados.FormattingEnabled = true;
             this.cbxEstados.Location = new System.Drawing.Point(12, 118);
             this.cbxEstados.Name = "cbxEstados";
@@ -116,6 +118,7 @@
             // 
             // cbxEspecialidades
             // 
+            this.cbxEspecialidades.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxEspecialidades.FormattingEnabled = true;
             this.cbxEspecialidades.Location = new System.Drawing.Point(140, 118);
             this.cbxEspecialidades.Name = "cbxEspecialidades";
@@ -134,6 +137,7 @@
             // 
             // cbxProfesional
             // 
+            this.cbxProfesional.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxProfesional.FormattingEnabled = true;
             this.cbxProfesional.Location = new System.Drawing.Point(268, 118);
             this.cbxProfesional.Name = "cbxProfesional";
@@ -196,6 +200,7 @@
             // 
             // cbxMesAnterior
             // 
+            this.cbxMesAnterior.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxMesAnterior.FormattingEnabled = true;
             this.cbxMesAnterior.Location = new System.Drawing.Point(16, 59);
             this.cbxMesAnterior.Name = "cbxMesAnterior";
@@ -204,6 +209,7 @@
             // 
             // cbxMesPosterior
             // 
+            this.cbxMesPosterior.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxMesPosterior.FormattingEnabled = true;
             this.cbxMesPosterior.Location = new System.Drawing.Point(187, 59);
             this.cbxMesPosterior.Name = "cbxMesPosterior";
@@ -233,7 +239,7 @@
             // salirToolStripMenuItem
             // 
             this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
-            this.salirToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.salirToolStripMenuItem.Size = new System.Drawing.Size(96, 22);
             this.salirToolStripMenuItem.Text = "Salir";
             this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
             // 
@@ -290,11 +296,22 @@
             this.acercaDeTurnosNackToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
             this.acercaDeTurnosNackToolStripMenuItem.Text = "Acerca de TurnosNack";
             // 
+            // btnCambioEstado
+            // 
+            this.btnCambioEstado.Location = new System.Drawing.Point(675, 87);
+            this.btnCambioEstado.Name = "btnCambioEstado";
+            this.btnCambioEstado.Size = new System.Drawing.Size(112, 23);
+            this.btnCambioEstado.TabIndex = 20;
+            this.btnCambioEstado.Text = "&Seleccionar Turno";
+            this.btnCambioEstado.UseVisualStyleBackColor = true;
+            this.btnCambioEstado.Click += new System.EventHandler(this.btnCambioEstado_Click);
+            // 
             // TurnosForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 512);
+            this.Controls.Add(this.btnCambioEstado);
             this.Controls.Add(this.cbxMesPosterior);
             this.Controls.Add(this.cbxMesAnterior);
             this.Controls.Add(this.label1);
@@ -352,5 +369,6 @@
         private System.Windows.Forms.ToolStripMenuItem buscarProfesionalToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ayudaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem acercaDeTurnosNackToolStripMenuItem;
+        private System.Windows.Forms.Button btnCambioEstado;
     }
 }

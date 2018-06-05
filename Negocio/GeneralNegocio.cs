@@ -10,6 +10,10 @@ namespace Negocio
 {
     public class GeneralNegocio
     {
+        public GeneralNegocio()
+        {
+            conn = new Conexion();
+        }
         private Conexion conn;
         private SqlDataReader lector;
         public Dictionary<int, String> getTiposTelefonos()
@@ -17,7 +21,7 @@ namespace Negocio
             var tiposTelefonos = new Dictionary<int, String>();
             try
             {
-                conn = new Conexion();
+               
                 lector = conn.lector("SELECT ID, NOMBRE FROM TIPO_TEL");
                 while (lector.Read())
                     tiposTelefonos.Add(lector.GetInt32(0), lector.GetString(1));
@@ -33,7 +37,7 @@ namespace Negocio
             var provincia = new Dictionary<int, String>();
             try
             {
-                conn = new Conexion();
+             
                 
                 lector = conn.lector("SELECT ID, provincia FROM PROVINCIAS");
                 while (lector.Read())
@@ -53,7 +57,7 @@ namespace Negocio
             var coberturaMedica = new Dictionary<int, String>();
             try
             {
-                conn = new Conexion();
+              
                 lector = conn.lector("SELECT ID, NOMBRE FROM COBERTURAS_MEDICAS");
                 while (lector.Read())
                     coberturaMedica.Add(lector.GetInt32(0), lector.GetString(1));
@@ -63,6 +67,45 @@ namespace Negocio
             {
                 throw ex;
             }
+            finally
+            {
+                conn.close();
+            }
+        }
+
+        public int eliminarTelefonoPaciente(Telefono telefono)
+        {
+            String query = "SP_BORRAR_TEL_PACIENTE " + telefono.Numero;
+            try
+            {
+               return conn.accion(query);
+            }catch(Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.close();
+            }
+
+        }
+
+        public int eliminarTelefonoProfesional(Telefono telefono)
+        {
+            String query = "SP_BORRAR_TEL_PROFESIONAL " + telefono.Numero;
+            try
+            {
+                return conn.accion(query);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.close();
+            }
+
         }
 
         public Dictionary<int, String> getPlanMedico(int idCobertura)
@@ -70,7 +113,7 @@ namespace Negocio
             var planMedico = new Dictionary<int, String>();
             try
             {
-                conn = new Conexion();
+                
                 //lector = 
                 lector =  conn.lector("SELECT ID, NOMBRE FROM planes WHERE ID_COBERTURA=" + idCobertura);
                 while (lector.Read())
@@ -88,7 +131,7 @@ namespace Negocio
             var localidad = new Dictionary<int, String>();
             try
             {
-                conn = new Conexion();
+              
                 lector = conn.lector("select ID, localidad from localidades where id_privincia =" + idProvincia);
                 while (lector.Read())
                     localidad.Add(lector.GetInt32(0), lector.GetString(1));

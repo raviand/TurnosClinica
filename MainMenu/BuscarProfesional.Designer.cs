@@ -108,7 +108,7 @@
             // 
             // cbxProvincia
             // 
-            this.cbxProvincia.FormattingEnabled = true;
+            this.cbxProvincia.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxProvincia.Location = new System.Drawing.Point(96, 57);
             this.cbxProvincia.Name = "cbxProvincia";
             this.cbxProvincia.Size = new System.Drawing.Size(146, 21);
@@ -117,6 +117,7 @@
             // 
             // cbxLocalidad
             // 
+            this.cbxLocalidad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxLocalidad.FormattingEnabled = true;
             this.cbxLocalidad.Location = new System.Drawing.Point(96, 85);
             this.cbxLocalidad.Name = "cbxLocalidad";

@@ -30,7 +30,7 @@ namespace Negocio
         {
 
             List<Turno> turnos = new List<Turno>();
-            String query = "SELECT ID_PACI, NOMBRE_PACIENTE, APELLIDO_PACIENTE, FECHA_TURNO, HORA_TURNO, ID_ESP,  ESPECIALIDAD, ID_ESTADO, ESTADO, ID_PRO, NOMBRE_PROFESIONAL, APELLIDO_PROFESIONAL FROM VW_SELECT_TURNOS "+ whereEnListar() + " ORDER BY FECHA_TURNO, HORA_TURNO";
+            String query = "SELECT ID_PACI, NOMBRE_PACIENTE, APELLIDO_PACIENTE, FECHA_TURNO, HORA_TURNO, ID_ESP,  ESPECIALIDAD, ID_ESTADO, ESTADO, ID_PRO, NOMBRE_PROFESIONAL, APELLIDO_PROFESIONAL , ID FROM VW_SELECT_TURNOS "+ whereEnListar() + " ORDER BY FECHA_TURNO, HORA_TURNO";
             SqlDataReader lector;
             Turno tur; 
             try
@@ -53,6 +53,7 @@ namespace Negocio
                     TimeSpan timeSpan = lector.GetTimeSpan(4);
                     tur.FechaTurno += timeSpan;
                     tur.NombreProfesional = lector.GetString(10);
+                    tur.IdTurno = Convert.ToString(lector.GetInt32(12));
                     turnos.Add(tur);
                 }
                 return turnos;
@@ -63,6 +64,34 @@ namespace Negocio
             finally
             {
                 conn.close();
+            }
+        }
+
+        public int  cambioEstado(int estado, int turno)
+        {
+            String query = "UPDATE TURNOS SET ID_ESTADO = "+ estado + " WHERE ID = "+ turno;
+            try
+            {
+                return conn.accion(query);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public int cambioEstado(int v, string diagnostico, int turnoid, int profesionalid)
+        {
+            String query = "exec SP_PACIENTE_ATENDIDO " + v + " , " + profesionalid + " , " + turnoid + " , '" + diagnostico + "'";
+            try
+            {
+                return conn.accion(query);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
             }
         }
 
