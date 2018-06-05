@@ -303,7 +303,7 @@ namespace Negocio
                 
 
              String query = "SELECT ID, NOMBRE, APELLIDO, DNI, CALLE, PISO, DEPARTAMENTO, CP, MAIL, FECHA_NACIMIENTO, FECHA_INGRESO, ATIENDE_DOMICILIO, LOCALIDAD,(SELECT TOP(1) NUMERO FROM PROFESIONALES_TELEFONOS WHERE ID_PROFESIONALES = CV_SELECT_PROFESIONALES.ID )AS TELEFONO  FROM CV_SELECT_PROFESIONALES WHERE  NOMBRE LIKE '%" + Profesional.Nombre+"%' and  APELLIDO like '%"+Profesional.Apellido+"%' and localidad like '%"+Profesional.Dir.Localidad+"%' and provincia like '%"+Profesional.Dir.Provincia+"%' ";
-                if (Profesional.Dni != null)
+                if (Profesional.Dni != null || Profesional.Dni.CompareTo("") == 0)
                 {
                     query += " and DNI = " + Profesional.Dni;
                 }

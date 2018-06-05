@@ -28,6 +28,8 @@ namespace MainMenu
         MenuDiasMedicoForm FormMdm;
         MenuPrepagas FormMp;
         FormEspecialidades FormE;
+        controlTelefonos ct;
+        public bool borro { get; set; }
 
         int contTel;
         bool cambio;
@@ -40,6 +42,7 @@ namespace MainMenu
             FormMdm = new MenuDiasMedicoForm();
             FormMp = new MenuPrepagas();
             FormE = new FormEspecialidades();
+            ct = new controlTelefonos();
         }
 
         private void load()
@@ -296,7 +299,12 @@ namespace MainMenu
 
         private void btnVerTelefonos_Click(object sender, EventArgs e)
         {
-            new controlTelefonos(profesional.Telefonos).ShowDialog();
+            ct.telefonos = profesional.Telefonos;
+            ct.ShowDialog();
+            if (ct.borro)
+            {
+                contTel--;
+            }
         }
 
         public void reset()

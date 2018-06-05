@@ -49,7 +49,9 @@
             this.lblMinutos = new System.Windows.Forms.Label();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
+            this.dgvTurnosDisponibles = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDiasAtencion)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTurnosDisponibles)).BeginInit();
             this.SuspendLayout();
             // 
             // tbxIdPaciente
@@ -64,7 +66,7 @@
             // tbxNombre
             // 
             this.tbxNombre.Enabled = false;
-            this.tbxNombre.Location = new System.Drawing.Point(69, 83);
+            this.tbxNombre.Location = new System.Drawing.Point(150, 83);
             this.tbxNombre.Name = "tbxNombre";
             this.tbxNombre.ReadOnly = true;
             this.tbxNombre.Size = new System.Drawing.Size(111, 20);
@@ -73,7 +75,7 @@
             // tbxApellido
             // 
             this.tbxApellido.Enabled = false;
-            this.tbxApellido.Location = new System.Drawing.Point(186, 83);
+            this.tbxApellido.Location = new System.Drawing.Point(346, 83);
             this.tbxApellido.Name = "tbxApellido";
             this.tbxApellido.ReadOnly = true;
             this.tbxApellido.Size = new System.Drawing.Size(132, 20);
@@ -81,7 +83,7 @@
             // 
             // btnPaciente
             // 
-            this.btnPaciente.Location = new System.Drawing.Point(324, 81);
+            this.btnPaciente.Location = new System.Drawing.Point(515, 83);
             this.btnPaciente.Name = "btnPaciente";
             this.btnPaciente.Size = new System.Drawing.Size(154, 23);
             this.btnPaciente.TabIndex = 3;
@@ -101,7 +103,7 @@
             // lblNombre
             // 
             this.lblNombre.AutoSize = true;
-            this.lblNombre.Location = new System.Drawing.Point(69, 64);
+            this.lblNombre.Location = new System.Drawing.Point(150, 64);
             this.lblNombre.Name = "lblNombre";
             this.lblNombre.Size = new System.Drawing.Size(47, 13);
             this.lblNombre.TabIndex = 5;
@@ -110,7 +112,7 @@
             // lblApellido
             // 
             this.lblApellido.AutoSize = true;
-            this.lblApellido.Location = new System.Drawing.Point(186, 63);
+            this.lblApellido.Location = new System.Drawing.Point(343, 64);
             this.lblApellido.Name = "lblApellido";
             this.lblApellido.Size = new System.Drawing.Size(47, 13);
             this.lblApellido.TabIndex = 6;
@@ -139,10 +141,11 @@
             this.dgvDiasAtencion.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.dgvDiasAtencion.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvDiasAtencion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvDiasAtencion.Location = new System.Drawing.Point(267, 148);
+            this.dgvDiasAtencion.Location = new System.Drawing.Point(292, 149);
             this.dgvDiasAtencion.Name = "dgvDiasAtencion";
+            this.dgvDiasAtencion.ReadOnly = true;
             this.dgvDiasAtencion.RowHeadersVisible = false;
-            this.dgvDiasAtencion.Size = new System.Drawing.Size(211, 122);
+            this.dgvDiasAtencion.Size = new System.Drawing.Size(377, 122);
             this.dgvDiasAtencion.TabIndex = 9;
             // 
             // lblEspecialidades
@@ -166,7 +169,7 @@
             // lblDiasAtencion
             // 
             this.lblDiasAtencion.AutoSize = true;
-            this.lblDiasAtencion.Location = new System.Drawing.Point(267, 130);
+            this.lblDiasAtencion.Location = new System.Drawing.Point(292, 131);
             this.lblDiasAtencion.Name = "lblDiasAtencion";
             this.lblDiasAtencion.Size = new System.Drawing.Size(91, 13);
             this.lblDiasAtencion.TabIndex = 12;
@@ -174,15 +177,16 @@
             // 
             // dtpFechaTurno
             // 
-            this.dtpFechaTurno.Location = new System.Drawing.Point(12, 250);
+            this.dtpFechaTurno.Location = new System.Drawing.Point(16, 291);
             this.dtpFechaTurno.Name = "dtpFechaTurno";
             this.dtpFechaTurno.Size = new System.Drawing.Size(249, 20);
             this.dtpFechaTurno.TabIndex = 13;
+            this.dtpFechaTurno.ValueChanged += new System.EventHandler(this.dtpFechaTurno_ValueChanged);
             // 
             // lblDiaTurno
             // 
             this.lblDiaTurno.AutoSize = true;
-            this.lblDiaTurno.Location = new System.Drawing.Point(13, 231);
+            this.lblDiaTurno.Location = new System.Drawing.Point(17, 272);
             this.lblDiaTurno.Name = "lblDiaTurno";
             this.lblDiaTurno.Size = new System.Drawing.Size(69, 13);
             this.lblDiaTurno.TabIndex = 14;
@@ -191,7 +195,7 @@
             // cbxHora
             // 
             this.cbxHora.FormattingEnabled = true;
-            this.cbxHora.Location = new System.Drawing.Point(13, 305);
+            this.cbxHora.Location = new System.Drawing.Point(17, 346);
             this.cbxHora.Name = "cbxHora";
             this.cbxHora.Size = new System.Drawing.Size(80, 21);
             this.cbxHora.TabIndex = 15;
@@ -199,7 +203,7 @@
             // cbxMinutos
             // 
             this.cbxMinutos.FormattingEnabled = true;
-            this.cbxMinutos.Location = new System.Drawing.Point(109, 305);
+            this.cbxMinutos.Location = new System.Drawing.Point(113, 346);
             this.cbxMinutos.Name = "cbxMinutos";
             this.cbxMinutos.Size = new System.Drawing.Size(82, 21);
             this.cbxMinutos.TabIndex = 16;
@@ -207,7 +211,7 @@
             // lblHora
             // 
             this.lblHora.AutoSize = true;
-            this.lblHora.Location = new System.Drawing.Point(12, 286);
+            this.lblHora.Location = new System.Drawing.Point(16, 327);
             this.lblHora.Name = "lblHora";
             this.lblHora.Size = new System.Drawing.Size(33, 13);
             this.lblHora.TabIndex = 17;
@@ -216,7 +220,7 @@
             // lblMinutos
             // 
             this.lblMinutos.AutoSize = true;
-            this.lblMinutos.Location = new System.Drawing.Point(109, 286);
+            this.lblMinutos.Location = new System.Drawing.Point(113, 327);
             this.lblMinutos.Name = "lblMinutos";
             this.lblMinutos.Size = new System.Drawing.Size(47, 13);
             this.lblMinutos.TabIndex = 18;
@@ -224,7 +228,7 @@
             // 
             // btnGuardar
             // 
-            this.btnGuardar.Location = new System.Drawing.Point(403, 357);
+            this.btnGuardar.Location = new System.Drawing.Point(594, 447);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(75, 23);
             this.btnGuardar.TabIndex = 19;
@@ -234,18 +238,31 @@
             // 
             // btnSalir
             // 
-            this.btnSalir.Location = new System.Drawing.Point(13, 357);
+            this.btnSalir.Location = new System.Drawing.Point(13, 447);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(75, 23);
             this.btnSalir.TabIndex = 20;
             this.btnSalir.Text = "&Salir";
             this.btnSalir.UseVisualStyleBackColor = true;
             // 
+            // dgvTurnosDisponibles
+            // 
+            this.dgvTurnosDisponibles.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
+            this.dgvTurnosDisponibles.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvTurnosDisponibles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvTurnosDisponibles.Location = new System.Drawing.Point(292, 277);
+            this.dgvTurnosDisponibles.Name = "dgvTurnosDisponibles";
+            this.dgvTurnosDisponibles.ReadOnly = true;
+            this.dgvTurnosDisponibles.RowHeadersVisible = false;
+            this.dgvTurnosDisponibles.Size = new System.Drawing.Size(377, 150);
+            this.dgvTurnosDisponibles.TabIndex = 21;
+            // 
             // nuevoTurno
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(490, 395);
+            this.ClientSize = new System.Drawing.Size(681, 482);
+            this.Controls.Add(this.dgvTurnosDisponibles);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.lblMinutos);
@@ -271,6 +288,7 @@
             this.Text = "nuevoTurno";
             this.Load += new System.EventHandler(this.nuevoTurno_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDiasAtencion)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTurnosDisponibles)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -299,5 +317,6 @@
         private System.Windows.Forms.Label lblMinutos;
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.Button btnSalir;
+        private System.Windows.Forms.DataGridView dgvTurnosDisponibles;
     }
 }

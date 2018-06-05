@@ -57,6 +57,12 @@
     <Compile Include="BuscarProfesional.Designer.cs">
       <DependentUpon>BuscarProfesional.cs</DependentUpon>
     </Compile>
+    <Compile Include="CambioEstado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CambioEstado.Designer.cs">
+      <DependentUpon>CambioEstado.cs</DependentUpon>
+    </Compile>
     <Compile Include="CargaMedicoForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -150,6 +156,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BuscarProfesional.resx">
       <DependentUpon>BuscarProfesional.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CambioEstado.resx">
+      <DependentUpon>CambioEstado.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CargaMedicoForm.resx">
       <DependentUpon>CargaMedicoForm.cs</DependentUpon>

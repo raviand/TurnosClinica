@@ -11,50 +11,26 @@ namespace Negocio
 {
     public class TurnoNegocio
     {
-        /**
-         * Carga de Store procedure para la carga de turno
-         * 
-         * CREATE PROCEDURE CARGA_TURNO(
-            @ID_PACIENTE INT,
-            @ID_PROFESIONAL INT,
-            @ID_ESPECIALIDAD INT,
-            @FECHA_TURNO DATE,
-            @HORA_TURNO TIME(0),
-            @ID_ESTADO INT = 1
-            )
-            AS
-            SET DATEFORMAT DMY
-		        INSERT INTO TURNOS(ID_PACIENTE, ID_PROFESIONAL, ID_ESPECIALIDAD, FECHA_SOLICITUD, FECHA_TURNO, HORA_TURNO, ID_ESTADO)
-		        VALUES (@ID_PACIENTE, @ID_PROFESIONAL, @ID_ESPECIALIDAD, GETDATE(), @FECHA_TURNO, @HORA_TURNO, @ID_ESTADO)
-         * */
+
         public Turno turno { get; set; }
         private Conexion conn;
         public int idProfesional { get; set; }
+        public int mesAnterior { get; set; }
+        public int mesPosterior { get; set; }
 
 
         public TurnoNegocio()
         {
             conn = new Conexion();
             turno = new Turno();
-            turno.Cancela = new Cancela();
-            turno.Especialidad = new KeyValuePair<int, string>();
-            turno.Estado = new KeyValuePair<int, string>();
             turno.FechaSolicitud = new DateTime();
             turno.FechaTurno = new DateTime();
-            turno.Paciente = new KeyValuePair<int, string>();
-            turno.Profesional = new KeyValuePair<int, string>();
-            
-
         }
         public List<Turno> listarTurnos()
         {
-            /**
-             * SELECT P.ID AS ID_PACI, P.NOMBRE AS NOMBRE_PACIENTE, P.APELLIDO AS APELLIDO_PACIENTE, T.FECHA_TURNO, T.HORA_TURNO, 
-	E.ID AS ID_ESP, E.NOMBRE AS ESPECIALIDAD, ES.ID AS ID_ESTADO,  ES.NOMBRE AS ESTADO,
-	 PRO.ID AS ID_PRO, PRO.NOMBRE AS NOMBRE_PROFESIONAL, PRO.APELLIDO AS APELLIDO_PROFESIONAL FROM TURNOS AS T
-             * */
+
             List<Turno> turnos = new List<Turno>();
-            String query = "SELECT ID_PACI, NOMBRE_PACIENTE, APELLIDO_PACIENTE, FECHA_TURNO, HORA_TURNO, ID_ESP,  ESPECIALIDAD, ID_ESTADO, ESTADO, ID_PRO, NOMBRE_PROFESIONAL, APELLIDO_PROFESIONAL FROM VW_SELECT_TURNOS ORDER BY FECHA_TURNO, HORA_TURNO";
+            String query = "SELECT ID_PACI, NOMBRE_PACIENTE, APELLIDO_PACIENTE, FECHA_TURNO, HORA_TURNO, ID_ESP,  ESPECIALIDAD, ID_ESTADO, ESTADO, ID_PRO, NOMBRE_PROFESIONAL, APELLIDO_PROFESIONAL FROM VW_SELECT_TURNOS "+ whereEnListar() + " ORDER BY FECHA_TURNO, HORA_TURNO";
             SqlDataReader lector;
             Turno tur; 
             try
@@ -64,11 +40,14 @@ namespace Negocio
                 while (lector.Read())
                 {
                     tur = new Turno();
-                    tur.Paciente = new KeyValuePair<int, string>(lector.GetInt32(0), lector.GetString(2));
-                    tur.Profesional = new KeyValuePair<int, string>(lector.GetInt32(9), lector.GetString(11));
-                    tur.Estado = new KeyValuePair<int, string>(lector.GetInt32(7), lector.GetString(8));
-                    tur.Cancela = new Cancela();
-                    tur.Especialidad = new KeyValuePair<int, string>(lector.GetInt32(5), lector.GetString(6));
+                    tur.idPaciente = Convert.ToString(lector.GetInt32(0));
+                    tur.ApellidoPaciente = lector.GetString(2);
+                    tur.idProfesional = Convert.ToString(lector.GetInt32(9));
+                    tur.ApellidoProfesional = lector.GetString(11);
+                    tur.idEstado = Convert.ToString(lector.GetInt32(7));
+                    tur.Estado = lector.GetString(8);
+                    tur.idEspecialidad = Convert.ToString(lector.GetInt32(5));
+                    tur.Especialidad = lector.GetString(6);
                     tur.NombrePaciente = lector.GetString(1);
                     tur.FechaTurno = lector.GetDateTime(3);
                     TimeSpan timeSpan = lector.GetTimeSpan(4);
@@ -85,6 +64,40 @@ namespace Negocio
             {
                 conn.close();
             }
+        }
+
+        private String whereEnListar()
+        {
+            String query = "WHERE ESTADO LIKE '%";
+            if (turno.Estado != null) query += turno.Estado;
+            query += "%' AND ESPECIALIDAD LIKE '%";
+            if (turno.Especialidad != null) query += turno.Especialidad;
+            query += "%' AND APELLIDO_PROFESIONAL LIKE '%";
+            if (turno.ApellidoProfesional != null) query += turno.ApellidoProfesional;
+            query += "%' AND NOMBRE_PROFESIONAL LIKE '%";
+            if (turno.NombreProfesional != null) query += turno.NombreProfesional;
+            query += "%'";
+            if (turno.idPaciente != null) query += "  AND ID_PACI = " + turno.idPaciente;
+            if (turno.Estado == null) query += " AND (ID_ESTADO = 1 OR ID_ESTADO = 4) ";
+            query += " AND ";
+            if (mesAnterior != 0 && mesPosterior == 0)
+            {
+                query += "FECHA_TURNO > DATEADD(MONTH, "+ (mesAnterior * -1) +", CONVERT (date, GETDATE()) )";
+            }else if(mesAnterior == 0 && mesPosterior != 0)
+            {
+                query += "FECHA_TURNO > GETDATE() and FECHA_TURNO < DATEADD(MONTH, " + mesPosterior+", CONVERT (date, GETDATE()) ) ";
+            }else if (mesAnterior != 0 && mesPosterior != 0)
+            {
+                query += "FECHA_TURNO > DATEADD(MONTH, " + (mesAnterior * -1)+", CONVERT (date, GETDATE()) ) and ";
+                query += "FECHA_TURNO < DATEADD(MONTH, " + mesPosterior+", CONVERT (date, GETDATE()) )";
+            }
+            else
+            {
+                query += "FECHA_TURNO > GETDATE()";
+            }
+
+
+            return query;
         }
 
         public Dictionary<int, String> getProfesionales()
@@ -144,23 +157,13 @@ namespace Negocio
 
         public int guardarNuevoTurno(bool esSobreturno)
         {
-            /**
-        * Carga de Store procedure para la carga de turno
-            CREATE PROCEDURE CARGA_TURNO(
-                   @ID_PACIENTE INT,
-                   @ID_PROFESIONAL INT,
-                   @ID_ESPECIALIDAD INT,
-                   @FECHA_TURNO DATE,
-                   @HORA_TURNO TIME(0),
-                   @ID_ESTADO INT = 1
-           )
-           **/
+
             try
             {
               
-                conn.agregarParametro("@IDPACIENTE", turno.Paciente.Key);
-                conn.agregarParametro("@IDPROFESIONAL", turno.Profesional.Key);
-                conn.agregarParametro("@IDESPECIALIDAD", turno.Especialidad.Key);
+                conn.agregarParametro("@IDPACIENTE", turno.idPaciente);
+                conn.agregarParametro("@IDPROFESIONAL", turno.idProfesional);
+                conn.agregarParametro("@IDESPECIALIDAD", turno.idEspecialidad);
                 conn.agregarParametro("@FECHATURNO", turno.FechaTurno.Date);
                 conn.agregarParametro("@HORATURNO", turno.FechaTurno.TimeOfDay);
                 if(esSobreturno) conn.agregarParametro("@SOBRETURNO", 4);
@@ -179,6 +182,35 @@ namespace Negocio
                 conn.close();
             }
         }
+
+        public List<String> listarEstado()
+        {
+            String query = "SELECT NOMBRE FROM ESTADO";
+            //KeyValuePair<String, String> atencionProfesional;
+            SqlDataReader lector;
+            List<String> lista = new List<String>();
+            String input;
+            try
+            {
+                lector = conn.lector(query);
+
+                while (lector.Read())
+                {
+                    input = lector.GetString(0);
+                    lista.Add(input);
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                conn.close();
+            }
+        } 
 
     }
 }

@@ -107,7 +107,6 @@ namespace MainMenu
                     MessageBox.Show("Error: " + ex.ToString());
                 }
             }
-           
         }
 
         private void btnPaciente_Click(object sender, EventArgs e)
@@ -125,34 +124,41 @@ namespace MainMenu
             {
                 if (diaPuede())
                 {
-                    if (horaPuede())
+                    if (horaPuede() == 0)
                     {
-                        tn.turno.Especialidad = (KeyValuePair<int, string>) cbxEspecialidades.SelectedItem;
-                        tn.turno.Paciente = new KeyValuePair<int, string>(Int32.Parse(tbxIdPaciente.Text), tbxApellido.Text);
-                        tn.turno.Profesional = (KeyValuePair<int, string>) cbxProfesionales.SelectedItem;
+                        tn.turno.Especialidad = ((KeyValuePair<int, String>) cbxEspecialidades.SelectedItem).Value;
+                        tn.turno.idEspecialidad = Convert.ToString(((KeyValuePair<int, String>)cbxEspecialidades.SelectedItem).Key);
+                        tn.turno.idPaciente = tbxIdPaciente.Text;
+                        tn.turno.ApellidoPaciente = tbxApellido.Text;
+                        tn.turno.ApellidoProfesional = ((KeyValuePair<int, String>)cbxProfesionales.SelectedItem).Value;
+                        tn.turno.idProfesional =Convert.ToString( ((KeyValuePair<int, String>)cbxProfesionales.SelectedItem).Key);
                         tn.turno.FechaTurno = diaDeTurno;
                         int res = tn.guardarNuevoTurno(false);
                         MessageBox.Show("Se guardo con exito " + res + "Registro/s");
                         Close();
                     }
-                    else
+                    else if(horaPuede() == 1)
                     {
                        if( MessageBox.Show("la hora seleccionada del truno ya fue tomada\n¿Desea Reservar un sobreturno?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
                         {
-                            tn.turno.Especialidad = (KeyValuePair<int, string>)cbxEspecialidades.SelectedItem;
-                            tn.turno.Paciente = new KeyValuePair<int, string>(Int32.Parse(tbxIdPaciente.Text), tbxApellido.Text);
-                            tn.turno.Profesional = (KeyValuePair<int, string>)cbxProfesionales.SelectedItem;
+                            tn.turno.Especialidad = (String)cbxEspecialidades.SelectedItem;
+                            tn.turno.idPaciente = tbxIdPaciente.Text;
+                            tn.turno.ApellidoPaciente = tbxApellido.Text;
+                            tn.turno.ApellidoProfesional = (String)cbxProfesionales.SelectedItem;
                             tn.turno.FechaTurno = diaDeTurno;
                             int res = tn.guardarNuevoTurno(true);
                             MessageBox.Show("Se guardo con exito " + res + "Registro/s");
                             Close();
                         }
                     }
+                    else
+                    {
+                        MessageBox.Show("No pueden tomarse mas turnos para el horario seleccionado", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
                 }
                 else
                 {
                     MessageBox.Show("El profesional no atiende el dia seleccionado", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-
                 }
             }
             else
@@ -163,21 +169,22 @@ namespace MainMenu
             
         }
 
-        private bool horaPuede()
+        private int horaPuede()
         {
             diaDeTurno = new DateTime();
             diaDeTurno = dtpFechaTurno.Value;
             TimeSpan time = new TimeSpan( (int)cbxHora.SelectedItem ,(int )cbxMinutos.SelectedItem, 0);
             diaDeTurno = diaDeTurno.Date + time;
-
+            int cont = 0;
             foreach (Turno pair in Turnos)
             {
                if( pair.FechaTurno.CompareTo(diaDeTurno) == 0)
                 {
-                    return false;
+                    cont++;
                 }
             }
-            return true;
+
+            return cont;
         }
 
         private bool diaPuede()
@@ -216,6 +223,60 @@ namespace MainMenu
             if (cbxHora.SelectedIndex == -1)                return false;
             if (cbxMinutos.SelectedIndex == -1)             return false;
             return true;
+        }
+
+        private void dtpFechaTurno_ValueChanged(object sender, EventArgs e)
+        {
+            List<DateTime> Horarios = new List<DateTime>();
+            List<TimeSpan> timeSpans = new List<TimeSpan>();
+            List<DateTime> Disponibles = new List<DateTime>();
+           
+           TimeSpan tiempo;
+            for(int i = 8; i < 19; i++)
+            {
+                for(int m = 0; m < 60;)
+                {
+                    tiempo = new TimeSpan(i, m, 0);
+                    timeSpans.Add(tiempo);
+                    m += 15;
+                }
+            }
+
+            foreach(TimeSpan pair in timeSpans)
+            {
+                DateTime dia = new DateTime();
+                dia = dtpFechaTurno.Value.Date + pair;
+                Horarios.Add(dia);
+            }
+
+            foreach(Turno fecha in Turnos)
+            {
+                foreach (DateTime pair in Horarios)
+                {
+                    if(fecha.FechaTurno.Date == pair.Date)
+                    {
+                        if (fecha.FechaTurno != pair)
+                        {
+                            if(!Disponibles.Contains(pair))
+                                Disponibles.Add(pair);
+                        }
+                    }
+                }
+            }
+            
+            dgvTurnosDisponibles.DataSource = Disponibles;
+            dgvTurnosDisponibles.Columns["Day"].Visible = false;
+            dgvTurnosDisponibles.Columns["DayofWeek"].Visible = false;
+            dgvTurnosDisponibles.Columns["DayOfYear"].Visible = false;
+            dgvTurnosDisponibles.Columns["Hour"].Visible = false;
+            dgvTurnosDisponibles.Columns["Millisecond"].Visible = false;
+            dgvTurnosDisponibles.Columns["Minute"].Visible = false;
+            dgvTurnosDisponibles.Columns["Month"].Visible = false;
+            dgvTurnosDisponibles.Columns["Second"].Visible = false;
+            dgvTurnosDisponibles.Columns["Ticks"].Visible = false;
+            dgvTurnosDisponibles.Columns["Year"].Visible = false;
+            dgvTurnosDisponibles.Columns["Kind"].Visible = false;
+
         }
     }
 }

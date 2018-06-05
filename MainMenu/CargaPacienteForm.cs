@@ -26,28 +26,34 @@ namespace MainMenu
         PacienteNegocio pn;
         Verificacion ver;
         Paciente paciente;
-        bool esCargar;
+        controlTelefonos ct;
+        public Paciente pacient { get; set; }
+
+
+        public bool esModificar { get; set; }
         int contTel;
 
         public CargaPacienteForm()
         {
-            esCargar = true;
+           
             InitializeComponent();
             load();
         }
 
         public CargaPacienteForm(Paciente paciente)
         {
-            esCargar = false;
             InitializeComponent();
             load();
 
             this.paciente = paciente;
-
+            ct.telefonos = paciente.Telefonos;
             tbxNombre.Text = paciente.Nombre;
+            tbxNombre.ReadOnly = true;
             tbxApellido.Text = paciente.Apellido;
+            tbxApellido.ReadOnly = true;
             tbxMail.Text = paciente.Mail;
             tbxDni.Text = paciente.Dni;
+            tbxDni.ReadOnly = true;
             dtpFechaNacimiento.Value = paciente.FechaNac;
             cbxCoberturaMedica.DisplayMember = "value";
             cbxCoberturaMedica.ValueMember = "key";
@@ -98,6 +104,8 @@ namespace MainMenu
 
         private void load()
         {
+            pacient = new Paciente();
+            ct = new controlTelefonos();
             ver = new Verificacion();
             contTel = 0;
             paciente = new Paciente();
@@ -131,11 +139,69 @@ namespace MainMenu
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error en carga de Items");
+                MessageBox.Show("Error en carga de Items "+ ex.ToString());
             }
 
             dtpFechaNacimiento.MaxDate = DateTime.Today;
             dtpFechaNacimiento.MinDate = DateTime.Today.AddYears(-100);
+
+            if (esModificar)
+            {
+                ct.telefonos = paciente.Telefonos;
+                tbxNombre.Text = paciente.Nombre;
+                tbxNombre.ReadOnly = true;
+                tbxApellido.Text = paciente.Apellido;
+                tbxApellido.ReadOnly = true;
+                tbxMail.Text = paciente.Mail;
+                tbxDni.Text = paciente.Dni;
+                tbxDni.ReadOnly = true;
+                dtpFechaNacimiento.Enabled = false;
+                dtpFechaNacimiento.Value = paciente.FechaNac;
+                cbxCoberturaMedica.DisplayMember = "value";
+                cbxCoberturaMedica.ValueMember = "key";
+                MessageBox.Show("cobertura medica: " + paciente.CobreturaMedica.Nombre + "\nPlan =  " + paciente.CobreturaMedica.Plan);
+                int id = Convert.ToInt32(paciente.CobreturaMedica.Nombre);
+                foreach (var pair in cbxCoberturaMedica.Items)
+                {
+                    if (((KeyValuePair<int, String>)pair).Key == id)
+                    {
+                        cbxCoberturaMedica.SelectedItem = pair;
+                    }
+                }
+                cbxPlan.DisplayMember = "value";
+                cbxPlan.ValueMember = "key";
+
+                id = Convert.ToInt32(paciente.CobreturaMedica.Plan);
+                foreach (var pair in cbxPlan.Items)
+                {
+                    if (((KeyValuePair<int, String>)pair).Key == id)
+                    {
+                        cbxPlan.SelectedItem = pair;
+                    }
+                }
+
+                tbxCarnetMedico.Text = paciente.CobreturaMedica.NumeroCredencial;
+                tbxCalle.Text = paciente.Dir.Calle;
+                tbxPiso.Text = paciente.Dir.Piso;
+                tbxDepto.Text = paciente.Dir.Departamento;
+                tbxCP.Text = paciente.Dir.CodigoPostal;
+                id = Convert.ToInt32(paciente.Dir.Provincia);
+                foreach (var pair in cbxProvincia.Items)
+                {
+                    if (((KeyValuePair<int, String>)pair).Key == id)
+                    {
+                        cbxProvincia.SelectedItem = pair;
+                    }
+                }
+                id = Convert.ToInt32(paciente.Dir.Localidad);
+                foreach (var pair in cbxLocalidad.Items)
+                {
+                    if (((KeyValuePair<int, String>)pair).Key == id)
+                    {
+                        cbxLocalidad.SelectedItem = pair;
+                    }
+                }
+            }
         }
 
         private void cbxCoberturaMedica_SelectedIndexChanged(object sender, EventArgs e)
@@ -354,7 +420,7 @@ namespace MainMenu
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            bool guardado = false;
+            
             if (puedeGuardar())
             {
                 MessageBox.Show("Se puede guardar");
@@ -377,10 +443,21 @@ namespace MainMenu
                     if (tbxCP.Text.CompareTo("") != 0) paciente.Dir.CodigoPostal = tbxCP.Text;
                     //MessageBox.Show(paciente.ToString());
                     pn.setPaciente(paciente);
-                    res = pn.cargarPaciente(paciente);
-                    //MessageBox.Show("registros modificados: " + res);
+                    if (esModificar)
+                    {
+                        ///Para modificar los ingresos
+                        res = pn.modificarPaciente(paciente);
+                        MessageBox.Show("Se modifico el registro");
+                    }
+                    else
+                    {
+                        res = pn.cargarPaciente(paciente);
+                        MessageBox.Show("Se ha registrado con exito ");
+                    }
+                    
 
-                        reset();
+                    reset();
+                    Close();
                 }
                 catch (SqlException ex)
                 {
@@ -426,12 +503,16 @@ namespace MainMenu
 
         private void btnVerTelefonos_Click(object sender, EventArgs e)
         {
-            if (esCargar)
+            if (!esModificar)
             {
-                new controlTelefonos( paciente.Telefonos ).ShowDialog();
+                ct.telefonos = paciente.Telefonos;
+                ct.ShowDialog();
+                if (ct.borro) contTel--;
             }
             else
             {
+                //Arreglar el cambio de telefonos de una modificacion
+                //ct.ShowDialog();
                 new controlTelefonos( Convert.ToInt32( paciente.IdPaciente ) ).ShowDialog();
             }
             

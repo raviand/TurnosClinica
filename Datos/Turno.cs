@@ -11,12 +11,15 @@ namespace Datos
         public DateTime FechaTurno { get; set; }
         public DateTime FechaSolicitud { get; set; }
         public String IdTurno { get; set; }
-        public KeyValuePair<int , String> Estado { get; set; }
-        public KeyValuePair<int ,String> Paciente { get; set; }
+        public String idEstado { get; set; }
+        public String Estado { get; set; }
+        public String idPaciente { get; set; }
+        public String ApellidoPaciente { get; set; }
         public String NombrePaciente { get; set; }
-        public KeyValuePair<int,String> Profesional { get; set; }
+        public String idProfesional { get; set; }
+        public String ApellidoProfesional { get; set; }
         public String NombreProfesional { get; set; }
-        public KeyValuePair<int, String> Especialidad { get; set; }
-        public Cancela Cancela { get; set; }
+        public String idEspecialidad { get; set; }
+        public String Especialidad { get; set; }
     }
 }

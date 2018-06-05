@@ -15,8 +15,9 @@ namespace MainMenu
     public partial class BuscarProfesional : Form
     {
         ProfesionalNegocio pn;
-        GeneralNegocio gn;
         CargaMedicoForm CargaMedico;
+        GeneralNegocio gn;
+        
         public Profesional Profesional { get; set; }
 
         public BuscarProfesional()

@@ -14,16 +14,18 @@ namespace MainMenu
 {
     public partial class controlTelefonos : Form
     {
-        List<Telefono> telefonos;
+        
+        public List<Telefono> telefonos { get; set; }
         PacienteNegocio pn;
-        public controlTelefonos()
+        public bool  borro { get; set; }
+        /*public controlTelefonos()
         {
             InitializeComponent();
             
-        }
-        public controlTelefonos(List<Telefono> telefonos)
+        }*/
+        public controlTelefonos()
         {
-            this.telefonos = telefonos;
+            
             InitializeComponent();
             dgvTelefonos.ReadOnly = true;
             dgvTelefonos.DataSource = telefonos;
@@ -46,9 +48,12 @@ namespace MainMenu
                 if (MessageBox.Show("Desea borrar el registro: " + telefonos[e.RowIndex].Numero, "Eliminar Telefono", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     telefonos.RemoveAt(e.RowIndex);
+                    borro = true;
                     this.Close();
-
-
+                }
+                else
+                {
+                    borro = false;
                 }
             }catch(Exception ex)
             {
@@ -61,6 +66,7 @@ namespace MainMenu
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
+            borro = false;
             Close();
         }
     }
