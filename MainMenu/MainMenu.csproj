@@ -45,6 +45,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Acerca.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Acerca.Designer.cs">
+      <DependentUpon>Acerca.cs</DependentUpon>
+    </Compile>
     <Compile Include="BuscarPaciente.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,6 +101,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CLINICADataSet3.xsd</DependentUpon>
     </Compile>
+    <Compile Include="CoberturaMedica.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CoberturaMedica.Designer.cs">
+      <DependentUpon>CoberturaMedica.cs</DependentUpon>
+    </Compile>
     <Compile Include="controlTelefonos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -106,6 +118,12 @@
     </Compile>
     <Compile Include="EliminarPacienteForm.Designer.cs">
       <DependentUpon>EliminarPacienteForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Especialidades.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Especialidades.Designer.cs">
+      <DependentUpon>Especialidades.cs</DependentUpon>
     </Compile>
     <Compile Include="FormEspecialidades.cs">
       <SubType>Form</SubType>
@@ -151,6 +169,9 @@
     <Compile Include="TurnosForm.Designer.cs">
       <DependentUpon>TurnosForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Acerca.resx">
+      <DependentUpon>Acerca.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BuscarPaciente.resx">
       <DependentUpon>BuscarPaciente.cs</DependentUpon>
     </EmbeddedResource>
@@ -166,11 +187,17 @@
     <EmbeddedResource Include="CargaPacienteForm.resx">
       <DependentUpon>CargaPacienteForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CoberturaMedica.resx">
+      <DependentUpon>CoberturaMedica.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="controlTelefonos.resx">
       <DependentUpon>controlTelefonos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EliminarPacienteForm.resx">
       <DependentUpon>EliminarPacienteForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Especialidades.resx">
+      <DependentUpon>Especialidades.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEspecialidades.resx">
       <DependentUpon>FormEspecialidades.cs</DependentUpon>

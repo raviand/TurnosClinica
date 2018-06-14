@@ -349,5 +349,31 @@ namespace Negocio
             }
         }
 
+        public void cargarEspecialidad(String especialidad)
+        {
+            String query = $"insert into ESPECIALIDADES(NOMBRE) values ( '{especialidad}' );";
+            try
+            {
+                conn.accion(query);
+            }catch(Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public void eliminarEspecialidad(int id)
+        {
+            String query = $"Delete ESPECIALIDADES where id = {id}";
+            try
+            {
+                conn.accion(query);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
     }
 }

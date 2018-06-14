@@ -112,7 +112,10 @@ namespace MainMenu
             paciente.Telefonos = new List<Telefono>();
             paciente.Dir = new Direccion();
             paciente.CobreturaMedica = new ServicioMedico();
-            
+            cbxCoberturaMedica.Items.Clear();
+            cbxProvincia.Items.Clear();
+            cbxTipoTel.Items.Clear();
+
             gn = new GeneralNegocio();
             pn = new PacienteNegocio();
             try
@@ -475,6 +478,7 @@ namespace MainMenu
 
         private void CargaPacienteForm_Load(object sender, EventArgs e)
         {
+            load();
             if (esModificar)
             {
                 btnLimpiar.Visible = false;

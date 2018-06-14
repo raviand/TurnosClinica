@@ -161,5 +161,60 @@ namespace Negocio
             
         }
 
+        public void agregarServicioMedico(String servicio)
+        {
+            String query = $"Insert into COBERTURAS_MEDICAS (NOMBRE) VALUES ( '{servicio}' )";
+            try
+            {
+                conn.accion(query);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public void agregarPlan(String Plan, int idServicio)
+        {
+            String query = $"INSERT INTO PLANES (NOMBRE, ID_COBERTURA) VALUES ( '{Plan}', {idServicio} )";
+            try
+            {
+                conn.accion(query);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public void eliminarPlan(int id)
+        {
+            String query = $"DELETE PLANES WHERE ID = {id}";
+            try
+            {
+                conn.accion(query);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public void eliminarServicio(int id)
+        {
+            String query = $"Delete COBERTURAS_MEDICAS WHERE ID = {id}";
+            try
+            {
+                conn.accion(query);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
     }
 }

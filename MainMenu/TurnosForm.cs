@@ -198,5 +198,20 @@ namespace MainMenu
             ce.turno = t;
             ce.ShowDialog();
         }
+
+        private void acercaDeTurnosNackToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new Acerca().ShowDialog();
+        }
+
+        private void especialidadesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new Especialidades().ShowDialog();
+        }
+
+        private void serviciosMedicosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new CoberturaMedica().ShowDialog();
+        }
     }
 }

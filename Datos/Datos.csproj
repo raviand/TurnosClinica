@@ -44,6 +44,7 @@
     <Compile Include="Cancela.cs" />
     <Compile Include="Consultorio.cs" />
     <Compile Include="Direccion.cs" />
+    <Compile Include="Especialidad.cs" />
     <Compile Include="Horarios.cs" />
     <Compile Include="Indicacion.cs" />
     <Compile Include="Internado.cs" />

@@ -8,7 +8,9 @@ namespace Datos
 {
     public class ServicioMedico
     {
+        public int idServicio { get; set; }
         public String Nombre { get; set; }
+        public int idPlan { get; set; }
         public String Plan { get; set; }
         public String NumeroCredencial { get; set; }
 

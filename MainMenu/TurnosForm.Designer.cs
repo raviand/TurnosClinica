@@ -46,6 +46,9 @@
             this.cbxMesPosterior = new System.Windows.Forms.ComboBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.configuracionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.especialidadesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.serviciosMedicosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nuevoPacienteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -231,15 +234,39 @@
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.configuracionToolStripMenuItem,
             this.salirToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
+            // configuracionToolStripMenuItem
+            // 
+            this.configuracionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.especialidadesToolStripMenuItem,
+            this.serviciosMedicosToolStripMenuItem});
+            this.configuracionToolStripMenuItem.Name = "configuracionToolStripMenuItem";
+            this.configuracionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.configuracionToolStripMenuItem.Text = "Configuracion";
+            // 
+            // especialidadesToolStripMenuItem
+            // 
+            this.especialidadesToolStripMenuItem.Name = "especialidadesToolStripMenuItem";
+            this.especialidadesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.especialidadesToolStripMenuItem.Text = "Especialidades";
+            this.especialidadesToolStripMenuItem.Click += new System.EventHandler(this.especialidadesToolStripMenuItem_Click);
+            // 
+            // serviciosMedicosToolStripMenuItem
+            // 
+            this.serviciosMedicosToolStripMenuItem.Name = "serviciosMedicosToolStripMenuItem";
+            this.serviciosMedicosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.serviciosMedicosToolStripMenuItem.Text = "Servicios Medicos";
+            this.serviciosMedicosToolStripMenuItem.Click += new System.EventHandler(this.serviciosMedicosToolStripMenuItem_Click);
+            // 
             // salirToolStripMenuItem
             // 
             this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
-            this.salirToolStripMenuItem.Size = new System.Drawing.Size(96, 22);
+            this.salirToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.salirToolStripMenuItem.Text = "Salir";
             this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
             // 
@@ -295,6 +322,7 @@
             this.acercaDeTurnosNackToolStripMenuItem.Name = "acercaDeTurnosNackToolStripMenuItem";
             this.acercaDeTurnosNackToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
             this.acercaDeTurnosNackToolStripMenuItem.Text = "Acerca de TurnosNack";
+            this.acercaDeTurnosNackToolStripMenuItem.Click += new System.EventHandler(this.acercaDeTurnosNackToolStripMenuItem_Click);
             // 
             // btnCambioEstado
             // 
@@ -370,5 +398,8 @@
         private System.Windows.Forms.ToolStripMenuItem ayudaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem acercaDeTurnosNackToolStripMenuItem;
         private System.Windows.Forms.Button btnCambioEstado;
+        private System.Windows.Forms.ToolStripMenuItem configuracionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem especialidadesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem serviciosMedicosToolStripMenuItem;
     }
 }
