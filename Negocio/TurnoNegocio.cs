@@ -105,7 +105,8 @@ namespace Negocio
             if (turno.ApellidoProfesional != null) query += turno.ApellidoProfesional;
             query += "%' AND NOMBRE_PROFESIONAL LIKE '%";
             if (turno.NombreProfesional != null) query += turno.NombreProfesional;
-            query += "%'";
+            query += "%'" ;
+            if (turno.idProfesional != null) query += "  AND ID_PRO = " + turno.idProfesional;
             if (turno.idPaciente != null) query += "  AND ID_PACI = " + turno.idPaciente;
             if (turno.Estado == null) query += " AND (ID_ESTADO = 1 OR ID_ESTADO = 4) ";
             query += " AND ";

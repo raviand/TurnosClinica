@@ -20,6 +20,7 @@ namespace MainMenu
         Conexion conn;
         public Paciente paciente { get; set; }
         public Profesional profesional { get; set; }
+        public User User { get; set; }
         BuscarPaciente bp;
         Paciente p;
         DateTime diaDeTurno;
@@ -49,11 +50,23 @@ namespace MainMenu
             Dictionary<int, String> especialidades;
             try
             {
-                especialidades = pn.getEspecialidades();
-                foreach(KeyValuePair<int, String> pair in especialidades)
+                if(User.TipoPermiso == 'P')
                 {
-                    cbxEspecialidades.Items.Add(pair);
+                    especialidades = pn.getEspecialidades(User.idProfesional);
+                    foreach (KeyValuePair<int, String> pair in especialidades)
+                    {
+                        cbxEspecialidades.Items.Add(pair);
+                    }
                 }
+                else
+                {
+                    especialidades = pn.getEspecialidades();
+                    foreach (KeyValuePair<int, String> pair in especialidades)
+                    {
+                        cbxEspecialidades.Items.Add(pair);
+                    }
+                }
+                
                 cbxEspecialidades.DisplayMember = "Value";
 
             }
@@ -78,7 +91,10 @@ namespace MainMenu
                     profesionales = tn.getProfesionales();
                     foreach (KeyValuePair<int, string> pair in profesionales)
                     {
-                        cbxProfesionales.Items.Add(pair);
+                        if (pair.Key == User.idProfesional && User.TipoPermiso == 'P')
+                            cbxProfesionales.Items.Add(pair);
+                        if (User.TipoPermiso != 'P')
+                            cbxProfesionales.Items.Add(pair);
                     }
                     cbxProfesionales.DisplayMember = "Value";
                 }
@@ -277,6 +293,11 @@ namespace MainMenu
             dgvTurnosDisponibles.Columns["Year"].Visible = false;
             dgvTurnosDisponibles.Columns["Kind"].Visible = false;
 
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

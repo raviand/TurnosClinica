@@ -40,16 +40,19 @@
             this.btnSalir = new System.Windows.Forms.Button();
             this.lblTitulo = new System.Windows.Forms.Label();
             this.dgvUsuarios = new System.Windows.Forms.DataGridView();
+            this.btnEliminar = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsuarios)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // cbxEspecialista
             // 
             this.cbxEspecialista.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxEspecialista.FormattingEnabled = true;
-            this.cbxEspecialista.Location = new System.Drawing.Point(127, 78);
+            this.cbxEspecialista.Location = new System.Drawing.Point(104, 78);
             this.cbxEspecialista.Name = "cbxEspecialista";
-            this.cbxEspecialista.Size = new System.Drawing.Size(121, 21);
+            this.cbxEspecialista.Size = new System.Drawing.Size(144, 21);
             this.cbxEspecialista.TabIndex = 0;
             // 
             // chkEspecialista
@@ -66,7 +69,7 @@
             // lblUser
             // 
             this.lblUser.AutoSize = true;
-            this.lblUser.Location = new System.Drawing.Point(14, 108);
+            this.lblUser.Location = new System.Drawing.Point(13, 113);
             this.lblUser.Name = "lblUser";
             this.lblUser.Size = new System.Drawing.Size(46, 13);
             this.lblUser.TabIndex = 2;
@@ -74,15 +77,15 @@
             // 
             // tbxUser
             // 
-            this.tbxUser.Location = new System.Drawing.Point(77, 105);
+            this.tbxUser.Location = new System.Drawing.Point(104, 111);
             this.tbxUser.Name = "tbxUser";
-            this.tbxUser.Size = new System.Drawing.Size(100, 20);
+            this.tbxUser.Size = new System.Drawing.Size(144, 20);
             this.tbxUser.TabIndex = 3;
             // 
             // lblPass
             // 
             this.lblPass.AutoSize = true;
-            this.lblPass.Location = new System.Drawing.Point(14, 144);
+            this.lblPass.Location = new System.Drawing.Point(13, 149);
             this.lblPass.Name = "lblPass";
             this.lblPass.Size = new System.Drawing.Size(56, 13);
             this.lblPass.TabIndex = 4;
@@ -90,33 +93,35 @@
             // 
             // tbxPass
             // 
-            this.tbxPass.Location = new System.Drawing.Point(77, 136);
+            this.tbxPass.Location = new System.Drawing.Point(104, 142);
             this.tbxPass.Name = "tbxPass";
-            this.tbxPass.Size = new System.Drawing.Size(100, 20);
+            this.tbxPass.PasswordChar = '*';
+            this.tbxPass.Size = new System.Drawing.Size(144, 20);
             this.tbxPass.TabIndex = 5;
             // 
             // tbxPermiso
             // 
             this.tbxPermiso.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.tbxPermiso.FormattingEnabled = true;
-            this.tbxPermiso.Location = new System.Drawing.Point(127, 173);
+            this.tbxPermiso.Location = new System.Drawing.Point(104, 173);
             this.tbxPermiso.Name = "tbxPermiso";
-            this.tbxPermiso.Size = new System.Drawing.Size(121, 21);
+            this.tbxPermiso.Size = new System.Drawing.Size(144, 21);
             this.tbxPermiso.TabIndex = 6;
             // 
             // btnGuardar
             // 
-            this.btnGuardar.Location = new System.Drawing.Point(172, 411);
+            this.btnGuardar.Location = new System.Drawing.Point(195, 3);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(75, 23);
             this.btnGuardar.TabIndex = 7;
             this.btnGuardar.Text = "&Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // lblPermiso
             // 
             this.lblPermiso.AutoSize = true;
-            this.lblPermiso.Location = new System.Drawing.Point(15, 176);
+            this.lblPermiso.Location = new System.Drawing.Point(9, 176);
             this.lblPermiso.Name = "lblPermiso";
             this.lblPermiso.Size = new System.Drawing.Size(83, 13);
             this.lblPermiso.TabIndex = 8;
@@ -124,12 +129,13 @@
             // 
             // btnSalir
             // 
-            this.btnSalir.Location = new System.Drawing.Point(12, 410);
+            this.btnSalir.Location = new System.Drawing.Point(10, 3);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(75, 23);
             this.btnSalir.TabIndex = 9;
             this.btnSalir.Text = "&Salir";
             this.btnSalir.UseVisualStyleBackColor = true;
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
             // lblTitulo
             // 
@@ -146,20 +152,42 @@
             this.dgvUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvUsuarios.Location = new System.Drawing.Point(13, 209);
             this.dgvUsuarios.Name = "dgvUsuarios";
-            this.dgvUsuarios.Size = new System.Drawing.Size(235, 195);
+            this.dgvUsuarios.ReadOnly = true;
+            this.dgvUsuarios.RowHeadersVisible = false;
+            this.dgvUsuarios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvUsuarios.Size = new System.Drawing.Size(257, 195);
             this.dgvUsuarios.TabIndex = 11;
             this.dgvUsuarios.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUsuarios_CellContentClick);
+            // 
+            // btnEliminar
+            // 
+            this.btnEliminar.Location = new System.Drawing.Point(104, 3);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(75, 23);
+            this.btnEliminar.TabIndex = 12;
+            this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.btnGuardar);
+            this.panel1.Controls.Add(this.btnEliminar);
+            this.panel1.Controls.Add(this.btnSalir);
+            this.panel1.Location = new System.Drawing.Point(0, 410);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(282, 35);
+            this.panel1.TabIndex = 13;
             // 
             // Usuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(260, 445);
+            this.ClientSize = new System.Drawing.Size(282, 445);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.dgvUsuarios);
             this.Controls.Add(this.lblTitulo);
-            this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.lblPermiso);
-            this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.tbxPermiso);
             this.Controls.Add(this.tbxPass);
             this.Controls.Add(this.lblPass);
@@ -171,6 +199,7 @@
             this.Text = "Usuarios";
             this.Load += new System.EventHandler(this.Usuarios_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsuarios)).EndInit();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -190,5 +219,7 @@
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.Label lblTitulo;
         private System.Windows.Forms.DataGridView dgvUsuarios;
+        private System.Windows.Forms.Button btnEliminar;
+        private System.Windows.Forms.Panel panel1;
     }
 }

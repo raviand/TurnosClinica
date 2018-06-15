@@ -199,6 +199,39 @@ namespace Negocio
             }
 
         }
+        public Dictionary<int, String> getEspecialidades( int id )
+        {
+            /**
+             * Aca falta el metodo que llama a la tabla para listar las Especialidades
+             * */
+            Dictionary<int, String> especialidades = new Dictionary<int, string>();
+            SqlDataReader lector;
+            string query = "SELECT ID_ESPECIALIDAD FROM PROFESIONALES_ESPECIALIDADES WHERE ID_PROFESIONAL = " + id.ToString();
+            int []idesp = new int[20];
+            try
+            {
+                lector = conn.lector(query);
+                int i = 0;
+                while (lector.Read())
+                    idesp[i++] = lector.GetInt32(0);
+                String where = "WHERE ID = " + idesp[--i].ToString();
+                while(i < 0)
+                {
+                    where += " OR ID = " + idesp[--i].ToString();
+                }
+
+                lector = conn.lector("SELECT ID , NOMBRE FROM ESPECIALIDADES " + where);
+                while (lector.Read())
+                    especialidades.Add(lector.GetInt32(0), lector.GetString(1));
+
+                return especialidades;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
 
         /**
          * Metodo para modificar el profesional seleccionado

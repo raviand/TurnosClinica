@@ -204,6 +204,8 @@ namespace Negocio
 
         public void agregarParametro(String variable, object valor)
         {
+            if (Cmd == null)
+                Cmd = getComando();
             Cmd.Parameters.AddWithValue(variable, valor);
         }
     }

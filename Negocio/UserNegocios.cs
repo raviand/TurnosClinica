@@ -35,9 +35,12 @@ namespace Negocio
                     user.Usuario = lector.GetString(1);
                     user.Pass = lector.GetString(2);
                     user.idPermiso = lector.GetInt32(3);
-                    user.idProfesional = lector.GetInt32(4);
-                    user.TipoPermiso = Convert.ToChar( lector.GetString(5));
-                    user.NombreProfesional = $"{lector.GetString(7)}, {lector.GetString(6)}";
+                    if(!lector.IsDBNull(4))
+                        user.idProfesional = lector.GetInt32(4);
+                    user.NombrePermiso = lector.GetString(5);
+                    user.TipoPermiso = Convert.ToChar( lector.GetString(6));
+                    if(!lector.IsDBNull(4))
+                        user.NombreProfesional = $"{lector.GetString(8)}, {lector.GetString(7)}";
                     users.Add(user);
                 }
                 return users;
@@ -56,7 +59,15 @@ namespace Negocio
                 @ID_PERMISO INT,
                 @ID_PROFESIONAL INT = 0 
              */
-            String query = $"EXEC SP_NUEVO_USUARIO {user.Usuario}, {user.Pass}, {user.idPermiso}, {user.idProfesional}";
+            String query;
+            if (user.idProfesional != 0)
+            {
+                query = $"EXEC SP_NUEVO_USUARIO {user.Usuario}, {user.Pass}, {user.idPermiso}, {user.idProfesional}";
+            }
+            else
+            {
+                query = $"EXEC SP_NUEVO_USUARIO {user.Usuario}, {user.Pass}, {user.idPermiso}";
+            }
 
             try
             {
@@ -93,5 +104,24 @@ namespace Negocio
             }
 
         }
+
+        public bool eliminarUsuario()
+        {
+            String query = "DELETE USUARIOS WHERE ID = " + user.idUser;
+
+            try
+            {
+                int res = conn.accion(query);
+                if (res > 0)
+                    return true;
+                else
+                    return false;
+            }catch(Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
     }
 }

@@ -66,7 +66,7 @@
             // tbxNombre
             // 
             this.tbxNombre.Enabled = false;
-            this.tbxNombre.Location = new System.Drawing.Point(150, 83);
+            this.tbxNombre.Location = new System.Drawing.Point(91, 83);
             this.tbxNombre.Name = "tbxNombre";
             this.tbxNombre.ReadOnly = true;
             this.tbxNombre.Size = new System.Drawing.Size(111, 20);
@@ -75,7 +75,7 @@
             // tbxApellido
             // 
             this.tbxApellido.Enabled = false;
-            this.tbxApellido.Location = new System.Drawing.Point(346, 83);
+            this.tbxApellido.Location = new System.Drawing.Point(235, 83);
             this.tbxApellido.Name = "tbxApellido";
             this.tbxApellido.ReadOnly = true;
             this.tbxApellido.Size = new System.Drawing.Size(132, 20);
@@ -83,7 +83,7 @@
             // 
             // btnPaciente
             // 
-            this.btnPaciente.Location = new System.Drawing.Point(515, 83);
+            this.btnPaciente.Location = new System.Drawing.Point(433, 83);
             this.btnPaciente.Name = "btnPaciente";
             this.btnPaciente.Size = new System.Drawing.Size(154, 23);
             this.btnPaciente.TabIndex = 3;
@@ -103,7 +103,7 @@
             // lblNombre
             // 
             this.lblNombre.AutoSize = true;
-            this.lblNombre.Location = new System.Drawing.Point(150, 64);
+            this.lblNombre.Location = new System.Drawing.Point(91, 64);
             this.lblNombre.Name = "lblNombre";
             this.lblNombre.Size = new System.Drawing.Size(47, 13);
             this.lblNombre.TabIndex = 5;
@@ -112,7 +112,7 @@
             // lblApellido
             // 
             this.lblApellido.AutoSize = true;
-            this.lblApellido.Location = new System.Drawing.Point(343, 64);
+            this.lblApellido.Location = new System.Drawing.Point(232, 64);
             this.lblApellido.Name = "lblApellido";
             this.lblApellido.Size = new System.Drawing.Size(47, 13);
             this.lblApellido.TabIndex = 6;
@@ -145,7 +145,7 @@
             this.dgvDiasAtencion.Name = "dgvDiasAtencion";
             this.dgvDiasAtencion.ReadOnly = true;
             this.dgvDiasAtencion.RowHeadersVisible = false;
-            this.dgvDiasAtencion.Size = new System.Drawing.Size(377, 122);
+            this.dgvDiasAtencion.Size = new System.Drawing.Size(295, 122);
             this.dgvDiasAtencion.TabIndex = 9;
             // 
             // lblEspecialidades
@@ -228,7 +228,7 @@
             // 
             // btnGuardar
             // 
-            this.btnGuardar.Location = new System.Drawing.Point(594, 447);
+            this.btnGuardar.Location = new System.Drawing.Point(512, 447);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(75, 23);
             this.btnGuardar.TabIndex = 19;
@@ -244,6 +244,7 @@
             this.btnSalir.TabIndex = 20;
             this.btnSalir.Text = "&Salir";
             this.btnSalir.UseVisualStyleBackColor = true;
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
             // dgvTurnosDisponibles
             // 
@@ -254,14 +255,14 @@
             this.dgvTurnosDisponibles.Name = "dgvTurnosDisponibles";
             this.dgvTurnosDisponibles.ReadOnly = true;
             this.dgvTurnosDisponibles.RowHeadersVisible = false;
-            this.dgvTurnosDisponibles.Size = new System.Drawing.Size(377, 150);
+            this.dgvTurnosDisponibles.Size = new System.Drawing.Size(295, 150);
             this.dgvTurnosDisponibles.TabIndex = 21;
             // 
             // nuevoTurno
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(681, 482);
+            this.ClientSize = new System.Drawing.Size(604, 482);
             this.Controls.Add(this.dgvTurnosDisponibles);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnGuardar);

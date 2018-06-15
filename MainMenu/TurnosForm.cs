@@ -25,9 +25,10 @@ namespace MainMenu
         CargaMedicoForm cm;
         CambioEstado ce;
         Usuarios u;
-        User usuario;
-        
-        
+       
+        public User usuario { get; set; }
+
+
         public TurnosForm()
         {
             ProfesionalNegocio = new ProfesionalNegocio();
@@ -57,9 +58,11 @@ namespace MainMenu
         private void btnNuevoTurno_Click(object sender, EventArgs e)
         {
             nt.Turnos = (List<Turno>)dgvTurnos.DataSource;
+            nt.User = usuario;
             nt.ShowDialog();
             nt = new nuevoTurno();
-            dgvTurnos.DataSource = tn.listarTurnos();
+            btnBuscar_Click(null, null);
+            //dgvTurnos.DataSource = tn.listarTurnos();
         }
 
         private void TurnosForm_Load(object sender, EventArgs e)
@@ -68,6 +71,7 @@ namespace MainMenu
             List<String> estados;
             try
             {
+                btnBuscar_Click(null, null);
                 estados = tn.listarEstado();
                 foreach(String pair in estados)
                     cbxEstados.Items.Add(pair);
@@ -83,6 +87,21 @@ namespace MainMenu
                     cbxMesAnterior.Items.Add(i +1);
                     cbxMesPosterior.Items.Add(i +1);
                 }
+                if(usuario.TipoPermiso == 'P')
+                {
+                    cbxEspecialidades.Visible = false;
+                    cbxProfesional.Visible = false;
+                    lblProfesional.Visible = false;
+                    lblEspecialidad.Visible = false;
+                }
+                else
+                {
+                    cbxEspecialidades.Visible = true;
+                    cbxProfesional.Visible = true;
+                    lblProfesional.Visible = true;
+                    lblEspecialidad.Visible = true;
+                }
+
             }
             catch (Exception ex)
             {
@@ -125,6 +144,13 @@ namespace MainMenu
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
+            if(usuario.TipoPermiso == 'P')
+            {
+                String[] name = usuario.NombreProfesional.Split(',');
+                tn.turno.ApellidoProfesional = name[0].Trim();
+                tn.turno.NombreProfesional = name[1].Trim();
+                tn.turno.idProfesional = usuario.idProfesional.ToString();
+            }
             if (cbxProfesional.SelectedIndex != -1)
             {
                 String completo = ((KeyValuePair<int, String>)cbxProfesional.SelectedItem).Value;
@@ -168,7 +194,10 @@ namespace MainMenu
 
         private void nuevoProfesionalToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            cm.ShowDialog();
+            if (usuario.TipoPermiso == 'R')
+                cm.ShowDialog();
+            else
+                MessageBox.Show("No tiene permiso para este campo");
         }
 
         private void buscarPacienteToolStripMenuItem_Click(object sender, EventArgs e)
@@ -180,7 +209,10 @@ namespace MainMenu
 
         private void buscarProfesionalToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            bpro.ShowDialog();
+            if (usuario.TipoPermiso != 'P')
+                bpro.ShowDialog();
+            else
+                MessageBox.Show("Su usuario no le permite ingresar a esta opcion");
         }
 
         private void dgvTurnos_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -189,6 +221,7 @@ namespace MainMenu
             Turno t = (Turno)dgvTurnos.CurrentRow.DataBoundItem;
             ce.turno = t;
             ce.ShowDialog();
+            btnBuscar_Click(null, null);
         }
 
         private void salirToolStripMenuItem_Click(object sender, EventArgs e)
@@ -210,17 +243,29 @@ namespace MainMenu
 
         private void especialidadesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new Especialidades().ShowDialog();
+            if (usuario.TipoPermiso == 'R')
+                new Especialidades().ShowDialog();
+            else
+                MessageBox.Show("Necesita usuario administrador para ingresar aqui");
+
+            
         }
 
         private void serviciosMedicosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new CoberturaMedica().ShowDialog();
+            if (usuario.TipoPermiso == 'R')
+                new CoberturaMedica().ShowDialog();
+            else
+                MessageBox.Show("Necesita usuario administrador para ingresar aqui");
+            
         }
 
         private void usuariosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            u.ShowDialog();
+            if (usuario.TipoPermiso == 'R')
+                u.ShowDialog();
+            else
+                MessageBox.Show("Necesita usuario administrador para ingresar aqui");
         }
     }
 }
