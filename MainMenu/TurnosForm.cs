@@ -24,6 +24,8 @@ namespace MainMenu
         CargaPacienteForm cp;
         CargaMedicoForm cm;
         CambioEstado ce;
+        Usuarios u;
+        User usuario;
         
         
         public TurnosForm()
@@ -37,6 +39,8 @@ namespace MainMenu
             cp = new CargaPacienteForm();
             cm = new CargaMedicoForm();
             bpro = new BuscarProfesional();
+            u = new Usuarios();
+            usuario = new User();
             InitializeComponent();
 
             dgvTurnos.DataSource = tn.listarTurnos();
@@ -212,6 +216,11 @@ namespace MainMenu
         private void serviciosMedicosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new CoberturaMedica().ShowDialog();
+        }
+
+        private void usuariosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            u.ShowDialog();
         }
     }
 }

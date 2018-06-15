@@ -58,6 +58,7 @@
             this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.acercaDeTurnosNackToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnCambioEstado = new System.Windows.Forms.Button();
+            this.usuariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTurnos)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -244,7 +245,8 @@
             // 
             this.configuracionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.especialidadesToolStripMenuItem,
-            this.serviciosMedicosToolStripMenuItem});
+            this.serviciosMedicosToolStripMenuItem,
+            this.usuariosToolStripMenuItem});
             this.configuracionToolStripMenuItem.Name = "configuracionToolStripMenuItem";
             this.configuracionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.configuracionToolStripMenuItem.Text = "Configuracion";
@@ -334,6 +336,13 @@
             this.btnCambioEstado.UseVisualStyleBackColor = true;
             this.btnCambioEstado.Click += new System.EventHandler(this.btnCambioEstado_Click);
             // 
+            // usuariosToolStripMenuItem
+            // 
+            this.usuariosToolStripMenuItem.Name = "usuariosToolStripMenuItem";
+            this.usuariosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.usuariosToolStripMenuItem.Text = "Usuarios";
+            this.usuariosToolStripMenuItem.Click += new System.EventHandler(this.usuariosToolStripMenuItem_Click);
+            // 
             // TurnosForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -401,5 +410,6 @@
         private System.Windows.Forms.ToolStripMenuItem configuracionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem especialidadesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem serviciosMedicosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem usuariosToolStripMenuItem;
     }
 }
