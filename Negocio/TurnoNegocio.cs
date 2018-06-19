@@ -17,6 +17,8 @@ namespace Negocio
         public int idProfesional { get; set; }
         public int mesAnterior { get; set; }
         public int mesPosterior { get; set; }
+        public Atencion atencion { get; set; }
+        public List<Atencion> Historial { get; set; }
 
 
         public TurnoNegocio()
@@ -81,9 +83,9 @@ namespace Negocio
             }
         }
 
-        public int cambioEstado(int v, string diagnostico, int turnoid, int profesionalid)
+        public int cambioEstado(int v, string diagnostico, int turnoid, int profesionalid, int idEspecialidad)
         {
-            String query = "exec SP_PACIENTE_ATENDIDO " + v + " , " + profesionalid + " , " + turnoid + " , '" + diagnostico + "'";
+            String query = $"exec SP_PACIENTE_ATENDIDO {v} , {profesionalid} , {turnoid} , '{diagnostico}', {idEspecialidad}" ;
             try
             {
                 return conn.accion(query);
@@ -242,5 +244,70 @@ namespace Negocio
             }
         } 
 
+        public List <Atencion> listarHistorial(int id)
+        {
+            String query = $"EXEC SP_SELECT_ATENCION {id}";
+            SqlDataReader lector;
+            try
+            {
+                /*
+                 	A.ID, A.FECHA, 
+	                A.ID_PACIENTE, 
+	                P.NOMBRE, 
+	                P.APELLIDO, 
+	                A.ID_PROFESIONAL, 
+	                PR.NOMBRE, 
+	                PR.APELLIDO,
+	                A.ID_ESPECIALIDAD, 
+	                E.NOMBRE, 
+	                A.INDICACION 
+
+                 */
+                Historial = new List<Atencion>();
+                lector = conn.lector(query);
+                if (lector.HasRows )
+                {
+                    while (lector.Read())
+                    {
+                        atencion = new Atencion();
+                        atencion.paciente = new Paciente();
+                        atencion.Profesional = new Profesional();
+                        atencion.Especialidad = new Especialidad();
+
+                        if (!lector.IsDBNull(0))
+                            atencion.idAtencion = lector.GetInt32(0);
+                        if (!lector.IsDBNull(1))
+                            atencion.FechaAtencion = lector.GetDateTime(1).Date;
+                        if (!lector.IsDBNull(2))
+                            atencion.paciente.IdPaciente = lector.GetInt32(2).ToString();
+                        if (!lector.IsDBNull(3))
+                            atencion.paciente.Nombre = lector.GetString(3);
+                        if (!lector.IsDBNull(4))
+                            atencion.paciente.Apellido = lector.GetString(4);
+                        if (!lector.IsDBNull(5))
+                            atencion.Profesional.IdProfesional = lector.GetInt32(5);
+                        if (!lector.IsDBNull(6))
+                            atencion.Profesional.Nombre = lector.GetString(6);
+                        if (!lector.IsDBNull(7))
+                            atencion.Profesional.Apellido = lector.GetString(7);
+                        if (!lector.IsDBNull(8))
+                            atencion.Especialidad.id = lector.GetInt32(8);
+                        if (!lector.IsDBNull(9))
+                            atencion.Especialidad.especialidad = lector.GetString(9);
+                        if (!lector.IsDBNull(10))
+                            atencion.indicacion = lector.GetString(10);
+                        Historial.Add(atencion);
+                    }
+                }
+
+               
+                return Historial;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
     }
 }

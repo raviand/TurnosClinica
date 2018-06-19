@@ -10,8 +10,10 @@ namespace Negocio
 {
     public class GeneralNegocio
     {
+        public ServicioMedico Servicio { get; set; }
         public GeneralNegocio()
         {
+            Servicio = new ServicioMedico();
             conn = new Conexion();
         }
         private Conexion conn;
@@ -60,7 +62,12 @@ namespace Negocio
               
                 lector = conn.lector("SELECT ID, NOMBRE FROM COBERTURAS_MEDICAS");
                 while (lector.Read())
+                {
+                    Servicio.idServicio = lector.GetInt32(0);
+                    Servicio.Nombre = lector.GetString(1);
                     coberturaMedica.Add(lector.GetInt32(0), lector.GetString(1));
+
+                }
                 return coberturaMedica;
             }
             catch (Exception ex)
@@ -117,7 +124,12 @@ namespace Negocio
                 //lector = 
                 lector =  conn.lector("SELECT ID, NOMBRE FROM planes WHERE ID_COBERTURA=" + idCobertura);
                 while (lector.Read())
+                {
+                    Servicio.idPlan = lector.GetInt32(0);
+                    Servicio.Plan = lector.GetString(1);
                     planMedico.Add(lector.GetInt32(0), lector.GetString(1));
+
+                }
                 return planMedico;
             }
             catch (Exception ex)

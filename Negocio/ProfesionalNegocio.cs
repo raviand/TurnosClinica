@@ -14,9 +14,13 @@ namespace Negocio
 
         Conexion conn;
         GeneralNegocio gn;
+        public Especialidad especialidad { get; set; }
+        public List<Especialidad> especialidades { get; set; }
 
         public ProfesionalNegocio()
         {
+            especialidades = new List<Especialidad>();
+            especialidad = new Especialidad();
             Profesional = new Profesional();
             Profesional.Dir = new Direccion();
             Profesional.Atencion = new Dictionary<int, String>();
@@ -184,15 +188,22 @@ namespace Negocio
             /**
              * Aca falta el metodo que llama a la tabla para listar las Especialidades
              * */
-            Dictionary<int, String> especialidades = new Dictionary<int, string>();
+            Dictionary<int, String> especialities = new Dictionary<int, string>();
             SqlDataReader lector;
             try
             {
                 lector = conn.lector("SELECT ID , NOMBRE FROM ESPECIALIDADES");
                 while (lector.Read())
-                    especialidades.Add(lector.GetInt32(0), lector.GetString(1));
+                {
+                    especialidad = new Especialidad();
+                    especialidad.id = lector.GetInt32(0);
+                    especialidad.especialidad = lector.GetString(1);
+                    especialidades.Add(especialidad);
+                    especialities.Add(lector.GetInt32(0), lector.GetString(1));
 
-                return especialidades;
+                }
+
+                return especialities;
             } catch (Exception ex)
             {
                 throw ex;

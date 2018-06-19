@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CargaMedicoForm));
             this.gbxAtiendeDomicilio = new System.Windows.Forms.GroupBox();
             this.rbtNo = new System.Windows.Forms.RadioButton();
             this.rbtSi = new System.Windows.Forms.RadioButton();
@@ -405,6 +406,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.HighlightText;
             this.ClientSize = new System.Drawing.Size(529, 465);
             this.Controls.Add(this.btnCargarDias);
             this.Controls.Add(this.btnReset);
@@ -441,6 +443,7 @@
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.gbxAtiendeDomicilio);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CargaMedicoForm";
             this.Text = "Carga de Especialista";
             this.gbxAtiendeDomicilio.ResumeLayout(false);

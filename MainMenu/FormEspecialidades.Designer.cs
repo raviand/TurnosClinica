@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormEspecialidades));
             this.btnSalir = new System.Windows.Forms.Button();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.btnClean = new System.Windows.Forms.Button();
@@ -109,6 +110,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.HighlightText;
             this.ClientSize = new System.Drawing.Size(613, 411);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnAceptar);
@@ -117,6 +119,7 @@
             this.Controls.Add(this.btnToRight);
             this.Controls.Add(this.lbxEleccionesEspecialidades);
             this.Controls.Add(this.lbxOpcionesEspecialidades);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormEspecialidades";
             this.Text = "FormEspecialidades";
             this.ResumeLayout(false);

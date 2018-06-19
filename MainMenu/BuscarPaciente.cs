@@ -20,9 +20,11 @@ namespace MainMenu
         PacienteNegocio pn;
         CargaPacienteForm cp;
         GeneralNegocio gn;
+        HistorialMedicoForm hm;
 
         public BuscarPaciente()
         {
+            hm = new HistorialMedicoForm();
             Paciente = new Paciente();
             InitializeComponent();
         }
@@ -139,6 +141,12 @@ namespace MainMenu
             tbxDni.Text = "";
             cbxLocalidad.SelectedIndex = -1;
             cbxProvincia.SelectedIndex = -1;
+        }
+
+        private void btnHistorial_Click(object sender, EventArgs e)
+        {
+            hm.paciente = (Paciente)dgvListaPacientes.CurrentRow.DataBoundItem; ;
+            hm.ShowDialog();
         }
     }
 }

@@ -8,6 +8,11 @@ namespace Datos
 {
     public abstract class Persona
     {
+        public Persona()
+        {
+            Dir = new Direccion();
+            Telefonos = new List<Telefono>();
+        }
         public String Nombre { get; set; }
         public String Apellido { get; set; }
         public DateTime FechaNac { get; set; }
@@ -19,12 +24,7 @@ namespace Datos
         public override string ToString()
         {
             String datos;
-            datos = "Nombre: " + Nombre + "\n";
-            datos += "Apellido: " + Apellido + "\n";
-            datos += "FechaNacimiento: " + FechaNac.ToShortDateString() + "\n";
-            datos += "Dni: " + Dni + "\n";
-            datos += "Direccion: " + Dir.ToString() + "\n";
-            datos += "Mail: " + Mail + "\n";
+            datos = $"{Apellido}, {Nombre}";
             return datos;
         }
     }

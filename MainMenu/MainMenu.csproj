@@ -135,6 +135,12 @@
     <Compile Include="FormEspecialidades.Designer.cs">
       <DependentUpon>FormEspecialidades.cs</DependentUpon>
     </Compile>
+    <Compile Include="HistorialMedicoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HistorialMedicoForm.Designer.cs">
+      <DependentUpon>HistorialMedicoForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -211,6 +217,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormEspecialidades.resx">
       <DependentUpon>FormEspecialidades.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HistorialMedicoForm.resx">
+      <DependentUpon>HistorialMedicoForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>

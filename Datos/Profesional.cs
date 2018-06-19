@@ -15,5 +15,10 @@ namespace Datos
         public Dictionary<int , String> Especialidades { get; set; }
         public List<ServicioMedico> ServiciosHabilitados { get; set; }
         public bool AtiendeADomicilio { get; set; }
+
+        public override string ToString()
+        {
+            return $"{IdProfesional} - {base.ToString()}";
+        }
     }
 }

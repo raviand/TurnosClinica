@@ -10,8 +10,7 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using Negocio;
 using Datos;
-//Para limitar el rango de fechas para turno la carga de turnos
-//https://stackoverflow.com/questions/8353801/limiting-the-dates-within-a-c-sharp-win-form-datetimepicker?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
+
 namespace MainMenu
 {
     public partial class CargaPacienteForm : Form
@@ -111,6 +110,9 @@ namespace MainMenu
             paciente = new Paciente();
             paciente.Telefonos = new List<Telefono>();
             paciente.Dir = new Direccion();
+            pacient.CobreturaMedica = new ServicioMedico();
+            pacient.Telefonos = new List<Telefono>();
+            pacient.Dir = new Direccion();
             paciente.CobreturaMedica = new ServicioMedico();
             cbxCoberturaMedica.Items.Clear();
             cbxProvincia.Items.Clear();
@@ -279,19 +281,20 @@ namespace MainMenu
             {
                 if (cbxTipoTel.Items.Count > 0)
                 {
-                    telefono.Numero = tbxTelefono.Text;
+                    telefono.Numero = tbxTelefono.Text.Trim();
                     cbxTipoTel.ValueMember = "key";
                     telefono.Tipo = Convert.ToString( cbxTipoTel.SelectedIndex +1 );
-                    if (ver.existeTelefono(telefono.Numero, paciente.Telefonos))
+                    if (ver.existeTelefono(telefono.Numero, pacient.Telefonos))
                     {
                         MessageBox.Show("El telefono: " + telefono.Numero + " Ya se encuentra registrado");
                     }
                     else
                     {
-                        paciente.Telefonos.Add(telefono);
+                        pacient.Telefonos.Add(telefono);
                         if(ct.telefonos != null)
                             contTel = ct.telefonos.Count;
-
+                        ct.telefonos = new List<Telefono>();
+                        ct.telefonos = pacient.Telefonos;
                         //MessageBox.Show("Se cargo: " + paciente.Telefonos[contTel].Numero + " - " + paciente.Telefonos[contTel].Tipo);
 
                     }
@@ -377,31 +380,31 @@ namespace MainMenu
                 int res;
                 try
                 {
-                    paciente.Nombre = tbxNombre.Text;
-                    paciente.Apellido = tbxApellido.Text;
-                    paciente.Dni = tbxDni.Text;
-                    paciente.Mail = tbxMail.Text;
-                    paciente.FechaNac = dtpFechaNacimiento.Value;
-                    paciente.FechaIngreso = DateTime.Today;
-                    paciente.CobreturaMedica.NumeroCredencial = tbxCarnetMedico.Text;
-                    paciente.CobreturaMedica.Nombre = Convert.ToString(((KeyValuePair<int, String>) cbxCoberturaMedica.SelectedItem).Value);
-                    paciente.CobreturaMedica.Plan = Convert.ToString(((KeyValuePair<int, String>)cbxPlan.SelectedItem).Key);
-                    paciente.Dir.Calle = tbxCalle.Text;
-                    paciente.Dir.Localidad = Convert.ToString( ( (KeyValuePair<int, String>) cbxLocalidad.SelectedItem ).Key );
-                    if (tbxPiso.Text.CompareTo("") != 0) paciente.Dir.Piso = tbxPiso.Text;
-                    if (tbxDepto.Text.CompareTo("") != 0) paciente.Dir.Departamento = tbxDepto.Text;
-                    if (tbxCP.Text.CompareTo("") != 0) paciente.Dir.CodigoPostal = tbxCP.Text;
+                    pacient.Nombre = tbxNombre.Text;
+                    pacient.Apellido = tbxApellido.Text;
+                    pacient.Dni = tbxDni.Text;
+                    pacient.Mail = tbxMail.Text;
+                    pacient.FechaNac = dtpFechaNacimiento.Value;
+                    pacient.FechaIngreso = DateTime.Today;
+                    pacient.CobreturaMedica.NumeroCredencial = tbxCarnetMedico.Text;
+                    pacient.CobreturaMedica.Nombre = Convert.ToString(((KeyValuePair<int, String>) cbxCoberturaMedica.SelectedItem).Value);
+                    pacient.CobreturaMedica.Plan = Convert.ToString(((KeyValuePair<int, String>)cbxPlan.SelectedItem).Key);
+                    pacient.Dir.Calle = tbxCalle.Text;
+                    pacient.Dir.Localidad = Convert.ToString( ( (KeyValuePair<int, String>) cbxLocalidad.SelectedItem ).Key );
+                    if (tbxPiso.Text.CompareTo("") != 0) pacient.Dir.Piso = tbxPiso.Text;
+                    if (tbxDepto.Text.CompareTo("") != 0) pacient.Dir.Departamento = tbxDepto.Text;
+                    if (tbxCP.Text.CompareTo("") != 0) pacient.Dir.CodigoPostal = tbxCP.Text;
                     //MessageBox.Show(paciente.ToString());
-                    pn.setPaciente(paciente);
+                    pn.setPaciente(pacient);
                     if (esModificar)
                     {
                         ///Para modificar los ingresos
-                        res = pn.modificarPaciente(paciente);
+                        res = pn.modificarPaciente(pacient);
                         MessageBox.Show("Se modifico el registro");
                     }
                     else
                     {
-                        res = pn.cargarPaciente(paciente);
+                        res = pn.cargarPaciente(pacient);
                         MessageBox.Show("Se ha registrado con exito ");
                     }
                     
@@ -455,7 +458,7 @@ namespace MainMenu
         {
             if (!esModificar)
             {
-                ct.telefonos = paciente.Telefonos;
+                ct.telefonos = pacient.Telefonos;
                 ct.ShowDialog();
                 if (ct.borro) contTel--;
             }
@@ -463,6 +466,7 @@ namespace MainMenu
             {
                 //Arreglar el cambio de telefonos de una modificacion
                 //ct.ShowDialog();
+                ct.Editar = false;
                 ct.ShowDialog();
             }
             

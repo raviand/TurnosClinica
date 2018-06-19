@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CargaPacienteForm));
             this.lblNombre = new System.Windows.Forms.Label();
             this.tbxNombre = new System.Windows.Forms.TextBox();
             this.tbxApellido = new System.Windows.Forms.TextBox();
@@ -88,7 +89,7 @@
             this.tbxApellido.Location = new System.Drawing.Point(282, 31);
             this.tbxApellido.Name = "tbxApellido";
             this.tbxApellido.Size = new System.Drawing.Size(228, 20);
-            this.tbxApellido.TabIndex = 3;
+            this.tbxApellido.TabIndex = 2;
             // 
             // lblApellido
             // 
@@ -104,7 +105,7 @@
             this.tbxTelefono.Location = new System.Drawing.Point(282, 128);
             this.tbxTelefono.Name = "tbxTelefono";
             this.tbxTelefono.Size = new System.Drawing.Size(144, 20);
-            this.tbxTelefono.TabIndex = 5;
+            this.tbxTelefono.TabIndex = 6;
             this.tbxTelefono.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbxTelefono_KeyPress);
             // 
             // lblTelefono
@@ -121,7 +122,7 @@
             this.tbxMail.Location = new System.Drawing.Point(16, 78);
             this.tbxMail.Name = "tbxMail";
             this.tbxMail.Size = new System.Drawing.Size(225, 20);
-            this.tbxMail.TabIndex = 7;
+            this.tbxMail.TabIndex = 3;
             // 
             // lblMail
             // 
@@ -146,12 +147,13 @@
             this.dtpFechaNacimiento.Location = new System.Drawing.Point(16, 128);
             this.dtpFechaNacimiento.Name = "dtpFechaNacimiento";
             this.dtpFechaNacimiento.Size = new System.Drawing.Size(225, 20);
-            this.dtpFechaNacimiento.TabIndex = 9;
+            this.dtpFechaNacimiento.TabIndex = 5;
             // 
             // cbxCoberturaMedica
             // 
             this.cbxCoberturaMedica.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxCoberturaMedica.FormattingEnabled = true;
+            this.cbxCoberturaMedica.ItemHeight = 13;
             this.cbxCoberturaMedica.Location = new System.Drawing.Point(16, 210);
             this.cbxCoberturaMedica.Name = "cbxCoberturaMedica";
             this.cbxCoberturaMedica.Size = new System.Drawing.Size(122, 21);
@@ -172,7 +174,7 @@
             this.tbxCarnetMedico.Location = new System.Drawing.Point(279, 211);
             this.tbxCarnetMedico.Name = "tbxCarnetMedico";
             this.tbxCarnetMedico.Size = new System.Drawing.Size(228, 20);
-            this.tbxCarnetMedico.TabIndex = 12;
+            this.tbxCarnetMedico.TabIndex = 13;
             this.tbxCarnetMedico.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbxCarnetMedico_KeyPress);
             // 
             // lblCarnet
@@ -191,7 +193,7 @@
             this.cbxTipoTel.Location = new System.Drawing.Point(432, 127);
             this.cbxTipoTel.Name = "cbxTipoTel";
             this.cbxTipoTel.Size = new System.Drawing.Size(75, 21);
-            this.cbxTipoTel.TabIndex = 14;
+            this.cbxTipoTel.TabIndex = 7;
             // 
             // lblTipoTel
             // 
@@ -217,7 +219,7 @@
             this.tbxDni.MaxLength = 10;
             this.tbxDni.Name = "tbxDni";
             this.tbxDni.Size = new System.Drawing.Size(225, 20);
-            this.tbxDni.TabIndex = 17;
+            this.tbxDni.TabIndex = 4;
             this.tbxDni.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbxDni_KeyPress);
             // 
             // btnAdd
@@ -225,7 +227,7 @@
             this.btnAdd.Location = new System.Drawing.Point(282, 154);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(144, 23);
-            this.btnAdd.TabIndex = 18;
+            this.btnAdd.TabIndex = 8;
             this.btnAdd.Text = "&Agregar Telefono";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
@@ -246,14 +248,14 @@
             this.cbxPlan.Location = new System.Drawing.Point(144, 210);
             this.cbxPlan.Name = "cbxPlan";
             this.cbxPlan.Size = new System.Drawing.Size(105, 21);
-            this.cbxPlan.TabIndex = 20;
+            this.cbxPlan.TabIndex = 11;
             // 
             // tbxCalle
             // 
             this.tbxCalle.Location = new System.Drawing.Point(16, 270);
             this.tbxCalle.Name = "tbxCalle";
             this.tbxCalle.Size = new System.Drawing.Size(233, 20);
-            this.tbxCalle.TabIndex = 21;
+            this.tbxCalle.TabIndex = 14;
             // 
             // lblCalle
             // 
@@ -269,7 +271,7 @@
             this.tbxPiso.Location = new System.Drawing.Point(279, 269);
             this.tbxPiso.Name = "tbxPiso";
             this.tbxPiso.Size = new System.Drawing.Size(65, 20);
-            this.tbxPiso.TabIndex = 23;
+            this.tbxPiso.TabIndex = 15;
             this.tbxPiso.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbxPiso_KeyPress);
             // 
             // lblPiso
@@ -295,14 +297,14 @@
             this.tbxDepto.Location = new System.Drawing.Point(364, 269);
             this.tbxDepto.Name = "tbxDepto";
             this.tbxDepto.Size = new System.Drawing.Size(62, 20);
-            this.tbxDepto.TabIndex = 26;
+            this.tbxDepto.TabIndex = 16;
             // 
             // tbxCP
             // 
             this.tbxCP.Location = new System.Drawing.Point(449, 269);
             this.tbxCP.Name = "tbxCP";
             this.tbxCP.Size = new System.Drawing.Size(58, 20);
-            this.tbxCP.TabIndex = 27;
+            this.tbxCP.TabIndex = 17;
             this.tbxCP.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbxCP_KeyPress);
             // 
             // lblCP
@@ -330,7 +332,7 @@
             this.cbxProvincia.Location = new System.Drawing.Point(16, 328);
             this.cbxProvincia.Name = "cbxProvincia";
             this.cbxProvincia.Size = new System.Drawing.Size(233, 21);
-            this.cbxProvincia.TabIndex = 30;
+            this.cbxProvincia.TabIndex = 18;
             this.cbxProvincia.SelectedIndexChanged += new System.EventHandler(this.cbxProvincia_SelectedIndexChanged);
             // 
             // cbxLocalidad
@@ -340,7 +342,7 @@
             this.cbxLocalidad.Location = new System.Drawing.Point(279, 328);
             this.cbxLocalidad.Name = "cbxLocalidad";
             this.cbxLocalidad.Size = new System.Drawing.Size(228, 21);
-            this.cbxLocalidad.TabIndex = 31;
+            this.cbxLocalidad.TabIndex = 19;
             // 
             // lblLocalidad
             // 
@@ -356,7 +358,7 @@
             this.btnGuardar.Location = new System.Drawing.Point(432, 374);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(75, 23);
-            this.btnGuardar.TabIndex = 33;
+            this.btnGuardar.TabIndex = 20;
             this.btnGuardar.Text = "&Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
@@ -366,7 +368,7 @@
             this.btnSalir.Location = new System.Drawing.Point(12, 374);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(75, 23);
-            this.btnSalir.TabIndex = 34;
+            this.btnSalir.TabIndex = 22;
             this.btnSalir.Text = "&Salir";
             this.btnSalir.UseVisualStyleBackColor = true;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
@@ -376,7 +378,7 @@
             this.btnLimpiar.Location = new System.Drawing.Point(233, 374);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(75, 23);
-            this.btnLimpiar.TabIndex = 35;
+            this.btnLimpiar.TabIndex = 21;
             this.btnLimpiar.Text = "&Limpiar";
             this.btnLimpiar.UseVisualStyleBackColor = true;
             this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
@@ -386,7 +388,7 @@
             this.btnVerTelefonos.Location = new System.Drawing.Point(432, 154);
             this.btnVerTelefonos.Name = "btnVerTelefonos";
             this.btnVerTelefonos.Size = new System.Drawing.Size(75, 23);
-            this.btnVerTelefonos.TabIndex = 36;
+            this.btnVerTelefonos.TabIndex = 9;
             this.btnVerTelefonos.Text = "&Ver";
             this.btnVerTelefonos.UseVisualStyleBackColor = true;
             this.btnVerTelefonos.Click += new System.EventHandler(this.btnVerTelefonos_Click);
@@ -433,6 +435,7 @@
             this.Controls.Add(this.lblApellido);
             this.Controls.Add(this.tbxNombre);
             this.Controls.Add(this.lblNombre);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CargaPacienteForm";
             this.Text = "Carga de Paciente";
             this.Load += new System.EventHandler(this.CargaPacienteForm_Load);

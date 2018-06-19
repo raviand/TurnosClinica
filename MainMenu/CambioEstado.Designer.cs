@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CambioEstado));
             this.tbxEstadoActaul = new System.Windows.Forms.TextBox();
             this.lblEstadoActual = new System.Windows.Forms.Label();
             this.cbxEstado = new System.Windows.Forms.ComboBox();
@@ -116,6 +117,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.HighlightText;
             this.ClientSize = new System.Drawing.Size(468, 347);
             this.Controls.Add(this.lblIndicaciones);
             this.Controls.Add(this.btnSalir);
@@ -125,6 +127,7 @@
             this.Controls.Add(this.cbxEstado);
             this.Controls.Add(this.lblEstadoActual);
             this.Controls.Add(this.tbxEstadoActaul);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CambioEstado";
             this.Text = "CambioEstado";
             this.Load += new System.EventHandler(this.CambioEstado_Load);

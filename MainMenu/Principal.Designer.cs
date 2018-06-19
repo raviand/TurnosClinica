@@ -87,12 +87,13 @@
             // 
             // btnSalir
             // 
+            this.btnSalir.BackColor = System.Drawing.Color.SpringGreen;
             this.btnSalir.Location = new System.Drawing.Point(512, 411);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(95, 27);
             this.btnSalir.TabIndex = 9;
             this.btnSalir.Text = "&Salir";
-            this.btnSalir.UseVisualStyleBackColor = true;
+            this.btnSalir.UseVisualStyleBackColor = false;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
             // Principal
@@ -107,6 +108,7 @@
             this.Controls.Add(this.lblUser);
             this.Controls.Add(this.tbxUser);
             this.Controls.Add(this.btnVerAgenda);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Principal";
             this.Text = "Agenda Turnos";
             this.ResumeLayout(false);

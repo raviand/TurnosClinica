@@ -15,11 +15,7 @@ namespace Datos
 
         public override string ToString()
         {
-            String datos;
-            datos = "Id: " + IdPaciente + "\n";
-            datos += base.ToString();
-            datos += "Fecha ingreso: " + FechaIngreso.ToShortDateString() + "\n";
-            datos += CobreturaMedica.ToString() + "\n";
+            String datos = $"{IdPaciente} - {base.ToString()}";
 
             return datos;
         }

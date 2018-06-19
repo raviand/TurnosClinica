@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BuscarPaciente));
             this.btnBuscar = new System.Windows.Forms.Button();
             this.dgvListaPacientes = new System.Windows.Forms.DataGridView();
             this.btnModificar = new System.Windows.Forms.Button();
@@ -45,6 +46,7 @@
             this.cbxProvincia = new System.Windows.Forms.ComboBox();
             this.lblUbicacion = new System.Windows.Forms.Label();
             this.tbxDni = new System.Windows.Forms.TextBox();
+            this.btnHistorial = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListaPacientes)).BeginInit();
             this.SuspendLayout();
             // 
@@ -200,11 +202,23 @@
             this.tbxDni.Size = new System.Drawing.Size(140, 20);
             this.tbxDni.TabIndex = 20;
             // 
+            // btnHistorial
+            // 
+            this.btnHistorial.Location = new System.Drawing.Point(538, 468);
+            this.btnHistorial.Name = "btnHistorial";
+            this.btnHistorial.Size = new System.Drawing.Size(75, 23);
+            this.btnHistorial.TabIndex = 27;
+            this.btnHistorial.Text = "&Ver Historial";
+            this.btnHistorial.UseVisualStyleBackColor = true;
+            this.btnHistorial.Click += new System.EventHandler(this.btnHistorial_Click);
+            // 
             // BuscarPaciente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.HighlightText;
             this.ClientSize = new System.Drawing.Size(787, 502);
+            this.Controls.Add(this.btnHistorial);
             this.Controls.Add(this.lblDni);
             this.Controls.Add(this.tbxDni);
             this.Controls.Add(this.lblApellido);
@@ -222,6 +236,7 @@
             this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.dgvListaPacientes);
             this.Controls.Add(this.btnBuscar);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "BuscarPaciente";
             this.Text = "BuscarPaciente";
             this.Load += new System.EventHandler(this.BuscarPaciente_Load);
@@ -249,5 +264,6 @@
         private System.Windows.Forms.ComboBox cbxProvincia;
         private System.Windows.Forms.Label lblUbicacion;
         private System.Windows.Forms.TextBox tbxDni;
+        private System.Windows.Forms.Button btnHistorial;
     }
 }

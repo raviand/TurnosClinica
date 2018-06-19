@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Usuarios));
             this.cbxEspecialista = new System.Windows.Forms.ComboBox();
             this.chkEspecialista = new System.Windows.Forms.CheckBox();
             this.lblUser = new System.Windows.Forms.Label();
@@ -183,6 +184,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.HighlightText;
             this.ClientSize = new System.Drawing.Size(282, 445);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.dgvUsuarios);
@@ -195,6 +197,7 @@
             this.Controls.Add(this.lblUser);
             this.Controls.Add(this.chkEspecialista);
             this.Controls.Add(this.cbxEspecialista);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Usuarios";
             this.Text = "Usuarios";
             this.Load += new System.EventHandler(this.Usuarios_Load);

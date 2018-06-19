@@ -8,12 +8,14 @@ namespace Datos
 {
     public class Atencion
     {
+        public int idAtencion { get; set; }
         public DateTime FechaAtencion { get; set; }
         public Profesional Profesional { get; set; }
-        public String Especialidad { get; set; }
-        public List<Indicacion> Indicacion { get; set; }
-        public DateTime ProximoTurno { get; set; }
-        public Internado Internado { get; set; }
+        public Paciente paciente { get; set; }
+        public Especialidad Especialidad { get; set; }
+       // public List<Indicacion> Indicacion { get; set; }
+       // public DateTime ProximoTurno { get; set; }
+        public String   indicacion { get; set; }
        
     }
 }

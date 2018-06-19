@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CoberturaMedica));
             this.lblAgregarPlan = new System.Windows.Forms.Label();
             this.cbxServicioSalud = new System.Windows.Forms.ComboBox();
             this.tbxNuevoPlan = new System.Windows.Forms.TextBox();
@@ -146,6 +147,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.HighlightText;
             this.ClientSize = new System.Drawing.Size(415, 450);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnEliminar);
@@ -158,6 +160,7 @@
             this.Controls.Add(this.tbxNuevoPlan);
             this.Controls.Add(this.cbxServicioSalud);
             this.Controls.Add(this.lblAgregarPlan);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CoberturaMedica";
             this.Text = "CoberturaMedica";
             this.Load += new System.EventHandler(this.CoberturaMedica_Load);

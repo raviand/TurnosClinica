@@ -17,7 +17,7 @@ namespace Datos
         public override string ToString()
         {
             if (Nombre != null)
-                return NumeroCredencial + " - " + Nombre + " - " + Plan;
+                return  Nombre + " - " + Plan;
             else
                 return "No especifica";
         }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(nuevoTurno));
             this.tbxIdPaciente = new System.Windows.Forms.TextBox();
             this.tbxNombre = new System.Windows.Forms.TextBox();
             this.tbxApellido = new System.Windows.Forms.TextBox();
@@ -262,6 +263,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.HighlightText;
             this.ClientSize = new System.Drawing.Size(604, 482);
             this.Controls.Add(this.dgvTurnosDisponibles);
             this.Controls.Add(this.btnSalir);
@@ -285,6 +287,7 @@
             this.Controls.Add(this.tbxApellido);
             this.Controls.Add(this.tbxNombre);
             this.Controls.Add(this.tbxIdPaciente);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "nuevoTurno";
             this.Text = "nuevoTurno";
             this.Load += new System.EventHandler(this.nuevoTurno_Load);

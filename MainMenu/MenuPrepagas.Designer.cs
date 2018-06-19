@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MenuPrepagas));
             this.lbxOpcionesCobertura = new System.Windows.Forms.ListBox();
             this.lbxEleccionesCobertura = new System.Windows.Forms.ListBox();
             this.btnToRight = new System.Windows.Forms.Button();
@@ -109,6 +110,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.HighlightText;
             this.ClientSize = new System.Drawing.Size(607, 387);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnAceptar);
@@ -117,6 +119,7 @@
             this.Controls.Add(this.btnToRight);
             this.Controls.Add(this.lbxEleccionesCobertura);
             this.Controls.Add(this.lbxOpcionesCobertura);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "MenuPrepagas";
             this.Text = "MenuPrepagas";

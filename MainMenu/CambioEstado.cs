@@ -64,7 +64,8 @@ namespace MainMenu
                 String Diagnostico = rtbComentario.Text;
                 int turnoId = Int32.Parse(turno.IdTurno);
                 int profesionalid = Int32.Parse(turno.idProfesional);
-                tn.cambioEstado(Int32.Parse( turno.idPaciente) , Diagnostico, turnoId, profesionalid);
+                int idEspecialidad = Int32.Parse( turno.idEspecialidad );
+                tn.cambioEstado(Int32.Parse( turno.idPaciente) , Diagnostico, turnoId, profesionalid, idEspecialidad);
                 MessageBox.Show("El paciente atendido fue registrado");
                 Close();
             }

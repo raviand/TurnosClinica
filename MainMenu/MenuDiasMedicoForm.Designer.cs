@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MenuDiasMedicoForm));
             this.gbxLunes = new System.Windows.Forms.GroupBox();
             this.cbxAtencionLunes = new System.Windows.Forms.ComboBox();
             this.cbxLunes = new System.Windows.Forms.CheckBox();
@@ -337,6 +338,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.HighlightText;
             this.ClientSize = new System.Drawing.Size(617, 359);
             this.Controls.Add(this.cbxAtencionTodos);
             this.Controls.Add(this.lblReplicar);
@@ -351,6 +353,7 @@
             this.Controls.Add(this.gbxMiercoles);
             this.Controls.Add(this.gbxMartes);
             this.Controls.Add(this.gbxLunes);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MenuDiasMedicoForm";
             this.Text = "MenuDiasMedicoForm";
             this.Load += new System.EventHandler(this.MenuDiasMedicoForm_Load);
