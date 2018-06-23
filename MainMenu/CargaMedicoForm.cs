@@ -63,12 +63,14 @@ namespace MainMenu
             try
             {
                 tipoTel = gn.getTiposTelefonos();
+                cbxTipoTel.Items.Clear();
                 foreach (var pair in tipoTel)
                 {
                     cbxTipoTel.Items.Add(pair);
                 }
 
                 provincia = gn.getProvincia();
+                cbxProvincia.Items.Clear();
                 foreach (var pair in provincia)
                 {
                     cbxProvincia.Items.Add(pair);
@@ -124,7 +126,7 @@ namespace MainMenu
 
             try
             {
-
+                cbxLocalidad.Items.Clear();
                 if (cbxProvincia.SelectedIndex != -1)
                 {
                     int llave = ((KeyValuePair<int, String>)cbxProvincia.SelectedItem).Key;
@@ -205,42 +207,42 @@ namespace MainMenu
             if (tbxNombre.Text.Trim().CompareTo("") == 0)
             {
                 puede = false;
-                MessageBox.Show("Es obligatorio ingresar el Nombre");
+                //MessageBox.Show("Es obligatorio ingresar el Nombre");
             }
             if (tbxApellido.Text.Trim().CompareTo("") == 0)
             {
                 puede = false;
-                MessageBox.Show("Es obligatorio ingresar el Apellido");
+                //MessageBox.Show("Es obligatorio ingresar el Apellido");
             }
             if (tbxCalle.Text.Trim().CompareTo("") == 0)
             {
                 puede = false;
-                MessageBox.Show("Es obligatorio ingresar la Calle y Nro. puerta");
+                //MessageBox.Show("Es obligatorio ingresar la Calle y Nro. puerta");
             }
             if (tbxDni.Text.Trim().CompareTo("") == 0)
             {
                 puede = false;
-                MessageBox.Show("Es obligatorio ingresar el DNI");
+                //MessageBox.Show("Es obligatorio ingresar el DNI");
             }
             if (tbxMail.Text.Trim().CompareTo("") == 0)
             {
                 puede = false;
-                MessageBox.Show("Es obligatorio ingresar el Correo electronico");
+                //MessageBox.Show("Es obligatorio ingresar el Correo electronico");
             }
             if (contTel == 0)
             {
                 puede = false;
-                MessageBox.Show("Es obligatorio agregar un telefono");
+                //MessageBox.Show("Es obligatorio agregar un telefono");
             }
             if (dtpFechaNacimiento.Value.ToShortDateString().CompareTo(DateTime.Today.ToShortDateString()) == 0)
             {
                 puede = false;
-                MessageBox.Show("Ingrese fecha de nacimiento");
+                //MessageBox.Show("Ingrese fecha de nacimiento");
             }
             if (cbxLocalidad.SelectedIndex == -1)
             {
                 puede = false;
-                MessageBox.Show("Ingrese Provincia");
+                //MessageBox.Show("Ingrese Provincia");
             }
             if (!ver.IsValidEmail(tbxMail.Text))
             {
@@ -250,17 +252,17 @@ namespace MainMenu
             if(!rbtSi.Checked && !rbtNo.Checked)
             {
                 puede = false;
-                MessageBox.Show("Debe seleccionar si atiende a domicilio");
+                //MessageBox.Show("Debe seleccionar si atiende a domicilio");
             }
             if(profesional.Atencion.Count == 0)
             {
                 puede = false;
-                MessageBox.Show("Debe Registrar dias de Atencion");
+                //MessageBox.Show("Debe Registrar dias de Atencion");
             }
-            
-            
-            //controlar que cargue los horarios y las prepagas.
 
+
+            //controlar que cargue los horarios y las prepagas.
+            MessageBox.Show("Faltan campos obligatorios");
             return puede;
         }
         

@@ -113,6 +113,10 @@ namespace MainMenu
                 un.cargarUsuario();
 
             }
+            else
+            {
+                MessageBox.Show("Faltan campos por completar");
+            }
 
 
             cbxEspecialista.SelectedIndex = -1;

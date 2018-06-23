@@ -64,7 +64,9 @@
             // 
             this.dgvListaPacientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvListaPacientes.Location = new System.Drawing.Point(13, 84);
+            this.dgvListaPacientes.MultiSelect = false;
             this.dgvListaPacientes.Name = "dgvListaPacientes";
+            this.dgvListaPacientes.ReadOnly = true;
             this.dgvListaPacientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvListaPacientes.Size = new System.Drawing.Size(762, 377);
             this.dgvListaPacientes.TabIndex = 3;
@@ -87,6 +89,7 @@
             this.btnSalir.TabIndex = 5;
             this.btnSalir.Text = "&Salir";
             this.btnSalir.UseVisualStyleBackColor = true;
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
             // btnSeleccionar
             // 

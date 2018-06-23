@@ -129,6 +129,7 @@ namespace MainMenu
         {
             bp.buscar = true;
             bp.ShowDialog();
+            paciente = bp.Paciente;
             tbxIdPaciente.Text = bp.Paciente.IdPaciente;
             tbxNombre.Text = bp.Paciente.Nombre;
             tbxApellido.Text = bp.Paciente.Apellido;
@@ -151,6 +152,8 @@ namespace MainMenu
                         tn.turno.FechaTurno = diaDeTurno;
                         int res = tn.guardarNuevoTurno(false);
                         MessageBox.Show("Se guardo con exito " + res + "Registro/s");
+                        pn.turno = tn.turno;
+                        pn.sendMail();
                         Close();
                     }
                     else if(horaPuede() == 1)

@@ -103,16 +103,22 @@ namespace MainMenu
 
         private void load()
         {
-            pacient = new Paciente();
+            if (!esModificar)
+            {
+                pacient = new Paciente();
+                pacient.CobreturaMedica = new ServicioMedico();
+                pacient.Telefonos = new List<Telefono>();
+                pacient.Dir = new Direccion();
+                
+            }
+           
             ct = new controlTelefonos();
             ver = new Verificacion();
             contTel = 0;
             paciente = new Paciente();
             paciente.Telefonos = new List<Telefono>();
             paciente.Dir = new Direccion();
-            pacient.CobreturaMedica = new ServicioMedico();
-            pacient.Telefonos = new List<Telefono>();
-            pacient.Dir = new Direccion();
+            
             paciente.CobreturaMedica = new ServicioMedico();
             cbxCoberturaMedica.Items.Clear();
             cbxProvincia.Items.Clear();
@@ -290,6 +296,10 @@ namespace MainMenu
                     }
                     else
                     {
+                        if (pacient.Telefonos == null)
+                        {
+                            pacient.Telefonos = new List<Telefono>();
+                        }
                         pacient.Telefonos.Add(telefono);
                         if(ct.telefonos != null)
                             contTel = ct.telefonos.Count;

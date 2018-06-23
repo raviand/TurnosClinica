@@ -19,6 +19,8 @@ namespace MainMenu
         Conexion conn;
         TurnosForm tf;
         UserNegocios un;
+        PacienteNegocio pn;
+        ProfesionalNegocio proN;
         User user;
         public Principal()
         {
@@ -27,8 +29,10 @@ namespace MainMenu
             tf = new TurnosForm();
             conn = new Conexion();
             bp = new BuscarProfesional();
+            pn = new PacienteNegocio();
+            proN = new ProfesionalNegocio();
             InitializeComponent();
-           
+            btnMail.Visible = false;
         }
 
         private void btnVerAgenda_Click(object sender, EventArgs e)
@@ -63,6 +67,11 @@ namespace MainMenu
         private void btnSalir_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void btnMail_Click(object sender, EventArgs e)
+        {
+            proN.sendMail();
         }
     }
 }

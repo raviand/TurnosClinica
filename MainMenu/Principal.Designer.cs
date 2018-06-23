@@ -36,6 +36,7 @@
             this.lblPass = new System.Windows.Forms.Label();
             this.tbxPass = new System.Windows.Forms.TextBox();
             this.btnSalir = new System.Windows.Forms.Button();
+            this.btnMail = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnVerAgenda
@@ -96,12 +97,23 @@
             this.btnSalir.UseVisualStyleBackColor = false;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
+            // btnMail
+            // 
+            this.btnMail.Location = new System.Drawing.Point(512, 355);
+            this.btnMail.Name = "btnMail";
+            this.btnMail.Size = new System.Drawing.Size(75, 23);
+            this.btnMail.TabIndex = 10;
+            this.btnMail.Text = "MailTest";
+            this.btnMail.UseVisualStyleBackColor = true;
+            this.btnMail.Click += new System.EventHandler(this.btnMail_Click);
+            // 
             // Principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(619, 450);
+            this.Controls.Add(this.btnMail);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.lblPass);
             this.Controls.Add(this.tbxPass);
@@ -123,6 +135,7 @@
         private System.Windows.Forms.Label lblPass;
         private System.Windows.Forms.TextBox tbxPass;
         private System.Windows.Forms.Button btnSalir;
+        private System.Windows.Forms.Button btnMail;
     }
 }
 

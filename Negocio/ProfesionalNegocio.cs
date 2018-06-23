@@ -5,17 +5,23 @@ using System.Text;
 using System.Threading.Tasks;
 using Datos;
 using System.Data.SqlClient;
+using System.Net.Mail;
+using System.Net.Mime;
+
 
 namespace Negocio
 {
     public class ProfesionalNegocio
     {
         public Profesional Profesional { get; set; }
-
+        private string service = "raviand86@gmail.com";
+        private string pass = "chancho86";
         Conexion conn;
         GeneralNegocio gn;
+        public Paciente paciente { get; set; }
         public Especialidad especialidad { get; set; }
         public List<Especialidad> especialidades { get; set; }
+        public Turno turno { get; set; }
 
         public ProfesionalNegocio()
         {
@@ -181,6 +187,63 @@ namespace Negocio
             {
                 conn.close();
             }
+        }
+
+        //public void sendMail(Paciente paciente)
+        public void sendMail()
+        {
+            return;
+            MailMessage mail = new MailMessage();
+            SmtpClient SmtpServer = new SmtpClient();
+            SmtpServer.Credentials = new System.Net.NetworkCredential("ivangonzalez.91@gmail.com","pachamama");
+            SmtpServer.Port = 587;
+            SmtpServer.Host = "smtp.gmail.com";
+            SmtpServer.EnableSsl = true;
+            mail = new MailMessage();
+            try
+            {
+                mail.From = new MailAddress("ivangonzalez.91@gmail.com", "Soporte", System.Text.Encoding.UTF8);
+                mail.To.Add("raviand86@gmail.com");
+                mail.Subject = "Chupala rama";
+                mail.Body = "re chupala rama";
+                mail.IsBodyHtml = true;
+                mail.Priority = MailPriority.Normal;
+                SmtpServer.Send(mail);
+                mail.Dispose();
+
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+
+            //return;
+            /*SmtpClient client = new SmtpClient();
+            client.Credentials = new System.Net.NetworkCredential(service, pass);
+            MailMessage mail = new MailMessage();
+            mail.From = new MailAddress("Raviand86@gmail.com");
+            client.UseDefaultCredentials = true;
+            client.Port = 587;
+            client.Host = "smtp.gmail.com";
+            client.EnableSsl = true;
+            //client.Timeout = 10000;
+            //client.DeliveryMethod = SmtpDeliveryMethod.Network;
+            //client.UseDefaultCredentials = false;
+            mail.To.Add("pixmotive@gmail.com");
+            mail.Subject = "Confirmacion de Turno";
+            mail.Body = $"Sr/a/e. {paciente.Nombre} {paciente.Apellido}, Confirmamos su turno para el dia {turno.FechaTurno}!!!!.\nRecuerde en " +
+                $"caso de tener que anular el turno recuerde comunicarce al 2255-6633";
+
+
+            //mail.BodyEncoding = UTF8Encoding.UTF8;
+            //mail.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure;
+            *
+            client.Send(mail);*/
+
+
+            
+            
+            
         }
 
         public Dictionary<int, String> getEspecialidades()
@@ -418,6 +481,8 @@ namespace Negocio
                 throw ex;
             }
         }
+
+       
 
     }
 }

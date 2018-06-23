@@ -57,6 +57,7 @@ namespace MainMenu
                 
 
                 prov = gn.getProvincia();
+                cbxProvincia.Items.Clear();
                 foreach(var pair in prov)
                 {
                     cbxProvincia.Items.Add(pair);
@@ -125,6 +126,11 @@ namespace MainMenu
         private void btnModificar_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CargaPacienteForm));
             this.lblNombre = new System.Windows.Forms.Label();
             this.tbxNombre = new System.Windows.Forms.TextBox();
@@ -66,6 +67,8 @@
             this.btnSalir = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.btnVerTelefonos = new System.Windows.Forms.Button();
+            this.errNombre = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.errNombre)).BeginInit();
             this.SuspendLayout();
             // 
             // lblNombre
@@ -393,6 +396,10 @@
             this.btnVerTelefonos.UseVisualStyleBackColor = true;
             this.btnVerTelefonos.Click += new System.EventHandler(this.btnVerTelefonos_Click);
             // 
+            // errNombre
+            // 
+            this.errNombre.ContainerControl = this;
+            // 
             // CargaPacienteForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -439,6 +446,7 @@
             this.Name = "CargaPacienteForm";
             this.Text = "Carga de Paciente";
             this.Load += new System.EventHandler(this.CargaPacienteForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.errNombre)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -483,5 +491,6 @@
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.Button btnVerTelefonos;
+        private System.Windows.Forms.ErrorProvider errNombre;
     }
 }

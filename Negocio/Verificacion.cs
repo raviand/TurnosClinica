@@ -84,17 +84,21 @@ namespace Negocio
 
             try
             {
-                if(p.Count > 0)
+                if (p != null)
                 {
-                    for (int i = 0; i < p.Count; i++)
+                    if (p.Count > 0)
                     {
-                        if (numero.CompareTo(p[i].Numero) == 0)
+                        for (int i = 0; i < p.Count; i++)
                         {
-                            existe = true;
-                            return existe;
+                            if (numero.CompareTo(p[i].Numero) == 0)
+                            {
+                                existe = true;
+                                return existe;
+                            }
                         }
                     }
                 }
+                
                 return existe;
             }
             catch (Exception ex)

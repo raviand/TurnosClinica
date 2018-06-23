@@ -73,15 +73,18 @@ namespace MainMenu
             {
                 btnBuscar_Click(null, null);
                 estados = tn.listarEstado();
+                cbxEstados.Items.Clear();
                 foreach(String pair in estados)
                     cbxEstados.Items.Add(pair);
                 
                 especialidades = ProfesionalNegocio.getEspecialidades();
-
+                cbxEspecialidades.Items.Clear();
                 foreach (KeyValuePair<int, String> pair in especialidades)
                     cbxEspecialidades.Items.Add(pair);
 
                 cbxEspecialidades.DisplayMember = "Value";
+                cbxMesAnterior.Items.Clear();
+                cbxMesPosterior.Items.Clear();
                 for(int i = 0; i < 4; i++)
                 {
                     cbxMesAnterior.Items.Add(i +1);

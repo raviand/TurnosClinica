@@ -24,6 +24,7 @@ namespace MainMenu
             turno = new Turno();
             InitializeComponent();
             estados = tn.listarEstado();
+            cbxEstado.Items.Clear();
             foreach (String pair in estados)
                 cbxEstado.Items.Add(pair);          
         }

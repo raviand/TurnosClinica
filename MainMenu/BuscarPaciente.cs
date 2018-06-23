@@ -46,6 +46,7 @@ namespace MainMenu
 
 
                 prov = gn.getProvincia();
+                cbxProvincia.Items.Clear();
                 foreach (var pair in prov)
                 {
                     cbxProvincia.Items.Add(pair);
@@ -76,6 +77,7 @@ namespace MainMenu
            
             Paciente = (Paciente)dgvListaPacientes.CurrentRow.DataBoundItem;
             cp.pacient = Paciente;
+            cp.pacient.Telefonos = pn.listarTelefonos(Int32.Parse( Paciente.IdPaciente) );
             cp.esModificar = true;
             cp.ShowDialog();
         }
@@ -147,6 +149,11 @@ namespace MainMenu
         {
             hm.paciente = (Paciente)dgvListaPacientes.CurrentRow.DataBoundItem; ;
             hm.ShowDialog();
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }
